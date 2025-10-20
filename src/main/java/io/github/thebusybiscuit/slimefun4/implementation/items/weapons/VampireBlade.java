@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import eu.mrneznamy.utils.slimefun5.utils.compatibility.VersionedAttribute;
+import eu.mrneznamy.utils.compatibility.VersionedAttribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

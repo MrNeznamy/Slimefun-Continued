@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.GameMode;
-import eu.mrneznamy.utils.slimefun5.utils.compatibility.VersionedAttribute;
+import eu.mrneznamy.utils.compatibility.VersionedAttribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
