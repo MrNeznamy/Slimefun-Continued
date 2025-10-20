@@ -821,7 +821,7 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {new ItemStack(Material.QUARTZ_BLOCK), null, null, null, null, null, null, null, null})
                 .register(plugin);
 
-        new UnplaceableBlock(itemGroups.technicalComponents, SlimefunItems.SOLAR_PANEL, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new UnplaceableBlock(itemGroups.solarGenerators, SlimefunItems.SOLAR_PANEL, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {new ItemStack(Material.GLASS), new ItemStack(Material.GLASS), new ItemStack(Material.GLASS), SlimefunItems.SILICON.item(), SlimefunItems.SILICON.item(), SlimefunItems.SILICON.item(), SlimefunItems.FERROSILICON.item(), SlimefunItems.FERROSILICON.item(), SlimefunItems.FERROSILICON.item()})
                 .register(plugin);
 
@@ -1556,11 +1556,11 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {null, new ItemStack(Material.ENCHANTING_TABLE), null, SlimefunItems.MAGIC_LUMP_3.item(), SlimefunItems.GOLD_8K.item(), SlimefunItems.MAGIC_LUMP_3.item(), new ItemStack(Material.OBSIDIAN), SlimefunItems.GOLD_8K.item(), new ItemStack(Material.OBSIDIAN)})
                 .register(plugin);
 
-        new EnergyRegulator(itemGroups.electricity, SlimefunItems.ENERGY_REGULATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new EnergyRegulator(itemGroups.energyRegulatorsConnectorsCapacitors, SlimefunItems.ENERGY_REGULATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.SILVER_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.SILVER_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.SILVER_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.SILVER_INGOT.item()})
                 .register(plugin);
 
-        new EnergyConnector(itemGroups.electricity, SlimefunItems.ENERGY_CONNECTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new EnergyConnector(itemGroups.energyRegulatorsConnectorsCapacitors, SlimefunItems.ENERGY_CONNECTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CARBON.item(), SlimefunItems.COPPER_WIRE.item(), SlimefunItems.CARBON.item(), SlimefunItems.COPPER_WIRE.item(), new ItemStack(Material.REDSTONE_BLOCK), SlimefunItems.COPPER_WIRE.item(), SlimefunItems.CARBON.item(), SlimefunItems.COPPER_WIRE.item(), SlimefunItems.CARBON.item()},
                 new SlimefunItemStack(SlimefunItems.ENERGY_CONNECTOR, 8).item())
                 .register(plugin);
@@ -1570,240 +1570,240 @@ public final class SlimefunItemSetup {
                 new SlimefunItemStack(SlimefunItems.DUCT_TAPE, 2).item())
                 .register(plugin);
 
-        new Capacitor(itemGroups.electricity, 128, SlimefunItems.SMALL_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Capacitor(itemGroups.energyRegulatorsConnectorsCapacitors, 128, SlimefunItems.SMALL_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.DURALUMIN_INGOT.item(), SlimefunItems.SULFATE.item(), SlimefunItems.DURALUMIN_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.ENERGY_CONNECTOR.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.DURALUMIN_INGOT.item(), new ItemStack(Material.REDSTONE), SlimefunItems.DURALUMIN_INGOT.item()})
                 .register(plugin);
 
-        new Capacitor(itemGroups.electricity, 512, SlimefunItems.MEDIUM_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Capacitor(itemGroups.energyRegulatorsConnectorsCapacitors, 512, SlimefunItems.MEDIUM_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.BILLON_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.BILLON_INGOT.item(), new ItemStack(Material.REDSTONE), SlimefunItems.SMALL_CAPACITOR.item(), new ItemStack(Material.REDSTONE), SlimefunItems.BILLON_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.BILLON_INGOT.item()})
                 .register(plugin);
 
-        new Capacitor(itemGroups.electricity, 1024, SlimefunItems.BIG_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Capacitor(itemGroups.energyRegulatorsConnectorsCapacitors, 1024, SlimefunItems.BIG_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.STEEL_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.STEEL_INGOT.item(), new ItemStack(Material.REDSTONE), SlimefunItems.MEDIUM_CAPACITOR.item(), new ItemStack(Material.REDSTONE), SlimefunItems.STEEL_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.STEEL_INGOT.item()})
                 .register(plugin);
 
-        new Capacitor(itemGroups.electricity, 8192, SlimefunItems.LARGE_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Capacitor(itemGroups.energyRegulatorsConnectorsCapacitors, 8192, SlimefunItems.LARGE_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), new ItemStack(Material.REDSTONE), SlimefunItems.BIG_CAPACITOR.item(), new ItemStack(Material.REDSTONE), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item()})
                 .register(plugin);
 
-        new Capacitor(itemGroups.electricity, 65536, SlimefunItems.CARBONADO_EDGED_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Capacitor(itemGroups.energyRegulatorsConnectorsCapacitors, 65536, SlimefunItems.CARBONADO_EDGED_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CARBONADO.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.CARBONADO.item(), new ItemStack(Material.REDSTONE), SlimefunItems.LARGE_CAPACITOR.item(), new ItemStack(Material.REDSTONE), SlimefunItems.CARBONADO.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.CARBONADO.item()})
                 .register(plugin);
 
-        new Capacitor(itemGroups.electricity, 524288, SlimefunItems.ENERGIZED_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Capacitor(itemGroups.energyRegulatorsConnectorsCapacitors, 524288, SlimefunItems.ENERGIZED_CAPACITOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CARBONADO.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.CARBONADO.item(), new ItemStack(Material.NETHER_STAR), SlimefunItems.CARBONADO_EDGED_CAPACITOR.item(), new ItemStack(Material.NETHER_STAR), SlimefunItems.CARBONADO.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.CARBONADO.item()})
                 .register(plugin);
 
-        new SolarGenerator(itemGroups.electricity, 2, 0, SlimefunItems.SOLAR_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new SolarGenerator(itemGroups.solarGenerators, 2, 0, SlimefunItems.SOLAR_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.SOLAR_PANEL.item(), SlimefunItems.SOLAR_PANEL.item(), SlimefunItems.SOLAR_PANEL.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ALUMINUM_INGOT.item(), null, SlimefunItems.ALUMINUM_INGOT.item(), null})
                 .register(plugin);
 
-        new SolarGenerator(itemGroups.electricity, 8, 0, SlimefunItems.SOLAR_GENERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new SolarGenerator(itemGroups.solarGenerators, 8, 0, SlimefunItems.SOLAR_GENERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.SOLAR_GENERATOR.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.SOLAR_GENERATOR.item(), SlimefunItems.ALUMINUM_INGOT.item(), new ItemStack(Material.REDSTONE), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.SOLAR_GENERATOR.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.SOLAR_GENERATOR.item()})
                 .register(plugin);
 
-        new SolarGenerator(itemGroups.electricity, 32, 0, SlimefunItems.SOLAR_GENERATOR_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new SolarGenerator(itemGroups.solarGenerators, 32, 0, SlimefunItems.SOLAR_GENERATOR_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.SOLAR_GENERATOR_2.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.SOLAR_GENERATOR_2.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.CARBONADO.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.SOLAR_GENERATOR_2.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.SOLAR_GENERATOR_2.item()})
                 .register(plugin);
 
-        new SolarGenerator(itemGroups.electricity, 128, 64, SlimefunItems.SOLAR_GENERATOR_4, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new SolarGenerator(itemGroups.solarGenerators, 128, 64, SlimefunItems.SOLAR_GENERATOR_4, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.SOLAR_GENERATOR_3.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.SOLAR_GENERATOR_3.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.SOLAR_GENERATOR_3.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.SOLAR_GENERATOR_3.item()})
                 .register(plugin);
 
-        new ChargingBench(itemGroups.electricity, SlimefunItems.CHARGING_BENCH, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ChargingBench(itemGroups.energyMachines, SlimefunItems.CHARGING_BENCH, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.ELECTRO_MAGNET.item(), null, SlimefunItems.BATTERY.item(), new ItemStack(Material.CRAFTING_TABLE), SlimefunItems.BATTERY.item(), null, SlimefunItems.SMALL_CAPACITOR.item(), null})
                 .setCapacity(128)
                 .setEnergyConsumption(10)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricFurnace(itemGroups.electricity, SlimefunItems.ELECTRIC_FURNACE, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricFurnace(itemGroups.energyMachines, SlimefunItems.ELECTRIC_FURNACE, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.FURNACE), null, SlimefunItems.GILDED_IRON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(64)
                 .setEnergyConsumption(2)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricFurnace(itemGroups.electricity, SlimefunItems.ELECTRIC_FURNACE_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricFurnace(itemGroups.energyMachines, SlimefunItems.ELECTRIC_FURNACE_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.ELECTRIC_MOTOR.item(), null, SlimefunItems.GILDED_IRON.item(), SlimefunItems.ELECTRIC_FURNACE.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(3)
                 .setProcessingSpeed(2)
                 .register(plugin);
 
-        new ElectricFurnace(itemGroups.electricity, SlimefunItems.ELECTRIC_FURNACE_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricFurnace(itemGroups.energyMachines, SlimefunItems.ELECTRIC_FURNACE_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.ELECTRIC_MOTOR.item(), null, SlimefunItems.STEEL_INGOT.item(), SlimefunItems.ELECTRIC_FURNACE_2.item(), SlimefunItems.STEEL_INGOT.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(5)
                 .setProcessingSpeed(4)
                 .register(plugin);
 
-        new ElectricGoldPan(itemGroups.electricity, SlimefunItems.ELECTRIC_GOLD_PAN, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricGoldPan(itemGroups.energyMachines, SlimefunItems.ELECTRIC_GOLD_PAN, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.GOLD_PAN.item(), null, new ItemStack(Material.FLINT), SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.FLINT), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.ALUMINUM_INGOT.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(1)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricGoldPan(itemGroups.electricity, SlimefunItems.ELECTRIC_GOLD_PAN_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricGoldPan(itemGroups.energyMachines, SlimefunItems.ELECTRIC_GOLD_PAN_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.GOLD_PAN.item(), null, new ItemStack(Material.IRON_INGOT), SlimefunItems.ELECTRIC_GOLD_PAN.item(), new ItemStack(Material.IRON_INGOT), SlimefunItems.DURALUMIN_INGOT.item(), SlimefunItems.DURALUMIN_INGOT.item(), SlimefunItems.DURALUMIN_INGOT.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(2)
                 .setProcessingSpeed(3)
                 .register(plugin);
 
-        new ElectricGoldPan(itemGroups.electricity, SlimefunItems.ELECTRIC_GOLD_PAN_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricGoldPan(itemGroups.energyMachines, SlimefunItems.ELECTRIC_GOLD_PAN_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.GOLD_PAN.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ELECTRIC_GOLD_PAN_2.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.COBALT_INGOT.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.COBALT_INGOT.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(7)
                 .setProcessingSpeed(10)
                 .register(plugin);
 
-        new ElectricDustWasher(itemGroups.electricity, SlimefunItems.ELECTRIC_DUST_WASHER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricDustWasher(itemGroups.energyMachines, SlimefunItems.ELECTRIC_DUST_WASHER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.WATER_BUCKET), null, SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.ELECTRIC_GOLD_PAN.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.COPPER_INGOT.item(), SlimefunItems.COPPER_INGOT.item(), SlimefunItems.COPPER_INGOT.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(3)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricDustWasher(itemGroups.electricity, SlimefunItems.ELECTRIC_DUST_WASHER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricDustWasher(itemGroups.energyMachines, SlimefunItems.ELECTRIC_DUST_WASHER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.WATER_BUCKET), null, SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.ELECTRIC_DUST_WASHER.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(5)
                 .setProcessingSpeed(2)
                 .register(plugin);
 
-        new ElectricDustWasher(itemGroups.electricity, SlimefunItems.ELECTRIC_DUST_WASHER_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricDustWasher(itemGroups.energyMachines, SlimefunItems.ELECTRIC_DUST_WASHER_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.WATER_BUCKET), null, SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.ELECTRIC_DUST_WASHER_2.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(15)
                 .setProcessingSpeed(10)
                 .register(plugin);
 
-        new ElectricIngotFactory(itemGroups.electricity, SlimefunItems.ELECTRIC_INGOT_FACTORY, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricIngotFactory(itemGroups.energyMachines, SlimefunItems.ELECTRIC_INGOT_FACTORY, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.FLINT_AND_STEEL), null, SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRIC_DUST_WASHER.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(4)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricIngotFactory(itemGroups.electricity, SlimefunItems.ELECTRIC_INGOT_FACTORY_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricIngotFactory(itemGroups.energyMachines, SlimefunItems.ELECTRIC_INGOT_FACTORY_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.GILDED_IRON.item(), new ItemStack(Material.FLINT_AND_STEEL), SlimefunItems.GILDED_IRON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRIC_INGOT_FACTORY.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.BRASS_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.BRASS_INGOT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(7)
                 .setProcessingSpeed(2)
                 .register(plugin);
 
-        new ElectricIngotFactory(itemGroups.electricity, SlimefunItems.ELECTRIC_INGOT_FACTORY_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricIngotFactory(itemGroups.energyMachines, SlimefunItems.ELECTRIC_INGOT_FACTORY_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.GILDED_IRON.item(), new ItemStack(Material.FLINT_AND_STEEL), SlimefunItems.GILDED_IRON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRIC_INGOT_FACTORY_2.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.BRASS_INGOT.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.BRASS_INGOT.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(20)
                 .setProcessingSpeed(8)
                 .register(plugin);
 
-        new ElectrifiedCrucible(itemGroups.electricity, SlimefunItems.ELECTRIFIED_CRUCIBLE, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectrifiedCrucible(itemGroups.energyMachines, SlimefunItems.ELECTRIFIED_CRUCIBLE, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.LEAD_INGOT.item(), SlimefunItems.CRUCIBLE.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LARGE_CAPACITOR.item(), SlimefunItems.LEAD_INGOT.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(24)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectrifiedCrucible(itemGroups.electricity, SlimefunItems.ELECTRIFIED_CRUCIBLE_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectrifiedCrucible(itemGroups.energyMachines, SlimefunItems.ELECTRIFIED_CRUCIBLE_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.ELECTRIFIED_CRUCIBLE.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.LEAD_INGOT.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(40)
                 .setProcessingSpeed(2)
                 .register(plugin);
 
-        new ElectrifiedCrucible(itemGroups.electricity, SlimefunItems.ELECTRIFIED_CRUCIBLE_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectrifiedCrucible(itemGroups.energyMachines, SlimefunItems.ELECTRIFIED_CRUCIBLE_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.ELECTRIFIED_CRUCIBLE_2.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.STEEL_PLATE.item(), SlimefunItems.POWER_CRYSTAL.item(), SlimefunItems.STEEL_PLATE.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LEAD_INGOT.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(60)
                 .setProcessingSpeed(4)
                 .register(plugin);
 
-        new ElectricOreGrinder(itemGroups.electricity, SlimefunItems.ELECTRIC_ORE_GRINDER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricOreGrinder(itemGroups.energyMachines, SlimefunItems.ELECTRIC_ORE_GRINDER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.GILDED_IRON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(6)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricOreGrinder(itemGroups.electricity, SlimefunItems.ELECTRIC_ORE_GRINDER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricOreGrinder(itemGroups.energyMachines, SlimefunItems.ELECTRIC_ORE_GRINDER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.DIAMOND_PICKAXE), null, SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRIC_ORE_GRINDER.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(15)
                 .setProcessingSpeed(4)
                 .register(plugin);
 
-        new ElectricOreGrinder(itemGroups.electricity, SlimefunItems.ELECTRIC_ORE_GRINDER_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricOreGrinder(itemGroups.energyMachines, SlimefunItems.ELECTRIC_ORE_GRINDER_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.REINFORCED_PLATE.item(), null, SlimefunItems.ELECTRIC_ORE_GRINDER_2.item(), null, SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.REINFORCED_PLATE.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(45)
                 .setProcessingSpeed(10)
                 .register(plugin);
 
-        new HeatedPressureChamber(itemGroups.electricity, SlimefunItems.HEATED_PRESSURE_CHAMBER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new HeatedPressureChamber(itemGroups.energyMachines, SlimefunItems.HEATED_PRESSURE_CHAMBER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.LEAD_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), new ItemStack(Material.GLASS), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.LEAD_INGOT.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(5)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new HeatedPressureChamber(itemGroups.electricity, SlimefunItems.HEATED_PRESSURE_CHAMBER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new HeatedPressureChamber(itemGroups.energyMachines, SlimefunItems.HEATED_PRESSURE_CHAMBER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.LEAD_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.HEATED_PRESSURE_CHAMBER.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(22)
                 .setProcessingSpeed(5)
                 .register(plugin);
 
-        new ElectricIngotPulverizer(itemGroups.electricity, SlimefunItems.ELECTRIC_INGOT_PULVERIZER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricIngotPulverizer(itemGroups.energyMachines, SlimefunItems.ELECTRIC_INGOT_PULVERIZER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.ELECTRIC_ORE_GRINDER.item(), null, SlimefunItems.LEAD_INGOT.item(), SlimefunItems.MEDIUM_CAPACITOR.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.LEAD_INGOT.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(7)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new CoalGenerator(itemGroups.electricity, SlimefunItems.COAL_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CoalGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.COAL_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.HEATING_COIL.item(), new ItemStack(Material.FURNACE), SlimefunItems.HEATING_COIL.item(), SlimefunItems.NICKEL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.NICKEL_INGOT.item(), null, SlimefunItems.NICKEL_INGOT.item(), null})
                 .setCapacity(64)
                 .setEnergyProduction(8)
                 .register(plugin);
 
-        new CoalGenerator(itemGroups.electricity, SlimefunItems.COAL_GENERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CoalGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.COAL_GENERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {new ItemStack(Material.MAGMA_BLOCK), SlimefunItems.HEATING_COIL.item(), new ItemStack(Material.MAGMA_BLOCK), SlimefunItems.HARDENED_METAL_INGOT.item(), SlimefunItems.COAL_GENERATOR.item(), SlimefunItems.HARDENED_METAL_INGOT.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), null})
                 .setCapacity(256)
                 .setEnergyProduction(15)
                 .register(plugin);
 
-        new BioGenerator(itemGroups.electricity, SlimefunItems.BIO_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new BioGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.BIO_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.HEATING_COIL.item(), SlimefunItems.COMPOSTER.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ALUMINUM_BRASS_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ALUMINUM_BRASS_INGOT.item(), null, SlimefunItems.ALUMINUM_BRASS_INGOT.item(), null})
                 .setCapacity(128)
                 .setEnergyProduction(4)
                 .register(plugin);
 
-        new AutoDrier(itemGroups.electricity, SlimefunItems.AUTO_DRIER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoDrier(itemGroups.energyMachines, SlimefunItems.AUTO_DRIER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{null, null, null, SlimefunItems.HEATING_COIL.item(), new ItemStack(Material.SMOKER), SlimefunItems.HEATING_COIL.item(), null, new ItemStack(Material.CAMPFIRE), null})
                 .setCapacity(128)
                 .setEnergyConsumption(5)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new AutoBrewer(itemGroups.electricity, SlimefunItems.AUTO_BREWER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoBrewer(itemGroups.energyMachines, SlimefunItems.AUTO_BREWER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.HEATING_COIL.item(), null, SlimefunItems.REINFORCED_PLATE.item(), new ItemStack(Material.BREWING_STAND), SlimefunItems.REINFORCED_PLATE.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), null})
                 .setCapacity(128)
                 .setEnergyConsumption(6)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricPress(itemGroups.electricity, SlimefunItems.ELECTRIC_PRESS, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricPress(itemGroups.energyMachines, SlimefunItems.ELECTRIC_PRESS, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {new ItemStack(Material.PISTON), SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.PISTON), null, SlimefunItems.MEDIUM_CAPACITOR.item(), null, SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(8)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricPress(itemGroups.electricity, SlimefunItems.ELECTRIC_PRESS_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricPress(itemGroups.energyMachines, SlimefunItems.ELECTRIC_PRESS_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {new ItemStack(Material.STICKY_PISTON), SlimefunItems.ELECTRIC_PRESS.item(), new ItemStack(Material.STICKY_PISTON), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.BIG_CAPACITOR.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(20)
@@ -1814,55 +1814,55 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {SlimefunItems.MAGNESIUM_DUST.item(), SlimefunItems.SALT.item(), null, null, null, null, null, null, null})
                 .register(plugin);
 
-        new MagnesiumGenerator(itemGroups.electricity, SlimefunItems.MAGNESIUM_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new MagnesiumGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.MAGNESIUM_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.ELECTRIC_MOTOR.item(), null, SlimefunItems.COMPRESSED_CARBON.item(), new ItemStack(Material.WATER_BUCKET), SlimefunItems.COMPRESSED_CARBON.item(), SlimefunItems.DURALUMIN_INGOT.item(), SlimefunItems.DURALUMIN_INGOT.item(), SlimefunItems.DURALUMIN_INGOT.item()})
                 .setCapacity(128)
                 .setEnergyProduction(18)
                 .register(plugin);
 
-        new AutoEnchanter(itemGroups.electricity, SlimefunItems.AUTO_ENCHANTER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoEnchanter(itemGroups.energyMachines, SlimefunItems.AUTO_ENCHANTER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.ENCHANTING_TABLE), null, SlimefunItems.CARBONADO.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.CARBONADO.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(9)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new AutoEnchanter(itemGroups.electricity, SlimefunItems.AUTO_ENCHANTER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoEnchanter(itemGroups.energyMachines, SlimefunItems.AUTO_ENCHANTER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.BIG_CAPACITOR.item(), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.AUTO_ENCHANTER.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.SYNTHETIC_DIAMOND.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(24)
                 .setProcessingSpeed(3)
                 .register(plugin);
 
-        new AutoDisenchanter(itemGroups.electricity, SlimefunItems.AUTO_DISENCHANTER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoDisenchanter(itemGroups.energyMachines, SlimefunItems.AUTO_DISENCHANTER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {new ItemStack(Material.REDSTONE), new ItemStack(Material.ANVIL), new ItemStack(Material.REDSTONE), SlimefunItems.CARBONADO.item(), SlimefunItems.AUTO_ENCHANTER.item(), SlimefunItems.CARBONADO.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item()})
                 .setCapacity(128)
                 .setEnergyConsumption(9)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new AutoDisenchanter(itemGroups.electricity, SlimefunItems.AUTO_DISENCHANTER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoDisenchanter(itemGroups.energyMachines, SlimefunItems.AUTO_DISENCHANTER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.REINFORCED_PLATE.item(), new ItemStack(Material.ANVIL), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.AUTO_DISENCHANTER.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.BIG_CAPACITOR.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(24)
                 .setProcessingSpeed(3)
                 .register(plugin);
 
-        new AutoAnvil(itemGroups.electricity, 10, SlimefunItems.AUTO_ANVIL, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoAnvil(itemGroups.energyMachines, 10, SlimefunItems.AUTO_ANVIL, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.ANVIL), null, SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.IRON_BLOCK)})
                 .setCapacity(128)
                 .setEnergyConsumption(12)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new AutoAnvil(itemGroups.electricity, 25, SlimefunItems.AUTO_ANVIL_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoAnvil(itemGroups.energyMachines, 25, SlimefunItems.AUTO_ANVIL_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.AUTO_ANVIL.item(), null, SlimefunItems.STEEL_PLATE.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.STEEL_PLATE.item(), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.IRON_BLOCK)})
                 .setCapacity(256)
                 .setEnergyConsumption(16)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new BookBinder(itemGroups.electricity, SlimefunItems.BOOK_BINDER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new BookBinder(itemGroups.energyMachines, SlimefunItems.BOOK_BINDER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.ENCHANTING_TABLE), null, new ItemStack(Material.BOOKSHELF), SlimefunItems.HARDENED_METAL_INGOT.item(), new ItemStack(Material.BOOKSHELF), SlimefunItems.SYNTHETIC_SAPPHIRE.item(), SlimefunItems.SMALL_CAPACITOR.item(), SlimefunItems.SYNTHETIC_SAPPHIRE.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(16)
@@ -2254,26 +2254,26 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {null, null, null, null, null, null, null, null, null})
                 .register(plugin);
 
-        new Refinery(itemGroups.electricity, SlimefunItems.REFINERY, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Refinery(itemGroups.energyMachines, SlimefunItems.REFINERY, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.HARDENED_GLASS.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.HARDENED_GLASS.item(), SlimefunItems.HARDENED_GLASS.item(), SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.HARDENED_GLASS.item(), new ItemStack(Material.PISTON), SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.PISTON)})
                 .setCapacity(256)
                 .setEnergyConsumption(16)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new LavaGenerator(itemGroups.electricity, SlimefunItems.LAVA_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new LavaGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.LAVA_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.GOLD_16K.item(), null, SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.HEATING_COIL.item()})
                 .setCapacity(512)
                 .setEnergyProduction(10)
                 .register(plugin);
 
-        new LavaGenerator(itemGroups.electricity, SlimefunItems.LAVA_GENERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new LavaGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.LAVA_GENERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.COMPRESSED_CARBON.item(), SlimefunItems.LAVA_GENERATOR.item(), SlimefunItems.COMPRESSED_CARBON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.COMPRESSED_CARBON.item(), SlimefunItems.HEATING_COIL.item()})
                 .setCapacity(1024)
                 .setEnergyProduction(20)
                 .register(plugin);
 
-        new CombustionGenerator(itemGroups.electricity, SlimefunItems.COMBUSTION_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CombustionGenerator(itemGroups.otherEnergyGenerators, SlimefunItems.COMBUSTION_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.STEEL_INGOT.item(), null, SlimefunItems.STEEL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.STEEL_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.STEEL_INGOT.item(), SlimefunItems.HEATING_COIL.item()})
                 .setCapacity(256)
                 .setEnergyProduction(12)
@@ -2326,14 +2326,14 @@ public final class SlimefunItemSetup {
                 new SlimefunItemStack(SlimefunItems.ELEVATOR_PLATE, 2).item())
                 .register(plugin);
 
-        new FoodFabricator(itemGroups.electricity, SlimefunItems.FOOD_FABRICATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FoodFabricator(itemGroups.energyMachines, SlimefunItems.FOOD_FABRICATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.BILLON_INGOT.item(), SlimefunItems.SILVER_INGOT.item(), SlimefunItems.BILLON_INGOT.item(), SlimefunItems.TIN_CAN.item(), SlimefunItems.SMALL_CAPACITOR.item(), SlimefunItems.TIN_CAN.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), null})
                 .setCapacity(256)
                 .setEnergyConsumption(7)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new FoodFabricator(itemGroups.electricity, SlimefunItems.FOOD_FABRICATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FoodFabricator(itemGroups.energyMachines, SlimefunItems.FOOD_FABRICATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.HARDENED_METAL_INGOT.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.HARDENED_METAL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.FOOD_FABRICATOR.item(), SlimefunItems.ELECTRIC_MOTOR.item(), null, SlimefunItems.ELECTRO_MAGNET.item(), null})
                 .setCapacity(512)
                 .setEnergyConsumption(24)
@@ -2373,32 +2373,32 @@ public final class SlimefunItemSetup {
         new OrganicFood(itemGroups.misc, SlimefunItems.SEAGRASS_ORGANIC_FOOD, Material.SEAGRASS)
                 .register(plugin);
 
-        new AutoBreeder(itemGroups.electricity, SlimefunItems.AUTO_BREEDER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AutoBreeder(itemGroups.energyMachines, SlimefunItems.AUTO_BREEDER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.GOLD_18K.item(), SlimefunItems.TIN_CAN.item(), SlimefunItems.GOLD_18K.item(), SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.HAY_BLOCK), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.FOOD_FABRICATOR.item(), SlimefunItems.LEAD_INGOT.item()})
                 .register(plugin);
 
-        new AnimalGrowthAccelerator(itemGroups.electricity, SlimefunItems.ANIMAL_GROWTH_ACCELERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new AnimalGrowthAccelerator(itemGroups.energyMachines, SlimefunItems.ANIMAL_GROWTH_ACCELERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.BLISTERING_INGOT_3.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.WHEAT_ORGANIC_FOOD.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.AUTO_BREEDER.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item()})
                 .register(plugin);
 
-        new TreeGrowthAccelerator(itemGroups.electricity, SlimefunItems.TREE_GROWTH_ACCELERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new TreeGrowthAccelerator(itemGroups.energyMachines, SlimefunItems.TREE_GROWTH_ACCELERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.CARBONADO.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.DIAMOND_AXE), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.MAGNESIUM_SALT.item(), SlimefunItems.BIG_CAPACITOR.item(), SlimefunItems.MAGNESIUM_SALT.item()})
                 .register(plugin);
 
-        new ExpCollector(itemGroups.electricity, SlimefunItems.EXP_COLLECTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ExpCollector(itemGroups.energyMachines, SlimefunItems.EXP_COLLECTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
         new ItemStack[] {null, SlimefunItems.BLISTERING_INGOT_3.item(), null, SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.AUTO_ENCHANTER.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.ALUMINUM_BRONZE_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ALUMINUM_BRONZE_INGOT.item()})
         .setEnergyConsumption(10)
         .setCapacity(1024)
         .register(plugin);
 
-        new FoodComposter(itemGroups.electricity, SlimefunItems.FOOD_COMPOSTER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FoodComposter(itemGroups.energyMachines, SlimefunItems.FOOD_COMPOSTER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.FOOD_FABRICATOR.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.TIN_CAN.item(), SlimefunItems.MEDIUM_CAPACITOR.item(), SlimefunItems.TIN_CAN.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), null})
                 .setCapacity(256)
                 .setEnergyConsumption(8)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new FoodComposter(itemGroups.electricity, SlimefunItems.FOOD_COMPOSTER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FoodComposter(itemGroups.energyMachines, SlimefunItems.FOOD_COMPOSTER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.HARDENED_METAL_INGOT.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.HARDENED_METAL_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.FOOD_COMPOSTER.item(), SlimefunItems.ELECTRIC_MOTOR.item(), null, SlimefunItems.ELECTRO_MAGNET.item(), null})
                 .setCapacity(512)
                 .setEnergyConsumption(26)
@@ -2438,7 +2438,7 @@ public final class SlimefunItemSetup {
         new OrganicFertilizer(itemGroups.misc, SlimefunItems.SEAGRASS_FERTILIZER, SlimefunItems.SEAGRASS_ORGANIC_FOOD)
                 .register(plugin);
 
-        new CropGrowthAccelerator(itemGroups.electricity, SlimefunItems.CROP_GROWTH_ACCELERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CropGrowthAccelerator(itemGroups.energyMachines, SlimefunItems.CROP_GROWTH_ACCELERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.BLISTERING_INGOT_3.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.PROGRAMMABLE_ANDROID_FARMER.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.ANIMAL_GROWTH_ACCELERATOR.item(), SlimefunItems.ELECTRO_MAGNET.item()}) {
 
             @Override
@@ -2458,7 +2458,7 @@ public final class SlimefunItemSetup {
 
         }.register(plugin);
 
-        new CropGrowthAccelerator(itemGroups.electricity, SlimefunItems.CROP_GROWTH_ACCELERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CropGrowthAccelerator(itemGroups.energyMachines, SlimefunItems.CROP_GROWTH_ACCELERATOR_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.BLISTERING_INGOT_3.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.CROP_GROWTH_ACCELERATOR.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.ADVANCED_CIRCUIT_BOARD.item(), SlimefunItems.ELECTRO_MAGNET.item()}) {
 
             @Override
@@ -2478,21 +2478,21 @@ public final class SlimefunItemSetup {
 
         }.register(plugin);
 
-        new Freezer(itemGroups.electricity, SlimefunItems.FREEZER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Freezer(itemGroups.energyMachines, SlimefunItems.FREEZER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.SILVER_INGOT.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.PACKED_ICE), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.COOLING_UNIT.item(), SlimefunItems.MEDIUM_CAPACITOR.item(), SlimefunItems.COOLING_UNIT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(9)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new Freezer(itemGroups.electricity, SlimefunItems.FREEZER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Freezer(itemGroups.energyMachines, SlimefunItems.FREEZER_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.SILVER_INGOT.item(), null, SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.FREEZER.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.COOLING_UNIT.item(), SlimefunItems.ALUMINUM_BRASS_INGOT.item(), SlimefunItems.COOLING_UNIT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(15)
                 .setProcessingSpeed(2)
                 .register(plugin);
 
-        new Freezer(itemGroups.electricity, SlimefunItems.FREEZER_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new Freezer(itemGroups.energyMachines, SlimefunItems.FREEZER_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.FREEZER_2.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.COOLING_UNIT.item(), SlimefunItems.COOLING_UNIT.item(), SlimefunItems.COOLING_UNIT.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(21)
@@ -2520,7 +2520,7 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {SlimefunItems.PLUTONIUM.item(), SlimefunItems.URANIUM.item(), null, null, null, null, null, null, null})
                 .register(plugin);
 
-        new NuclearReactor(itemGroups.electricity, SlimefunItems.NUCLEAR_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new NuclearReactor(itemGroups.otherEnergyGenerators, SlimefunItems.NUCLEAR_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.CARBONADO_EDGED_CAPACITOR.item(), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.COOLING_UNIT.item(), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.LEAD_INGOT.item()}){
 
             @Override
@@ -2535,7 +2535,7 @@ public final class SlimefunItemSetup {
 
         }.register(plugin);
 
-        new NetherStarReactor(itemGroups.electricity, SlimefunItems.NETHER_STAR_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new NetherStarReactor(itemGroups.otherEnergyGenerators, SlimefunItems.NETHER_STAR_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.BOOSTED_URANIUM.item(), SlimefunItems.CARBONADO_EDGED_CAPACITOR.item(), SlimefunItems.BOOSTED_URANIUM.item(), SlimefunItems.REINFORCED_PLATE.item(), new ItemStack(Material.NETHER_STAR), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item(), SlimefunItems.REINFORCED_PLATE.item(), SlimefunItems.CORINTHIAN_BRONZE_INGOT.item()}){
 
             @Override
@@ -2582,7 +2582,7 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {null, SlimefunItems.BLISTERING_INGOT_3.item(), null, SlimefunItems.LEAD_INGOT.item(), SlimefunItems.CARGO_MOTOR.item(), SlimefunItems.LEAD_INGOT.item(), null, SlimefunItems.ELECTRIC_MOTOR.item(), null})
                 .register(plugin);
 
-        new FluidPump(itemGroups.electricity, SlimefunItems.FLUID_PUMP, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new FluidPump(itemGroups.energyMachines, SlimefunItems.FLUID_PUMP, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, SlimefunItems.MEDIUM_CAPACITOR.item(), null, new ItemStack(Material.BUCKET), SlimefunItems.CARGO_MOTOR.item(), new ItemStack(Material.BUCKET), null, SlimefunItems.OIL_PUMP.item(), null})
                 .register(plugin);
 
@@ -2590,46 +2590,46 @@ public final class SlimefunItemSetup {
                 new ItemStack[] {null, SlimefunItems.PORTABLE_DUSTBIN.item(), null, SlimefunItems.LEAD_INGOT.item(), SlimefunItems.CARGO_MOTOR.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.ALUMINUM_INGOT.item(), SlimefunItems.LEAD_INGOT.item(), SlimefunItems.ALUMINUM_INGOT.item()})
                 .register(plugin);
 
-        new CarbonPress(itemGroups.electricity, SlimefunItems.CARBON_PRESS, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CarbonPress(itemGroups.energyMachines, SlimefunItems.CARBON_PRESS, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CARBON.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.CARBON.item(), SlimefunItems.CARBON.item(), SlimefunItems.HEATED_PRESSURE_CHAMBER.item(), SlimefunItems.CARBON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.CARBONADO.item(), SlimefunItems.HEATING_COIL.item()})
                 .setCapacity(256)
                 .setEnergyConsumption(10)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new CarbonPress(itemGroups.electricity, SlimefunItems.CARBON_PRESS_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CarbonPress(itemGroups.energyMachines, SlimefunItems.CARBON_PRESS_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CARBONADO.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.CARBONADO.item(), SlimefunItems.CARBON.item(), SlimefunItems.CARBON_PRESS.item(), SlimefunItems.CARBON.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.HEATING_COIL.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(25)
                 .setProcessingSpeed(3)
                 .register(plugin);
 
-        new CarbonPress(itemGroups.electricity, SlimefunItems.CARBON_PRESS_3, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new CarbonPress(itemGroups.energyMachines, SlimefunItems.CARBON_PRESS_3, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.CARBONADO.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.CARBONADO.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.CARBON_PRESS_2.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRO_MAGNET.item(), SlimefunItems.HEATING_COIL.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(90)
                 .setProcessingSpeed(15)
                 .register(plugin);
 
-        new ElectricSmeltery(itemGroups.electricity, SlimefunItems.ELECTRIC_SMELTERY, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricSmeltery(itemGroups.energyMachines, SlimefunItems.ELECTRIC_SMELTERY, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {new ItemStack(Material.NETHER_BRICKS), SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.NETHER_BRICKS), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRIC_INGOT_FACTORY.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(512)
                 .setEnergyConsumption(10)
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        new ElectricSmeltery(itemGroups.electricity, SlimefunItems.ELECTRIC_SMELTERY_2, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ElectricSmeltery(itemGroups.energyMachines, SlimefunItems.ELECTRIC_SMELTERY_2, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.POWER_CRYSTAL.item(), SlimefunItems.DAMASCUS_STEEL_INGOT.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.ELECTRIC_SMELTERY.item(), SlimefunItems.HEATING_COIL.item(), SlimefunItems.GILDED_IRON.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.GILDED_IRON.item()})
                 .setCapacity(1024)
                 .setEnergyConsumption(20)
                 .setProcessingSpeed(3)
                 .register(plugin);
 
-        new IronGolemAssembler(itemGroups.electricity, SlimefunItems.IRON_GOLEM_ASSEMBLER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new IronGolemAssembler(itemGroups.energyMachines, SlimefunItems.IRON_GOLEM_ASSEMBLER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.ADVANCED_CIRCUIT_BOARD.item(), SlimefunItems.BLISTERING_INGOT_3.item(), new ItemStack(Material.IRON_BLOCK), SlimefunItems.ANDROID_MEMORY_CORE.item(), new ItemStack(Material.IRON_BLOCK), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.CARBONADO_EDGED_CAPACITOR.item()})
                 .register(plugin);
 
-        new WitherAssembler(itemGroups.electricity, SlimefunItems.WITHER_ASSEMBLER, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new WitherAssembler(itemGroups.energyMachines, SlimefunItems.WITHER_ASSEMBLER, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {SlimefunItems.BLISTERING_INGOT_3.item(), new ItemStack(Material.NETHER_STAR), SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.ANDROID_MEMORY_CORE.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.CARBONADO_EDGED_CAPACITOR.item()})
                 .register(plugin);
 
@@ -2704,7 +2704,7 @@ public final class SlimefunItemSetup {
                 .setEnergyConsumption(32)
                 .register(plugin);
 
-        new ProduceCollector(itemGroups.electricity, SlimefunItems.PRODUCE_COLLECTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ProduceCollector(itemGroups.energyMachines, SlimefunItems.PRODUCE_COLLECTOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {null, new ItemStack(Material.HAY_BLOCK), null, new ItemStack(Material.BUCKET), SlimefunItems.MEDIUM_CAPACITOR.item(), new ItemStack(Material.BUCKET), SlimefunItems.ALUMINUM_BRASS_INGOT.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.ALUMINUM_BRASS_INGOT.item()})
                 .setCapacity(256)
                 .setProcessingSpeed(1)

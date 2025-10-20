@@ -8,7 +8,9 @@ import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SeasonalItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
@@ -53,8 +55,16 @@ class DefaultItemGroups {
     // Locked Groups
     protected final LockedItemGroup androids = new LockedItemGroup(new NamespacedKey(Slimefun.instance(), "androids"), CustomItemStack.create(SlimefunItems.PROGRAMMABLE_ANDROID.item(), "&cProgrammable Androids"), 4, basicMachines.getKey());
     protected final LockedItemGroup cargo = new LockedItemGroup(new NamespacedKey(Slimefun.instance(), "cargo"), CustomItemStack.create(SlimefunItems.CARGO_MANAGER.item(), "&cCargo Management"), 4, basicMachines.getKey());
-    protected final LockedItemGroup electricity = new LockedItemGroup(new NamespacedKey(Slimefun.instance(), "electricity"), CustomItemStack.create(SlimefunItems.NUCLEAR_REACTOR.item(), "&bEnergy and Electricity"), 4, basicMachines.getKey());
     protected final LockedItemGroup gps = new LockedItemGroup(new NamespacedKey(Slimefun.instance(), "gps"), CustomItemStack.create(SlimefunItems.GPS_TRANSMITTER.item(), "&bGPS-based Machines"), 4, basicMachines.getKey());
+    
+    // Energy and Electricity - Main Category with Nested Subcategories
+    protected final NestedItemGroup electricity = new NestedItemGroup(new NamespacedKey(Slimefun.instance(), "electricity"), CustomItemStack.create(SlimefunItems.NUCLEAR_REACTOR.item(), "&bEnergy and Electricity"), 4);
+    
+    // Energy Subcategories (nested within electricity)
+    protected final SubItemGroup energyRegulatorsConnectorsCapacitors = new SubItemGroup(new NamespacedKey(Slimefun.instance(), "energy_regulators_connectors_capacitors"), electricity, CustomItemStack.create(SlimefunItems.ENERGY_REGULATOR.item(), "&bRegulators & Connectors & Capacitors"));
+    protected final SubItemGroup solarGenerators = new SubItemGroup(new NamespacedKey(Slimefun.instance(), "solar_generators"), electricity, CustomItemStack.create(SlimefunItems.SOLAR_GENERATOR.item(), "&bSolar Generators"));
+    protected final SubItemGroup otherEnergyGenerators = new SubItemGroup(new NamespacedKey(Slimefun.instance(), "other_energy_generators"), electricity, CustomItemStack.create(SlimefunItems.COAL_GENERATOR.item(), "&bOther Energy Generators"));
+    protected final SubItemGroup energyMachines = new SubItemGroup(new NamespacedKey(Slimefun.instance(), "energy_machines"), electricity, CustomItemStack.create(SlimefunItems.ELECTRIC_FURNACE.item(), "&bMachines"));
     
     // Seasonal Groups
     protected final SeasonalItemGroup valentinesDay = new SeasonalItemGroup(new NamespacedKey(Slimefun.instance(), "valentines_day"), Month.FEBRUARY, 2, CustomItemStack.create(SlimefunUtils.getCustomHead("55d89431d14bfef2060461b4a3565614dc51115c001fae2508e8684bc0ae6a80"), "&dValentine's Day" + " &7(14th February)"));
