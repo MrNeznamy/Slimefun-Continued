@@ -1,11 +1,13 @@
 package io.github.thebusybiscuit.slimefun4.core.services;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -15,7 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
 
-import io.github.bakedlibs.dough.config.Config;
+
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
@@ -31,10 +33,10 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 public class PermissionsService {
 
     private final Map<String, String> permissions = new HashMap<>();
-    private final Config config;
+    private final eu.mrneznamy.slimefun5.config.Config config;
 
     public PermissionsService(@Nonnull Slimefun plugin) {
-        config = new Config(plugin, "permissions.yml");
+        config = new eu.mrneznamy.slimefun5.config.Config(plugin, "permissions.yml");
 
         // @formatter:off
         config.getConfiguration().options().header(
@@ -70,7 +72,11 @@ public class PermissionsService {
         }
 
         if (save) {
-            config.save();
+            try {
+                config.save();
+            } catch (IOException e) {
+                Slimefun.logger().log(Level.WARNING, "Failed to save permissions config: " + e.getMessage());
+            }
         }
     }
 
@@ -138,7 +144,11 @@ public class PermissionsService {
             config.setValue(entry.getKey() + ".permission", entry.getValue());
         }
 
-        config.save();
+        try {
+            config.save();
+        } catch (IOException e) {
+            Slimefun.logger().log(Level.WARNING, "Failed to save permissions config: " + e.getMessage());
+        }
     }
 
     /**

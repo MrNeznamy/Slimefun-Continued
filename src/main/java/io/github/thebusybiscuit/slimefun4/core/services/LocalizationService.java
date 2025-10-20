@@ -61,33 +61,35 @@ public class LocalizationService extends SlimefunLocalization {
         this.prefix = prefix;
         languageKey = new NamespacedKey(plugin, LANGUAGE_PATH);
 
-        if (serverDefaultLanguage != null) {
-            translationsEnabled = Slimefun.getCfg().getBoolean("options.enable-translations");
+        // Always enable translations and use "en" as fallback if serverDefaultLanguage is null
+        translationsEnabled = Slimefun.getCfg().getBoolean("options.enable-translations");
+        
+        // Use "en" as fallback if serverDefaultLanguage is null or empty
+        String effectiveLanguage = (serverDefaultLanguage != null && !serverDefaultLanguage.trim().isEmpty()) 
+            ? serverDefaultLanguage : "en";
 
-            defaultLanguage = new Language(serverDefaultLanguage, "11b3188fd44902f72602bd7c2141f5a70673a411adb3d81862c69e536166b");
-            defaultLanguage.setFile(LanguageFile.MESSAGES, getConfig().getConfiguration());
+        defaultLanguage = new Language(effectiveLanguage, "11b3188fd44902f72602bd7c2141f5a70673a411adb3d81862c69e536166b");
+        defaultLanguage.setFile(LanguageFile.MESSAGES, getConfig().getConfiguration());
 
-            loadEmbeddedLanguages();
+        loadEmbeddedLanguages();
 
-            String language = getConfig().getString(LANGUAGE_PATH);
+        String language = getConfig().getString(LANGUAGE_PATH);
 
-            if (language == null) {
-                language = serverDefaultLanguage;
-            }
-
-            if (hasLanguage(serverDefaultLanguage)) {
-                setLanguage(serverDefaultLanguage, !serverDefaultLanguage.equals(language));
-            } else {
-                setLanguage("en", false);
-                plugin.getLogger().log(Level.WARNING, "Could not recognize the given language: \"{0}\"", serverDefaultLanguage);
-            }
-
-            Slimefun.logger().log(Level.INFO, "Available languages: {0}", String.join(", ", languages.keySet()));
-            save();
-        } else {
-            translationsEnabled = false;
-            defaultLanguage = null;
+        if (language == null) {
+            language = effectiveLanguage;
         }
+
+        if (hasLanguage(effectiveLanguage)) {
+            setLanguage(effectiveLanguage, !effectiveLanguage.equals(language));
+        } else {
+            setLanguage("en", false);
+            if (serverDefaultLanguage != null) {
+                plugin.getLogger().log(Level.WARNING, "Could not recognize the given language: \"{0}\", falling back to English", serverDefaultLanguage);
+            }
+        }
+
+        Slimefun.logger().log(Level.INFO, "Available languages: {0}", String.join(", ", languages.keySet()));
+        save();
     }
 
     /**
@@ -101,7 +103,7 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     public String getChatPrefix() {
-        return prefix;
+        return prefix != null ? prefix : "";
     }
 
     @Override
@@ -147,6 +149,23 @@ public class LocalizationService extends SlimefunLocalization {
 
     @Override
     public Language getDefaultLanguage() {
+        // Safety check: if defaultLanguage is null, try to get English as fallback
+        if (defaultLanguage == null) {
+            Language englishLang = languages.get("en");
+            if (englishLang != null) {
+                plugin.getLogger().log(Level.WARNING, "Default language was null, using English as fallback");
+                return englishLang;
+            }
+            
+            // If even English is not available, return the first available language
+            if (!languages.isEmpty()) {
+                plugin.getLogger().log(Level.WARNING, "Default language and English are not available, using first available language");
+                return languages.values().iterator().next();
+            }
+            
+            plugin.getLogger().log(Level.SEVERE, "No languages are available! This should not happen.");
+        }
+        
         return defaultLanguage;
     }
 
@@ -165,7 +184,20 @@ public class LocalizationService extends SlimefunLocalization {
             }
         }
 
-        return getDefaultLanguage();
+        Language defaultLang = getDefaultLanguage();
+        
+        // Safety fallback: if defaultLanguage is somehow null, try to get English
+        if (defaultLang == null) {
+            defaultLang = languages.get("en");
+            
+            // If even English is not available, log an error and return the first available language
+            if (defaultLang == null && !languages.isEmpty()) {
+                plugin.getLogger().log(Level.SEVERE, "Default language is null and English is not available! Using first available language.");
+                defaultLang = languages.values().iterator().next();
+            }
+        }
+        
+        return defaultLang;
     }
 
     private void setLanguage(@Nonnull String language, boolean reset) {

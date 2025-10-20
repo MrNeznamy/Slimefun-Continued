@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.guide.options;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,8 +11,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.data.persistent.PersistentDataAPI;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.SlimefunRegistry;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -47,7 +48,7 @@ class LearningAnimationOption implements SlimefunGuideOption<Boolean> {
         } else {
             boolean enabled = getSelectedOption(p, guide).orElse(true);
             String optionState = enabled ? "enabled" : "disabled";
-            List<String> lore = Slimefun.getLocalization().getMessages(p, "guide.options.learning-animation." + optionState + ".text");
+            List<String> lore = new ArrayList<>(Slimefun.getLocalization().getMessages(p, "guide.options.learning-animation." + optionState + ".text"));
             lore.add("");
             lore.add("&7\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.options.learning-animation." + optionState + ".click"));
 

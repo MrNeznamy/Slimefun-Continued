@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import io.github.bakedlibs.dough.common.ChatColors;
+import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
@@ -31,8 +31,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
  */
 public final class ChargeUtils {
 
-    private static final String LORE_PREFIX = ChatColors.color("&8\u21E8 &e\u26A1 &7");
-    private static final Pattern REGEX = Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + "[0-9.]+ / [0-9.]+ J");
+    private static final String LORE_PREFIX = ColorSystem.colorize("&8\u21E8 &e\u26A1 &7");
+    private static final Pattern REGEX = Pattern.compile(ColorSystem.colorize("(&c&o)?" + LORE_PREFIX) + "[0-9.]+ / [0-9.]+ J");
 
     private ChargeUtils() {}
 
@@ -79,7 +79,7 @@ public final class ChargeUtils {
         if (meta.hasLore()) {
             for (String line : meta.getLore()) {
                 if (REGEX.matcher(line).matches()) {
-                    String data = ChatColor.stripColor(PatternUtils.SLASH_SEPARATOR.split(line)[0].replace(LORE_PREFIX, ""));
+                    String data = ColorSystem.stripColor(PatternUtils.SLASH_SEPARATOR.split(line)[0].replace(LORE_PREFIX, ""));
 
                     float loreValue = Float.parseFloat(data);
                     container.set(key, PersistentDataType.FLOAT, loreValue);

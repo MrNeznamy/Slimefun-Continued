@@ -12,7 +12,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.GameMode;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -127,7 +127,7 @@ public class Research implements Keyed {
      * @return The unlocalized, decolorized name for this {@link Research}
      */
     public @Nonnull String getUnlocalizedName() {
-        return ChatColor.stripColor(name);
+        return ColorSystem.stripColor(name);
     }
 
     /**

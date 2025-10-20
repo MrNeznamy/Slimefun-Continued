@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SeasonalItemGroup;
@@ -86,7 +86,9 @@ public class ItemGroup implements Keyed {
         ItemMeta meta = item.getItemMeta();
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
+        if (VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP != null) {
+            meta.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
+        }
         this.item.setItemMeta(meta);
         this.tier = tier;
     }
@@ -222,12 +224,12 @@ public class ItemGroup implements Keyed {
             }
 
             if (this instanceof SeasonalItemGroup) {
-                meta.setDisplayName(ChatColor.GOLD + name);
+                meta.setDisplayName(ColorSystem.colorize("&6") + name);
             } else {
-                meta.setDisplayName(ChatColor.YELLOW + name);
+                meta.setDisplayName(ColorSystem.colorize("&e") + name);
             }
 
-            meta.setLore(Arrays.asList("", ChatColor.GRAY + "\u21E8 " + ChatColor.GREEN + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
+            meta.setLore(Arrays.asList("", ColorSystem.colorize("&7") + "\u21E8 " + ColorSystem.colorize("&a") + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
         });
     }
 
@@ -238,7 +240,7 @@ public class ItemGroup implements Keyed {
      * @return The unlocalized name of this {@link ItemGroup}
      */
     public @Nonnull String getUnlocalizedName() {
-        return ChatColor.stripColor(item.getItemMeta().getDisplayName());
+        return ColorSystem.stripColor(item.getItemMeta().getDisplayName());
     }
 
     /**

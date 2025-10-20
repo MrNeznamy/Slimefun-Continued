@@ -8,7 +8,7 @@ import org.bukkit.SoundCategory;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -49,13 +49,13 @@ public class IronGolemAssembler extends AbstractEntityAssembler<IronGolem> {
     }
 
     @Override
-    public Material getHeadBorder() {
-        return Material.ORANGE_STAINED_GLASS_PANE;
+    public ItemStack getBody() {
+        return new ItemStack(Material.IRON_BLOCK, 4);
     }
 
     @Override
-    public ItemStack getBody() {
-        return new ItemStack(Material.IRON_BLOCK, 4);
+    public Material getHeadBorder() {
+        return Material.ORANGE_STAINED_GLASS_PANE;
     }
 
     @Override
@@ -65,6 +65,8 @@ public class IronGolemAssembler extends AbstractEntityAssembler<IronGolem> {
 
     @Override
     protected void constructMenu(BlockMenuPreset preset) {
+        super.constructMenu(preset);
+        
         preset.addItem(1, CustomItemStack.create(getHead(), "&7Pumpkin Slot", "", "&fThis Slot accepts Pumpkins"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(7, CustomItemStack.create(getBody(), "&7Iron Block Slot", "", "&fThis Slot accepts Iron Blocks"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(13, CustomItemStack.create(Material.CLOCK, "&7Cooldown: &b30 Seconds", "", "&fThis Machine takes up to half a Minute to operate", "&fso give it some Time!"), ChestMenuUtils.getEmptyClickHandler());

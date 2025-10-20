@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -22,8 +22,9 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.bakedlibs.dough.recipes.MinecraftRecipe;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.recipes.MinecraftRecipe;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
@@ -108,10 +109,10 @@ public class RecipeType implements Keyed {
         this(key, item, null);
     }
 
-    public RecipeType(MinecraftRecipe<?> recipe) {
-        this.item = new ItemStack(recipe.getMachine());
+    public RecipeType(MinecraftRecipe recipe) {
+        this.item = new ItemStack(recipe.getResult().getType());
         this.machine = "";
-        this.key = NamespacedKey.minecraft(recipe.getRecipeClass().getSimpleName().toLowerCase(Locale.ROOT).replace("recipe", ""));
+        this.key = NamespacedKey.minecraft(recipe.getRecipe().getClass().getSimpleName().toLowerCase(Locale.ROOT).replace("recipe", ""));
     }
 
     public void register(ItemStack[] recipe, ItemStack result) {
@@ -164,7 +165,7 @@ public class RecipeType implements Keyed {
 
     @ParametersAreNonnullByDefault
     private static void registerMobDrop(ItemStack[] recipe, ItemStack output) {
-        String mob = ChatColor.stripColor(recipe[4].getItemMeta().getDisplayName()).toUpperCase(Locale.ROOT).replace(' ', '_');
+        String mob = ColorSystem.stripColor(recipe[4].getItemMeta().getDisplayName()).toUpperCase(Locale.ROOT).replace(' ', '_');
         EntityType entity = EntityType.valueOf(mob);
         Set<ItemStack> dropping = Slimefun.getRegistry().getMobDrops().getOrDefault(entity, new HashSet<>());
         dropping.add(output);

@@ -1,11 +1,5 @@
 options:
-  # Instead of disabling Auto Updates consider using the "stable" version of Slimefun.
-  # These builds are much more tested and are far less likely to have any issues.
-  # Note: When running a stable build auto-updates ONLY update to other stable builds! Perfect eh?
-  # You can download the latest stable build here: https://thebusybiscuit.github.io/builds/TheBusyBiscuit/Slimefun4/stable/
-
-  auto-update: true
-  chat-prefix: '&a&lSlimefun 4&7> '
+  chat-prefix: '{#926CDE>}&lSLIMEFUN 5{#E982D9<} &8|  '
   armor-update-interval: 10
   enable-armor-effects: true
   enable-radiation: true
@@ -47,10 +41,6 @@ networks:
 
 talismans:
   use-actionbar: true
-
-metrics:
-  auto-update: true
-  analytics: true
 
 research-ranks:
 - Chicken

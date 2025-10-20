@@ -5,7 +5,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -28,7 +28,7 @@ public class CarbonPress extends AContainer implements RecipeDisplayItem {
         registerRecipe(180, new ItemStack[] { new ItemStack(Material.COAL_BLOCK, 8) }, new ItemStack[] { new SlimefunItemStack(SlimefunItems.CARBON, 9).item() });
         registerRecipe(30, new ItemStack[] { CustomItemStack.create(SlimefunItems.CARBON.item(), 4) }, new ItemStack[] { SlimefunItems.COMPRESSED_CARBON.item() });
         registerRecipe(60, new ItemStack[] { SlimefunItems.CARBON_CHUNK.item(), SlimefunItems.SYNTHETIC_DIAMOND.item() }, new ItemStack[] { SlimefunItems.RAW_CARBONADO.item() });
-        registerRecipe(60, new ItemStack[] { SlimefunItems.CARBON_CHUNK.item() }, new ItemStack[] { SlimefunItems.SYNTHETIC_DIAMOND.item() });
+        registerRecipe(30, new ItemStack[] { CustomItemStack.create(SlimefunItems.CARBON.item(), 4) }, new ItemStack[] { SlimefunItems.COMPRESSED_CARBON.item() });
         registerRecipe(90, new ItemStack[] { SlimefunItems.RAW_CARBONADO.item() }, new ItemStack[] { SlimefunItems.CARBONADO.item() });
     }
 
@@ -42,4 +42,14 @@ public class CarbonPress extends AContainer implements RecipeDisplayItem {
         return new ItemStack(Material.DIAMOND_PICKAXE);
     }
 
+    @Override
+    public int getCapacity() {
+        return 512;
+    }
+
+    @Override
+    public int getEnergyConsumption() {
+        return 7;
+    }
 }
+

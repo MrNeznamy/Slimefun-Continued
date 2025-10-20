@@ -43,7 +43,7 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.magical.talismans.MagicianTalisman;
@@ -369,11 +369,9 @@ public class TalismanListener implements Listener {
                     }
                 }
 
-                // Fixes #2077
+                // Fixes #2818
                 if (doubledDrops) {
-                    Talisman talisman = talismanItemStack.getItem(Talisman.class);
-
-                    // Fixes #2818
+                    Talisman talisman = (Talisman) talismanItemStack.getItem();
                     if (talisman != null) {
                         talisman.sendMessage(e.getPlayer());
                     }

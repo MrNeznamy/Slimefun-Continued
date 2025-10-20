@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.implementation.tasks.armor;
 
-import io.github.bakedlibs.dough.common.ChatColors;
+import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.api.events.RadiationDamageEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
@@ -93,7 +93,7 @@ public class RadiationTask extends AbstractArmorTask {
                         .getMessage(p, "actionbar.radiation")
                         .replace("%level%", "" + exposureLevelAfter);
                 BaseComponent[] components =
-                        new ComponentBuilder().append(ChatColors.color(msg)).create();
+                        new ComponentBuilder().append(ColorSystem.colorize(msg)).create();
                 p.spigot().sendMessage(ChatMessageType.ACTION_BAR, components);
             }
         } else {

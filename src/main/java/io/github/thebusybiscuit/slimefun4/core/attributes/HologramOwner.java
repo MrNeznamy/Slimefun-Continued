@@ -6,18 +6,19 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.util.Vector;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsService;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;
 
 /**
- * This {@link ItemAttribute} manages holograms.
+ * This {@link ItemAttribute} manages holograms using the new entity-based system.
  * 
  * @author TheBusyBiscuit
+ * @author NEZNAMY (Entity-based implementation)
  * 
  * @see HologramProjector
- * @see HologramsService
+ * @see HologramManager
  *
  */
 public interface HologramOwner extends ItemAttribute {
@@ -33,7 +34,12 @@ public interface HologramOwner extends ItemAttribute {
      */
     default void updateHologram(@Nonnull Block b, @Nonnull String text) {
         Location loc = b.getLocation().add(getHologramOffset(b));
-        Slimefun.getHologramsService().setHologramLabel(loc, ChatColors.color(text));
+        
+        // Use new entity-based system
+        if (!HologramManager.updateHologramText(Slimefun.instance(), loc, ColorSystem.colorize(text))) {
+            // Hologram doesn't exist, create a new one
+            HologramManager.createHologram(Slimefun.instance(), loc, ColorSystem.colorize(text));
+        }
     }
 
     /**
@@ -44,7 +50,7 @@ public interface HologramOwner extends ItemAttribute {
      */
     default void removeHologram(@Nonnull Block b) {
         Location loc = b.getLocation().add(getHologramOffset(b));
-        Slimefun.getHologramsService().removeHologram(loc);
+        HologramManager.removeHologram(Slimefun.instance(), loc);
     }
 
     /**
@@ -59,7 +65,21 @@ public interface HologramOwner extends ItemAttribute {
      */
     @Nonnull
     default Vector getHologramOffset(@Nonnull Block block) {
-        return Slimefun.getHologramsService().getDefaultOffset();
+        // Default offset for entity-based holograms (slightly higher than armor stands)
+        return new Vector(0.5, 0.8, 0.5);
+    }
+
+    /**
+     * Gets the {@link HologramManager} for direct access to advanced hologram features.
+     * This method is deprecated as the new system uses static methods.
+     * 
+     * @return The {@link HologramManager} class for static access
+     * @deprecated Use static methods in {@link HologramManager} directly
+     */
+    @Nonnull
+    @Deprecated
+    default Class<HologramManager> getHologramManager() {
+        return HologramManager.class;
     }
 
 }

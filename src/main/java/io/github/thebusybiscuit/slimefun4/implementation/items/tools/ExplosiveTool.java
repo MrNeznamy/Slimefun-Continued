@@ -1,9 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.tools;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -19,7 +17,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.protection.Interaction;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.ExplosiveToolBreakBlocksEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -52,16 +50,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
     private final ItemSetting<Boolean> damageOnUse = new ItemSetting<>(this, "damage-on-use", true);
     private final ItemSetting<Boolean> callExplosionEvent = new ItemSetting<>(this, "call-explosion-event", false);
 
-    private static Constructor<?> pre21ExplodeEventConstructor;
-    static {
-        if (Slimefun.getMinecraftVersion().isBefore(MinecraftVersion.MINECRAFT_1_21)) {
-            try {
-                pre21ExplodeEventConstructor = BlockExplodeEvent.class.getConstructor(Block.class, List.class, float.class);
-            } catch (Exception e) {
-                Slimefun.logger().log(Level.SEVERE, "Could not find constructor for BlockExplodeEvent", e);
-            }
-        }
-    }
+    // Removed pre-1.21 constructor support since we only support MC 1.21+
 
     @ParametersAreNonnullByDefault
     public ExplosiveTool(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -168,7 +157,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
 
     @ParametersAreNonnullByDefault
     private void breakBlock(BlockBreakEvent e, Player p, ItemStack item, Block b, List<ItemStack> drops) {
-        Slimefun.getProtectionManager().logAction(p, b, Interaction.BREAK_BLOCK);
+        // Note: logAction method removed as it's not available in current ProtectionManager implementation
         Material material = b.getType();
 
         b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, material);
@@ -206,19 +195,7 @@ public class ExplosiveTool extends SimpleSlimefunItem<ToolUseHandler> implements
         List<Block> blocks,
         float yield
     ) {
-        var version = Slimefun.getMinecraftVersion();
-        if (version.isAtLeast(MinecraftVersion.MINECRAFT_1_21)) {
-            return new BlockExplodeEvent(block, block.getState(), blocks, yield, ExplosionResult.DESTROY);
-        } else if (pre21ExplodeEventConstructor != null) {
-            try {
-                return (BlockExplodeEvent) pre21ExplodeEventConstructor.newInstance(block, blocks, yield);
-            } catch (Exception e) {
-                Slimefun.logger().log(Level.SEVERE, "Could not find constructor for BlockExplodeEvent", e);
-            }
-
-            return null;
-        } else {
-            throw new IllegalStateException("BlockExplodeEvent constructor not found");
-        }
+        // Only support MC 1.21+ constructor
+        return new BlockExplodeEvent(block, block.getState(), blocks, yield, ExplosionResult.DESTROY);
     }
 }

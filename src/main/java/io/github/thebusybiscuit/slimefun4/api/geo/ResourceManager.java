@@ -1,11 +1,13 @@
 package io.github.thebusybiscuit.slimefun4.api.geo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.OptionalInt;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
 
@@ -20,9 +22,9 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.blocks.BlockPosition;
-import io.github.bakedlibs.dough.config.Config;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.GEOResourceGenerationEvent;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -81,11 +83,15 @@ public class ResourceManager {
         boolean enabled = config.getOrSetDefault(key + ".enabled", true);
 
         if (enabled) {
-            Slimefun.getRegistry().getGEOResources().add(resource);
+            Slimefun.getRegistry().getGEOResources().put(resource);
         }
 
         if (Slimefun.getMinecraftVersion() != MinecraftVersion.UNIT_TEST) {
-            config.save();
+            try {
+                config.save();
+            } catch (IOException e) {
+                Slimefun.logger().log(Level.WARNING, "Failed to save GEO resource config: " + e.getMessage());
+            }
         }
     }
 

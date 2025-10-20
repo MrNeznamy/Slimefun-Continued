@@ -13,7 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
@@ -176,7 +176,7 @@ public final class SlimefunGuideSettings {
             return false;
         });
 
-        if (Slimefun.getUpdater().getBranch().isOfficial()) {
+        if (Slimefun.getBranch().isOfficial()) {
             // @formatter:off
             menu.addItem(49, CustomItemStack.create(Material.REDSTONE_TORCH,
                 "&4" + locale.getMessage(p, "guide.title.bugs"),

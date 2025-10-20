@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -27,10 +27,10 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
-import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
-import io.github.bakedlibs.dough.skins.PlayerHead;
-import io.github.bakedlibs.dough.skins.PlayerSkin;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.items.ItemMetaSnapshot;
+import eu.mrneznamy.slimefun5.skins.PlayerHead;
+import eu.mrneznamy.slimefun5.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunItemSpawnEvent;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
@@ -59,7 +59,7 @@ import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 public final class SlimefunUtils {
 
     private static final String NO_PICKUP_METADATA = "no_pickup";
-    private static final String SOULBOUND_LORE = ChatColor.GRAY + "Soulbound";
+    private static final String SOULBOUND_LORE = ColorSystem.colorize("&7Soulbound");
 
     private SlimefunUtils() {}
 
@@ -437,28 +437,28 @@ public final class SlimefunUtils {
     }
 
     private static boolean equalsItemMeta(@Nonnull ItemMeta itemMeta, @Nonnull ItemMetaSnapshot itemMetaSnapshot, boolean checkLore) {
-        Optional<String> displayName = itemMetaSnapshot.getDisplayName();
+        String displayName = itemMetaSnapshot.getDisplayName();
 
-        if (itemMeta.hasDisplayName() != displayName.isPresent()) {
+        if (itemMeta.hasDisplayName() != (displayName != null)) {
             return false;
-        } else if (itemMeta.hasDisplayName() && displayName.isPresent() && !itemMeta.getDisplayName().equals(displayName.get())) {
+        } else if (itemMeta.hasDisplayName() && displayName != null && !itemMeta.getDisplayName().equals(displayName)) {
             return false;
         } else if (checkLore) {
-            Optional<List<String>> itemLore = itemMetaSnapshot.getLore();
+            List<String> itemLore = itemMetaSnapshot.getLore();
 
-            if (itemMeta.hasLore() && itemLore.isPresent() && !equalsLore(itemMeta.getLore(), itemLore.get())) {
+            if (itemMeta.hasLore() && !itemLore.isEmpty() && !equalsLore(itemMeta.getLore(), itemLore)) {
                 return false;
-            } else if (itemMeta.hasLore() != itemLore.isPresent()) {
+            } else if (itemMeta.hasLore() != !itemLore.isEmpty()) {
                 return false;
             }
         }
 
         // Fixes #3133: name and lore are not enough
-        OptionalInt itemCustomModelData = itemMetaSnapshot.getCustomModelData();
-        if (itemMeta.hasCustomModelData() && itemCustomModelData.isPresent() && itemMeta.getCustomModelData() != itemCustomModelData.getAsInt()) {
+        int itemCustomModelData = itemMetaSnapshot.getCustomModelData();
+        if (itemMeta.hasCustomModelData() && itemMetaSnapshot.hasCustomModelData() && itemMeta.getCustomModelData() != itemCustomModelData) {
             return false;
         } else {
-            return itemMeta.hasCustomModelData() == itemCustomModelData.isPresent();
+            return itemMeta.hasCustomModelData() == itemMetaSnapshot.hasCustomModelData();
         }
     }
 

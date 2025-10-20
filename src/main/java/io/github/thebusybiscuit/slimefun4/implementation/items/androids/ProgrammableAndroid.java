@@ -29,13 +29,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.bakedlibs.dough.chat.ChatInput;
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.common.CommonPatterns;
-import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.bakedlibs.dough.items.ItemUtils;
-import io.github.bakedlibs.dough.skins.PlayerHead;
-import io.github.bakedlibs.dough.skins.PlayerSkin;
+import eu.mrneznamy.slimefun5.chat.ChatInput;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefun5.skins.PlayerHead;
+import eu.mrneznamy.slimefun5.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -476,7 +476,7 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
         Slimefun.getLocalization().sendMessages(p, "android.scripts.enter-name");
         int id = nextId;
 
-        ChatInput.waitForPlayer(Slimefun.instance(), p, msg -> {
+        ChatInput.waitForPlayer(p, msg -> {
             Script.upload(p, getAndroidType(), id, msg, code);
             Slimefun.getLocalization().sendMessages(p, "android.scripts.uploaded");
             openScriptDownloader(p, b, page);
@@ -647,7 +647,7 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
             ItemStack item = fuel.getInput().clone();
             ItemMeta im = item.getItemMeta();
             List<String> lore = new ArrayList<>();
-            lore.add(ChatColors.color("&8\u21E8 &7Lasts " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
+            lore.add(ColorSystem.colorize("&8\u21E8 &7Lasts " + NumberUtils.getTimeLeft(fuel.getTicks() / 2)));
             im.setLore(lore);
             item.setItemMeta(im);
             list.add(item);
@@ -809,7 +809,7 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
             if (rest > 0) {
                 int amount = newFuel.getAmount() > rest ? rest : newFuel.getAmount();
                 menu.replaceExistingItem(43, CustomItemStack.create(newFuel, currentFuel.getAmount() + amount));
-                ItemUtils.consumeItem(newFuel, amount, false);
+                ItemUtils.consumeItem(newFuel, amount);
             }
 
             return true;

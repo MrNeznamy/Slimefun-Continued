@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -42,12 +42,12 @@ public class Bandage extends SimpleSlimefunItem<ItemUseHandler> {
             Player p = e.getPlayer();
 
             // Player is neither burning nor injured
-            if (p.getFireTicks() <= 0 && p.getHealth() >= p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+            if (p.getFireTicks() <= 0 && p.getHealth() >= p.getAttribute(Attribute.MAX_HEALTH).getValue()) {
                 return;
             }
 
             if (p.getGameMode() != GameMode.CREATIVE) {
-                ItemUtils.consumeItem(e.getItem(), false);
+                ItemUtils.consumeItem(e.getItem(), 1);
             }
 
             p.getWorld().playEffect(p.getLocation(), Effect.STEP_SOUND, Material.WHITE_WOOL);

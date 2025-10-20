@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.data.persistent.PersistentDataAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -41,8 +41,8 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
     private final float capacity;
 
     private static final NamespacedKey key = new NamespacedKey(Slimefun.instance(), "multitool_mode");
-    private static final String LORE_PREFIX = ChatColors.color("&8\u21E8 &7Mode: ");
-    private static final Pattern REGEX = Pattern.compile(ChatColors.color("(&c&o)?" + LORE_PREFIX) + "(.+)");
+    private static final String LORE_PREFIX = ColorSystem.colorize("&8\u21E8 &7Mode: ");
+    private static final Pattern REGEX = Pattern.compile(ColorSystem.colorize("(&c&o)?" + LORE_PREFIX) + "(.+)");
 
     @ParametersAreNonnullByDefault
     public MultiTool(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, float capacity, String... items) {
@@ -82,7 +82,7 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
             ItemMeta meta = item.getItemMeta();
             e.cancel();
 
-            int index = PersistentDataAPI.getInt(meta, key, 0);
+            int index = PersistentDataAPI.getInt(meta, key);
             SlimefunItem sfItem = modes.get(index).getItem();
 
             if (!p.isSneaking()) {
@@ -105,14 +105,14 @@ public class MultiTool extends SlimefunItem implements Rechargeable {
                     String line = lore.get(i);
 
                     if (REGEX.matcher(line).matches()) {
-                        lore.set(i, LORE_PREFIX + ChatColor.stripColor(itemName));
+                        lore.set(i, LORE_PREFIX + ColorSystem.stripColor(itemName));
                         regexMatchFound = true;
                         break;
                     }
                 }
 
                 if (!regexMatchFound) {
-                    lore.add(2, LORE_PREFIX + ChatColor.stripColor(itemName));
+                    lore.add(2, LORE_PREFIX + ColorSystem.stripColor(itemName));
                 }
 
                 meta.setLore(lore);

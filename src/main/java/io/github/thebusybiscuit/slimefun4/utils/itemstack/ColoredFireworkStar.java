@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 
-import io.github.bakedlibs.dough.items.ItemStackEditor;
+import eu.mrneznamy.slimefun5.items.ItemStackEditor;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -23,12 +23,15 @@ public class ColoredFireworkStar {
     @ParametersAreNonnullByDefault
     public static ItemStack create(Color color, String name, String... lore) {
         FireworkEffect effect = FireworkEffect.builder().with(Type.BURST).withColor(color).build();
-        return new ItemStackEditor(Material.FIREWORK_STAR)
+        ItemStackEditor editor = new ItemStackEditor(Material.FIREWORK_STAR)
                 .setDisplayName(name)
-                .setLore(lore)
-                .addFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP)
-                .andMetaConsumer(FireworkEffectMeta.class, meta -> meta.setEffect(effect))
+                .setLore(lore);
+        
+        if (VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP != null) {
+            editor.addFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
+        }
+        
+        return editor.andMetaConsumer(FireworkEffectMeta.class, meta -> meta.setEffect(effect))
                 .create();
     }
-
 }

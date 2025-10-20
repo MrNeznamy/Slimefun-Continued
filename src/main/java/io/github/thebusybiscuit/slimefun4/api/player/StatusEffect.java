@@ -10,8 +10,8 @@ import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
-import io.github.bakedlibs.dough.data.persistent.PersistentDataAPI;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.data.persistent.PersistentDataAPI;
 
 /**
  * A very simple API that is meant for adding/getting/clearing custom status effects

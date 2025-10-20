@@ -36,10 +36,11 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
-import io.github.bakedlibs.dough.items.ItemMetaSnapshot;
-import io.github.bakedlibs.dough.skins.PlayerHead;
-import io.github.bakedlibs.dough.skins.PlayerSkin;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.items.ItemMetaSnapshot;
+import eu.mrneznamy.slimefun5.skins.PlayerHead;
+import eu.mrneznamy.slimefun5.skins.PlayerSkin;
+import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -97,7 +98,7 @@ public class SlimefunItemStack {
     public SlimefunItemStack(@Nonnull String id, @Nonnull Material type, @Nullable String name, @Nonnull Consumer<ItemMeta> consumer) {
         this(id, type, meta -> {
             if (name != null) {
-                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                meta.setDisplayName(ColorSystem.colorize(name));
             }
 
             consumer.accept(meta);
@@ -107,14 +108,14 @@ public class SlimefunItemStack {
     public SlimefunItemStack(@Nonnull String id, @Nonnull ItemStack item, @Nullable String name, String... lore) {
         this(id, item, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                im.setDisplayName(ColorSystem.colorize(name));
             }
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColor.translateAlternateColorCodes('&', line));
+                    lines.add(ColorSystem.colorize(line));
                 }
                 im.setLore(lines);
             }
@@ -128,14 +129,14 @@ public class SlimefunItemStack {
     public SlimefunItemStack(@Nonnull String id, @Nonnull Material type, @Nonnull Color color, @Nullable String name, String... lore) {
         this(id, type, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                im.setDisplayName(ColorSystem.colorize(name));
             }
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColor.translateAlternateColorCodes('&', line));
+                    lines.add(ColorSystem.colorize(line));
                 }
 
                 im.setLore(lines);
@@ -154,14 +155,14 @@ public class SlimefunItemStack {
     public SlimefunItemStack(@Nonnull String id, @Nonnull Color color, @Nonnull PotionEffect effect, @Nullable String name, String... lore) {
         this(id, Material.POTION, im -> {
             if (name != null) {
-                im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                im.setDisplayName(ColorSystem.colorize(name));
             }
 
             if (lore.length > 0) {
                 List<String> lines = new ArrayList<>();
 
                 for (String line : lore) {
-                    lines.add(ChatColor.translateAlternateColorCodes('&', line));
+                    lines.add(ColorSystem.colorize(line));
                 }
 
                 im.setLore(lines);
@@ -171,7 +172,7 @@ public class SlimefunItemStack {
                 potionMeta.setColor(color);
                 potionMeta.addCustomEffect(effect, true);
 
-                if (effect.getType().equals(PotionEffectType.SATURATION)) {
+                if (effect.getType().equals(PotionEffectType.SATURATION) && VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP != null) {
                     im.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
                 }
             }
@@ -195,7 +196,7 @@ public class SlimefunItemStack {
     public SlimefunItemStack(@Nonnull String id, @Nonnull String texture, @Nullable String name, @Nonnull Consumer<ItemMeta> consumer) {
         this(id, getSkull(id, texture), meta -> {
             if (name != null) {
-                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+                meta.setDisplayName(ColorSystem.colorize(name));
             }
 
             consumer.accept(meta);
@@ -276,7 +277,7 @@ public class SlimefunItemStack {
             return null;
         }
 
-        return itemMetaSnapshot.getDisplayName().orElse(null);
+        return itemMetaSnapshot.getDisplayName();
     }
 
     private static @Nonnull ItemStack getSkull(@Nonnull String id, @Nonnull String texture) {

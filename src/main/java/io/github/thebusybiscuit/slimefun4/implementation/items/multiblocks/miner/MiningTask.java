@@ -22,11 +22,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.blocks.BlockPosition;
-import io.github.bakedlibs.dough.inventory.InvUtils;
-import io.github.bakedlibs.dough.items.ItemUtils;
-import io.github.bakedlibs.dough.protection.Interaction;
-import io.github.bakedlibs.dough.scheduling.TaskQueue;
+import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.inventory.InvUtils;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefun5.protection.Interaction;
+import eu.mrneznamy.slimefun5.scheduling.TaskQueue;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;
@@ -124,7 +124,7 @@ class MiningTask implements Runnable {
          * This is our warm up animation.
          * The pistons will push after another in decreasing intervals
          */
-        TaskQueue queue = new TaskQueue();
+        TaskQueue queue = new TaskQueue(Slimefun.instance());
 
         queue.thenRun(4, () -> setPistonState(pistons[0], true));
         queue.thenRun(10, () -> setPistonState(pistons[0], false));
@@ -137,7 +137,7 @@ class MiningTask implements Runnable {
          * Trigger each piston once, so that the structure is validated.
          * Then consume fuel.
          */
-        queue.thenRun(() -> {
+        queue.enqueue(() -> {
             consumeFuel();
 
             if (fuelLevel <= 0) {
@@ -166,7 +166,6 @@ class MiningTask implements Runnable {
         queue.thenRun(2, () -> setPistonState(pistons[1], false));
 
         queue.thenRun(1, this);
-        queue.execute(Slimefun.instance());
     }
 
     @Override
@@ -176,7 +175,7 @@ class MiningTask implements Runnable {
             return;
         }
 
-        TaskQueue queue = new TaskQueue();
+        TaskQueue queue = new TaskQueue(Slimefun.instance());
 
         queue.thenRun(1, () -> setPistonState(pistons[0], true));
         queue.thenRun(3, () -> setPistonState(pistons[0], false));
@@ -184,7 +183,7 @@ class MiningTask implements Runnable {
         queue.thenRun(1, () -> setPistonState(pistons[1], true));
         queue.thenRun(3, () -> setPistonState(pistons[1], false));
 
-        queue.thenRun(() -> {
+        queue.enqueue(() -> {
             try {
                 Block furnace = chest.getRelative(BlockFace.DOWN);
                 furnace.getWorld().playEffect(furnace.getLocation(), Effect.STEP_SOUND, Material.STONE);
@@ -220,8 +219,6 @@ class MiningTask implements Runnable {
                 stop();
             }
         });
-
-        queue.execute(Slimefun.instance());
     }
 
     /**
@@ -319,7 +316,7 @@ class MiningTask implements Runnable {
                  * no errors during #setPistonState
                  */
                 if (fuelType.test(item) && running) {
-                    ItemUtils.consumeItem(item, false);
+                    ItemUtils.consumeItem(item, 1);
 
                     if (miner instanceof AdvancedIndustrialMiner) {
                         inv.addItem(new ItemStack(Material.BUCKET));

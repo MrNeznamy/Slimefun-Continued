@@ -26,8 +26,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.TalismanActivateEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -234,7 +234,7 @@ public class Talisman extends SlimefunItem {
                 ItemStack item = contents[i];
 
                 if (SlimefunUtils.isItemSimilar(item, talismanItem, true, false)) {
-                    ItemUtils.consumeItem(item, false);
+                    ItemUtils.consumeItem(item, 1);
                     return;
                 }
             }

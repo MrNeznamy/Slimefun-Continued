@@ -11,8 +11,8 @@ import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -24,8 +24,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 
 /**
- * This is a super class of the {@link AutoEnchanter} and {@link AutoDisenchanter} which is
- * used to streamline some methods and combine common attributes to reduce redundancy.
  *
  * @author TheBusyBiscuit
  * @author Rothes
@@ -65,23 +63,43 @@ abstract class AbstractEnchantmentMachine extends AContainer {
             throw new IllegalStateException("Enchantment level limit not enabled, cannot display a warning.");
         }
 
-        String notice = ChatColors.color(Slimefun.getLocalization().getMessage("messages.above-limit-level"));
+        String notice = ColorSystem.colorize(Slimefun.getLocalization().getMessage("messages.above-limit-level"));
         notice = notice.replace("%level%", String.valueOf(levelLimit.getValue()));
         ItemStack progressBar = CustomItemStack.create(Material.BARRIER, " ", notice);
         menu.replaceExistingItem(22, progressBar);
     }
 
-    protected boolean hasIgnoredLore(@Nonnull ItemStack item) {
-        if (useIgnoredLores.getValue() && item.hasItemMeta()) {
-            ItemMeta itemMeta = item.getItemMeta();
+    protected boolean isIgnoredLore(@Nonnull Item item) {
+        if (useIgnoredLores.getValue()) {
+            ItemMeta meta = item.getItemStack().getItemMeta();
 
-            if (itemMeta.hasLore()) {
-                List<String> itemLore = itemMeta.getLore();
+            if (meta != null && meta.hasLore()) {
+                List<String> itemLore = meta.getLore();
                 List<String> ignoredLore = ignoredLores.getValue();
 
                 // Check if any of the lines are found on the item
                 for (String lore : ignoredLore) {
-                    if (itemLore.contains(ChatColors.color(lore))) {
+                    if (itemLore.contains(ColorSystem.colorize(lore))) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected boolean hasIgnoredLore(@Nonnull ItemStack item) {
+        if (useIgnoredLores.getValue()) {
+            ItemMeta meta = item.getItemMeta();
+
+            if (meta != null && meta.hasLore()) {
+                List<String> itemLore = meta.getLore();
+                List<String> ignoredLore = ignoredLores.getValue();
+
+                // Check if any of the lines are found on the item
+                for (String lore : ignoredLore) {
+                    if (itemLore.contains(ColorSystem.colorize(lore))) {
                         return true;
                     }
                 }

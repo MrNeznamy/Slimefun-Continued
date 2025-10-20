@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.core.services;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
 
@@ -17,8 +19,8 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.World;
 
-import io.github.bakedlibs.dough.collections.OptionalMap;
-import io.github.bakedlibs.dough.config.Config;
+import eu.mrneznamy.slimefun5.collections.OptionalMap;
+import eu.mrneznamy.slimefun5.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -34,7 +36,7 @@ public class PerWorldSettingsService {
 
     private final Slimefun plugin;
 
-    private final OptionalMap<UUID, Set<String>> disabledItems = new OptionalMap<>(HashMap::new);
+    private final OptionalMap<UUID, Set<String>> disabledItems = new OptionalMap<>();
     private final Map<SlimefunAddon, Set<String>> disabledAddons = new HashMap<>();
     private final Set<UUID> disabledWorlds = new HashSet<>();
 
@@ -79,7 +81,7 @@ public class PerWorldSettingsService {
         Validate.notNull(world, "The world cannot be null");
         Validate.notNull(item, "The SlimefunItem cannot be null");
 
-        Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world));
+        Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world)).orElse(new LinkedHashSet<>());
 
         if (disabledWorlds.contains(world.getUID())) {
             return false;
@@ -102,7 +104,7 @@ public class PerWorldSettingsService {
         Validate.notNull(world, "The world cannot be null");
         Validate.notNull(item, "The SlimefunItem cannot be null");
 
-        Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world));
+        Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world)).orElse(new LinkedHashSet<>());
 
         if (enabled) {
             items.remove(item.getId());
@@ -171,7 +173,7 @@ public class PerWorldSettingsService {
      */
     public void save(@Nonnull World world) {
         Validate.notNull(world, "Cannot save a World that does not exist");
-        Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world));
+        Set<String> items = disabledItems.computeIfAbsent(world.getUID(), id -> loadWorldFromConfig(world)).orElse(new LinkedHashSet<>());
 
         Config config = getConfig(world);
 
@@ -182,7 +184,11 @@ public class PerWorldSettingsService {
             }
         }
 
-        config.save();
+        try {
+            config.save();
+        } catch (IOException e) {
+            Slimefun.logger().log(Level.WARNING, "Failed to save per-world settings config: " + e.getMessage());
+        }
     }
 
     @Nonnull
@@ -190,10 +196,10 @@ public class PerWorldSettingsService {
         Validate.notNull(world, "Cannot load a World that does not exist");
 
         String name = world.getName();
-        Optional<Set<String>> optional = disabledItems.get(world.getUID());
+        Optional<Set<String>> existingItems = disabledItems.get(world.getUID());
 
-        if (optional.isPresent()) {
-            return optional.get();
+        if (existingItems.isPresent()) {
+            return existingItems.get();
         } else {
             Set<String> items = new LinkedHashSet<>();
             Config config = getConfig(world);
@@ -207,7 +213,11 @@ public class PerWorldSettingsService {
 
                 // We don't actually wanna write to disk during a Unit test
                 if (Slimefun.getMinecraftVersion() != MinecraftVersion.UNIT_TEST) {
-                    config.save();
+                    try {
+                        config.save();
+                    } catch (IOException e) {
+                        Slimefun.logger().log(Level.WARNING, "Failed to save per-world settings config: " + e.getMessage());
+                    }
                 }
             } else {
                 disabledWorlds.add(world.getUID());

@@ -26,11 +26,11 @@ import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedPotionEff
  */
 public enum RadiationSymptom {
 
-    SLOW(10, VersionedPotionEffectType.SLOWNESS, 3),
+    SLOW(10, VersionedPotionEffectType.SLOWNESS != null ? VersionedPotionEffectType.SLOWNESS : PotionEffectType.SLOWNESS, 3),
     WITHER_LOW(25, PotionEffectType.WITHER, 0),
     BLINDNESS(50, PotionEffectType.BLINDNESS, 4),
     WITHER_HIGH(75, PotionEffectType.WITHER, 3),
-    IMMINENT_DEATH(100, VersionedPotionEffectType.INSTANT_DAMAGE, 49);
+    IMMINENT_DEATH(100, VersionedPotionEffectType.INSTANT_DAMAGE != null ? VersionedPotionEffectType.INSTANT_DAMAGE : PotionEffectType.INSTANT_DAMAGE, 49);
 
     private final int minExposure;
     private final PotionEffect potionEffect;

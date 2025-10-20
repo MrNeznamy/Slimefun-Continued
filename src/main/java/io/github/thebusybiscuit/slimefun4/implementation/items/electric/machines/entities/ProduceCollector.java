@@ -21,8 +21,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MushroomCow;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.inventory.InvUtils;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.inventory.InvUtils;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
@@ -117,15 +117,15 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
         List<ItemStack> displayRecipes = new ArrayList<>();
 
         displayRecipes.add(CustomItemStack.create(Material.BUCKET, null, "&fRequires &bCow &fnearby"));
-        displayRecipes.add(new ItemStack(Material.MILK_BUCKET));
+        displayRecipes.add(CustomItemStack.create(Material.BUCKET, null, "&fRequires &bCow &fnearby"));
 
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
             displayRecipes.add(CustomItemStack.create(Material.BUCKET, null, "&fRequires &bGoat &fnearby"));
-            displayRecipes.add(new ItemStack(Material.MILK_BUCKET));
+            displayRecipes.add(CustomItemStack.create(Material.BUCKET, null, "&fRequires &bGoat &fnearby"));
         }
 
         displayRecipes.add(CustomItemStack.create(Material.BOWL, null, "&fRequires &bMooshroom &fnearby"));
-        displayRecipes.add(new ItemStack(Material.MUSHROOM_STEW));
+        displayRecipes.add(CustomItemStack.create(Material.BOWL, null, "&fRequires &bMooshroom &fnearby"));
 
         return displayRecipes;
     }
@@ -166,13 +166,13 @@ public class ProduceCollector extends AContainer implements RecipeDisplayItem {
     }
 
     @Override
-    public @Nonnull String getMachineIdentifier() {
-        return "PRODUCE_COLLECTOR";
+    public @Nonnull ItemStack getProgressBar() {
+        return new ItemStack(Material.SHEARS);
     }
 
     @Override
-    public @Nonnull ItemStack getProgressBar() {
-        return new ItemStack(Material.SHEARS);
+    public @Nonnull String getMachineIdentifier() {
+        return "PRODUCE_COLLECTOR";
     }
 
 }

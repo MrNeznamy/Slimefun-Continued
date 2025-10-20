@@ -1,8 +1,11 @@
 package me.mrCookieSlime.Slimefun.api.inventory;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import io.github.bakedlibs.dough.config.Config;
+import eu.mrneznamy.slimefun5.config.Config;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public class UniversalBlockMenu extends DirtyChestMenu {
@@ -49,7 +52,11 @@ public class UniversalBlockMenu extends DirtyChestMenu {
             cfg.setValue(String.valueOf(slot), getItemInSlot(slot));
         }
 
-        cfg.save();
+        try {
+            cfg.save();
+        } catch (IOException e) {
+            Logger.getLogger(UniversalBlockMenu.class.getName()).log(Level.WARNING, "Failed to save universal block menu", e);
+        }
 
         changes = 0;
     }

@@ -14,8 +14,8 @@ import org.bukkit.entity.Villager;
 import org.bukkit.entity.ZombieVillager;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.ItemUtils;
-import io.github.bakedlibs.dough.protection.Interaction;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -78,7 +78,7 @@ public class MagicalZombiePills extends SimpleSlimefunItem<EntityInteractHandler
 
     private void useItem(@Nonnull Player p, @Nonnull ItemStack item) {
         if (p.getGameMode() != GameMode.CREATIVE) {
-            ItemUtils.consumeItem(item, false);
+            ItemUtils.consumeItem(item, 1);
         }
 
         // This is supposed to be a vanilla sound. No need for a SoundEffect

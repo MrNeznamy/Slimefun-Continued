@@ -20,9 +20,9 @@ import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.chat.ChatInput;
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.chat.ChatInput;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.events.WaypointCreateEvent;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
@@ -292,7 +292,7 @@ public class GPSNetwork {
             Slimefun.getLocalization().sendMessage(p, "gps.waypoint.new", true);
             SoundEffect.GPS_NETWORK_CREATE_WAYPOINT.playFor(p);
 
-            ChatInput.waitForPlayer(Slimefun.instance(), p, message -> addWaypoint(p, message, l));
+            ChatInput.waitForPlayer(p, message -> addWaypoint(p, message, l));
         });
     }
 
@@ -322,7 +322,7 @@ public class GPSNetwork {
                 Bukkit.getPluginManager().callEvent(event);
 
                 if (!event.isCancelled()) {
-                    String id = ChatColor.stripColor(ChatColors.color(event.getName())).toUpperCase(Locale.ROOT).replace(' ', '_');
+                    String id = ChatColor.stripColor(ColorSystem.colorize(event.getName())).toUpperCase(Locale.ROOT).replace(' ', '_');
 
                     for (Waypoint wp : profile.getWaypoints()) {
                         if (wp.getId().equals(id)) {

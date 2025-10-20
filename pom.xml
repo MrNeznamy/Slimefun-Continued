@@ -9,27 +9,27 @@
 
     <!-- Our default version will be UNOFFICIAL, this will prevent auto updates -->
     <!-- from overriding our local test file -->
-    <version>4.9-UNOFFICIAL</version>
+    <version>5.0.0</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
 
     <!-- Project Info -->
     <description>Slimefun is a Paper plugin that simulates a modpack-like atmosphere by adding over 500 new items and recipes to your Minecraft Server.</description>
-    <url>https://github.com/Slimefun/Slimefun4</url>
+    <url>https://github.com/MrNeznamy/Slimefun5</url>
 
     <properties>
         <!-- UTF-8 is our standard encoding for source files -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Target Java 16 -->
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <!-- Target Java 21 -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <!-- Run tests using java 21 -->
         <maven.compiler.testSource>21</maven.compiler.testSource>
         <maven.compiler.testTarget>21</maven.compiler.testTarget>
 
         <!-- Spigot properties -->
-        <paper.version>1.21.1</paper.version>
+        <paper.version>1.21.10</paper.version>
         <paper.javadocs>https://hub.spigotmc.org/javadocs/spigot/</paper.javadocs>
 
         <!-- Default settings for sonarcloud.io -->
@@ -43,14 +43,14 @@
     <issueManagement>
         <!-- Bug Tracker -->
         <system>GitHub Issues</system>
-        <url>https://github.com/Slimefun/Slimefun4/issues</url>
+        <url>https://github.com/Slimefun/Slimefun5/issues</url>
     </issueManagement>
 
     <licenses>
         <license>
             <!-- License -->
             <name>GNU General Public License v3.0</name>
-            <url>https://github.com/Slimefun/Slimefun4/blob/master/LICENSE</url>
+            <url>https://github.com/Slimefun/Slimefun5/blob/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -104,8 +104,8 @@
         <!-- /src/main/java/ contains all sources (production code) -->
         <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 
-        <!-- /src/test/java/ contains all unit tests (testing code) -->
-        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+        <!-- /test/java/ contains all unit tests (testing code) -->
+        <testSourceDirectory>${project.basedir}/test/java</testSourceDirectory>
 
         <!-- The default goal for compiling is "clean package" -->
         <defaultGoal>clean package</defaultGoal>
@@ -121,6 +121,12 @@
                 <version>3.13.0</version>
 
                 <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                     <excludes>
                         <!-- package info files are only important for Javadocs -->
                         <!-- We can safely exclude them from the final jar -->
@@ -143,6 +149,17 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <!-- Resources plugin to ensure all resources are properly included -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -199,10 +216,6 @@
                 <configuration>
                     <!-- Relocate these to avoid clashes and conflicts -->
                     <relocations>
-                        <relocation>
-                            <pattern>io.github.bakedlibs.dough</pattern>
-                            <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.dough</shadedPattern>
-                        </relocation>
                         <relocation>
                             <pattern>io.papermc.lib</pattern>
                             <shadedPattern>io.github.thebusybiscuit.slimefun4.libraries.paperlib</shadedPattern>
@@ -356,18 +369,6 @@
         <!-- Shaded packages -->
 
         <dependency>
-            <groupId>com.github.Slimefun.dough</groupId>
-            <artifactId>dough-api</artifactId>
-            <version>cb22e71335</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.Slimefun.dough</groupId>
-            <artifactId>dough-api</artifactId>
-            <version>cb22e71335</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.papermc</groupId>
             <artifactId>paperlib</artifactId>
             <version>1.0.8</version>
@@ -406,15 +407,6 @@
             <artifactId>MockBukkit-v1.21</artifactId>
             <version>3.133.2</version>
             <scope>test</scope>
-
-            <exclusions>
-                <exclusion>
-                    <!-- We use javax.annotation instead. Excluding this -->
-                    <!-- prevents us from using inconsistent annotations -->
-                    <groupId>org.jetbrains</groupId>
-                    <artifactId>annotations</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Third party plugin integrations / soft dependencies -->

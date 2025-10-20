@@ -30,7 +30,7 @@ import org.bukkit.plugin.Plugin;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.JsonUtils;
 
@@ -121,15 +121,7 @@ public class MetricsService {
 
             metricVersion = metricsClass.getPackage().getImplementationVersion();
 
-            /*
-             * If it has not been newly downloaded, auto-updates are enabled
-             * AND there's a new version then cleanup, download and start
-             */
-            if (!hasDownloadedUpdate && hasAutoUpdates() && checkForUpdate(metricVersion)) {
-                plugin.getLogger().info("Cleaned up, now re-loading Metrics-Module!");
-                start();
-                return;
-            }
+
 
             // Finally, we're good to start this.
             Method start = metricsClass.getDeclaredMethod("start");
@@ -269,20 +261,13 @@ public class MetricsService {
         return metricVersion;
     }
 
-    /**
-     * Returns if the current server has metrics auto-updates enabled.
-     *
-     * @return True if the current server has metrics auto-updates enabled.
-     */
-    public boolean hasAutoUpdates() {
-        return Slimefun.instance().getConfig().getBoolean("metrics.auto-update");
-    }
+
 
     private HttpRequest buildBaseRequest(@Nonnull URI uri) {
         return HttpRequest.newBuilder()
                 .uri(uri)
                 .timeout(Duration.ofSeconds(5))
-                .header("User-Agent", "MetricsModule Auto-Updater")
+                .header("User-Agent", "MetricsModule")
                 .header("Accept", "application/vnd.github.v3+json")
                 .build();
     }

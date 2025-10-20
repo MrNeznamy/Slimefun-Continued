@@ -4,12 +4,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.GameMode;
-import org.bukkit.attribute.Attribute;
+import eu.mrneznamy.utils.slimefun5.utils.compatibility.VersionedAttribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -31,12 +31,12 @@ public class Splint extends SimpleSlimefunItem<ItemUseHandler> {
             Player p = e.getPlayer();
 
             // Player is neither burning nor injured
-            if (p.getFireTicks() <= 0 && p.getHealth() >= p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) {
+            if (p.getFireTicks() <= 0 && p.getHealth() >= p.getAttribute(VersionedAttribute.MAX_HEALTH()).getValue()) {
                 return;
             }
 
             if (p.getGameMode() != GameMode.CREATIVE) {
-                ItemUtils.consumeItem(e.getItem(), false);
+                ItemUtils.consumeItem(e.getItem(), 1);
             }
 
             SoundEffect.SPLINT_CONSUME_SOUND.playFor(p);

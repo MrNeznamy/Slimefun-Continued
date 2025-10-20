@@ -50,6 +50,10 @@ public class EnergyNet extends Network implements HologramOwner {
     private final Map<Location, EnergyNetProvider> generators = new HashMap<>();
     private final Map<Location, EnergyNetComponent> capacitors = new HashMap<>();
     private final Map<Location, EnergyNetComponent> consumers = new HashMap<>();
+    
+    // Store last tick values for hologram display
+    private int lastSupply = 0;
+    private int lastDemand = 0;
 
     protected EnergyNet(@Nonnull Location l) {
         super(Slimefun.getNetworkManager(), l);
@@ -85,6 +89,45 @@ public class EnergyNet extends Network implements HologramOwner {
      */
     public @Nonnull Map<Location, EnergyNetComponent> getConsumers() {
         return Collections.unmodifiableMap(consumers);
+    }
+    
+    /**
+     * Gets the last calculated energy supply per tick.
+     * 
+     * @return The energy supply in J/s
+     */
+    public int getLastSupply() {
+        return lastSupply;
+    }
+    
+    /**
+     * Gets the last calculated energy demand per tick.
+     * 
+     * @return The energy demand in J/s
+     */
+    public int getLastDemand() {
+        return lastDemand;
+    }
+    
+    /**
+     * Gets the total stored energy in all capacitors and generators.
+     * 
+     * @return The total stored energy in J
+     */
+    public int getTotalStoredEnergy() {
+        int totalStored = 0;
+        
+        // Add energy from capacitors
+        for (Map.Entry<Location, EnergyNetComponent> entry : capacitors.entrySet()) {
+            totalStored += entry.getValue().getCharge(entry.getKey());
+        }
+        
+        // Add energy from generators
+        for (Map.Entry<Location, EnergyNetProvider> entry : generators.entrySet()) {
+            totalStored += entry.getValue().getCharge(entry.getKey());
+        }
+        
+        return totalStored;
     }
 
     @Override
@@ -162,6 +205,7 @@ public class EnergyNet extends Network implements HologramOwner {
             int supply = NumberUtils.flowSafeAddition(generatorsSupply, capacitorsSupply);
             int remainingEnergy = supply;
             int demand = 0;
+            int actualConsumption = 0;
 
             for (Map.Entry<Location, EnergyNetComponent> entry : consumers.entrySet()) {
                 Location loc = entry.getKey();
@@ -177,8 +221,10 @@ public class EnergyNet extends Network implements HologramOwner {
                         if (remainingEnergy > availableSpace) {
                             component.setCharge(loc, capacity);
                             remainingEnergy -= availableSpace;
+                            actualConsumption = NumberUtils.flowSafeAddition(actualConsumption, availableSpace);
                         } else {
                             component.setCharge(loc, charge + remainingEnergy);
+                            actualConsumption = NumberUtils.flowSafeAddition(actualConsumption, remainingEnergy);
                             remainingEnergy = 0;
                         }
                     }
@@ -186,6 +232,11 @@ public class EnergyNet extends Network implements HologramOwner {
             }
 
             storeRemainingEnergy(remainingEnergy);
+            
+            // Store values for external access - use actual generation and consumption
+            this.lastSupply = generatorsSupply;
+            this.lastDemand = actualConsumption;
+            
             updateHologram(b, supply, demand);
         }
 

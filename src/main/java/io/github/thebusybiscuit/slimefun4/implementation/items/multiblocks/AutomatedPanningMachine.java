@@ -17,8 +17,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.ItemUtils;
-import io.github.bakedlibs.dough.scheduling.TaskQueue;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefun5.scheduling.TaskQueue;
 import io.github.thebusybiscuit.slimefun4.api.events.MultiBlockCraftEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -85,10 +85,10 @@ public class AutomatedPanningMachine extends MultiBlockMachine {
 
         ItemStack finalOutput = event.getOutput();
         if (p.getGameMode() != GameMode.CREATIVE) {
-            ItemUtils.consumeItem(input, false);
+            ItemUtils.consumeItem(input, 1);
         }
 
-        TaskQueue queue = new TaskQueue();
+        TaskQueue queue = new TaskQueue(Slimefun.instance());
 
         queue.thenRepeatEvery(20, 5, () -> b.getWorld().playEffect(b.getRelative(BlockFace.DOWN).getLocation(), Effect.STEP_SOUND, material));
         queue.thenRun(20, () -> {
@@ -106,7 +106,5 @@ public class AutomatedPanningMachine extends MultiBlockMachine {
                 SoundEffect.AUTOMATED_PANNING_MACHINE_FAIL_SOUND.playAt(b);
             }
         });
-
-        queue.execute(Slimefun.instance());
     }
 }

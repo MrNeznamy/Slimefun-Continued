@@ -166,7 +166,12 @@ public class BiomeMap<T> implements Keyed {
         Validate.notNull(plugin, "The plugin shall not be null.");
         Validate.notNull(path, "The path should not be null!");
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(plugin.getClass().getResourceAsStream(path), StandardCharsets.UTF_8))) {
+        var inputStream = plugin.getClass().getResourceAsStream(path);
+        if (inputStream == null) {
+            throw new BiomeMapException(key, new IOException("Resource not found: " + path));
+        }
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             return fromJson(key, reader.lines().collect(Collectors.joining("")), valueConverter);
         } catch (IOException x) {
             throw new BiomeMapException(key, x);

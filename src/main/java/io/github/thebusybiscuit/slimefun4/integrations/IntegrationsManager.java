@@ -18,7 +18,7 @@ import org.bukkit.plugin.Plugin;
 import com.gmail.nossr50.events.fake.FakeBlockBreakEvent;
 import com.gmail.nossr50.util.skills.SkillUtils;
 
-import io.github.bakedlibs.dough.protection.ProtectionManager;
+import eu.mrneznamy.slimefun5.protection.ProtectionManager;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.enchanting.AutoDisenchanter;
@@ -138,7 +138,7 @@ public class IntegrationsManager {
     private void onServerStart() {
         try {
             // Load Protection plugin integrations
-            protectionManager = new ProtectionManager(plugin);
+            protectionManager = new ProtectionManager();
         } catch (Exception | LinkageError x) {
             Slimefun.logger().log(Level.WARNING, x, () -> "Failed to load Protection plugin integrations for Slimefun v" + Slimefun.getVersion());
         }

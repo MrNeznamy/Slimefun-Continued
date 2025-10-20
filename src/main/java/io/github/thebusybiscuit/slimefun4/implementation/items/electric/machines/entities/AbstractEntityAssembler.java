@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.entities;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -16,8 +17,8 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.bakedlibs.dough.protection.Interaction;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -27,6 +28,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -50,7 +52,7 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
  * @see IronGolemAssembler
  *
  */
-public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSlimefunItem<BlockTicker> implements EnergyNetComponent {
+public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSlimefunItem<BlockTicker> implements EnergyNetComponent, InventoryBlock {
 
     private static final String KEY_ENABLED = "enabled";
     private static final String KEY_OFFSET = "offset";
@@ -70,52 +72,7 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     protected AbstractEntityAssembler(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
-        new BlockMenuPreset(getId(), item.getItemMetaSnapshot().getDisplayName().orElse("Entity Assembler")) {
-
-            @Override
-            public void init() {
-                drawBackground(border);
-                drawBackground(CustomItemStack.create(getHeadBorder(), " "), headBorder);
-                drawBackground(CustomItemStack.create(getBodyBorder(), " "), bodyBorder);
-
-                constructMenu(this);
-            }
-
-            @Override
-            public void newInstance(BlockMenu menu, Block b) {
-                updateBlockInventory(menu, b);
-            }
-
-            @Override
-            public boolean canOpen(Block b, Player p) {
-                return p.hasPermission("slimefun.inventory.bypass") || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
-            }
-
-            @Override
-            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
-                if (flow == ItemTransportFlow.INSERT) {
-                    return inputSlots;
-                } else {
-                    return new int[0];
-                }
-            }
-
-            @Override
-            public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
-                if (flow == ItemTransportFlow.INSERT && item != null) {
-                    if (item.getType() == getBody().getType()) {
-                        return bodySlots;
-                    }
-
-                    if (item.getType() == getHead().getType()) {
-                        return headSlots;
-                    }
-                }
-
-                return new int[0];
-            }
-        };
-
+        createPreset(this, this::constructMenu);
         addItemHandler(onPlace(), onBreak());
     }
 
@@ -279,9 +236,25 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     }
 
     protected void constructMenu(BlockMenuPreset preset) {
+        for (int i : border) {
+            preset.addItem(i, CustomItemStack.create(Material.GRAY_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
+        }
+
+        for (int i : headBorder) {
+            preset.addItem(i, CustomItemStack.create(getHeadBorder(), " "), ChestMenuUtils.getEmptyClickHandler());
+        }
+
+        for (int i : bodyBorder) {
+            preset.addItem(i, CustomItemStack.create(getBodyBorder(), " "), ChestMenuUtils.getEmptyClickHandler());
+        }
+
         preset.addItem(1, CustomItemStack.create(getHead(), "&7Head Slot", "", "&fThis Slot accepts the head type"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(7, CustomItemStack.create(getBody(), "&7Body Slot", "", "&fThis Slot accepts the body type"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(13, CustomItemStack.create(Material.CLOCK, "&7Cooldown: &b30 Seconds", "", "&fThis Machine takes up to half a Minute to operate", "&fso give it some Time!"), ChestMenuUtils.getEmptyClickHandler());
+
+        preset.addMenuOpeningHandler(p -> {
+            // Menu opening handler only receives Player parameter
+        });
     }
 
     @Override
@@ -300,5 +273,15 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     public abstract Material getBodyBorder();
 
     public abstract T spawnEntity(Location l);
+
+    @Override
+    public int[] getInputSlots() {
+        return new int[] { 4, 5, 6, 7, 8, 13, 14, 15, 16, 17 };
+    }
+
+    @Override
+    public int[] getOutputSlots() {
+        return new int[] { 22 };
+    }
 
 }

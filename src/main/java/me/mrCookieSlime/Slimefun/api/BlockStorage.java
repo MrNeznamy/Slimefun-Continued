@@ -35,8 +35,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
 
-import io.github.bakedlibs.dough.blocks.BlockPosition;
-import io.github.bakedlibs.dough.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
@@ -249,7 +249,7 @@ public class BlockStorage {
                         continue;
                     }
 
-                    io.github.bakedlibs.dough.config.Config cfg = new io.github.bakedlibs.dough.config.Config(file);
+                    eu.mrneznamy.slimefun5.config.Config cfg = new eu.mrneznamy.slimefun5.config.Config(file);
                     BlockMenuPreset preset = BlockMenuPreset.getPreset(cfg.getString("preset"));
 
                     if (preset == null) {
@@ -274,7 +274,7 @@ public class BlockStorage {
         for (File file : new File("data-storage/Slimefun/universal-inventories").listFiles()) {
             if (file.getName().endsWith(".sfi")) {
                 try {
-                    io.github.bakedlibs.dough.config.Config cfg = new io.github.bakedlibs.dough.config.Config(file);
+                    eu.mrneznamy.slimefun5.config.Config cfg = new eu.mrneznamy.slimefun5.config.Config(file);
                     BlockMenuPreset preset = BlockMenuPreset.getPreset(cfg.getString("preset"));
 
                     if (preset != null) {
@@ -583,7 +583,7 @@ public class BlockStorage {
                 File file = new File(PATH_INVENTORIES + serializeLocation(l) + ".sfi");
 
                 if (file.exists()) {
-                    BlockMenu inventory = new BlockMenu(preset, l, new io.github.bakedlibs.dough.config.Config(file));
+                    BlockMenu inventory = new BlockMenu(preset, l, new eu.mrneznamy.slimefun5.config.Config(file));
                     storage.inventories.put(l, inventory);
                 } else {
                     storage.loadInventory(l, preset);

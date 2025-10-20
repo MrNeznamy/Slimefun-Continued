@@ -4,8 +4,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -46,15 +45,15 @@ public class ElectricPress extends AContainer implements RecipeDisplayItem {
 
         addRecipe(6, SlimefunItems.COPPER_INGOT.item(), CustomItemStack.create(SlimefunItems.COPPER_WIRE.item(), 3));
         addRecipe(16, new SlimefunItemStack(SlimefunItems.STEEL_INGOT, 8), SlimefunItems.STEEL_PLATE);
-        addRecipe(18, new SlimefunItemStack(SlimefunItems.REINFORCED_ALLOY_INGOT, 8), SlimefunItems.REINFORCED_PLATE);
+        addRecipe(6, SlimefunItems.COPPER_INGOT.item(), CustomItemStack.create(SlimefunItems.COPPER_WIRE.item(), 3));
 
         addRecipe(8, new ItemStack(Material.NETHER_WART), CustomItemStack.create(SlimefunItems.MAGIC_LUMP_1.item(), 2));
         addRecipe(10, new SlimefunItemStack(SlimefunItems.MAGIC_LUMP_1, 4), SlimefunItems.MAGIC_LUMP_2);
-        addRecipe(12, new SlimefunItemStack(SlimefunItems.MAGIC_LUMP_2, 4), SlimefunItems.MAGIC_LUMP_3);
+        addRecipe(8, new ItemStack(Material.NETHER_WART), CustomItemStack.create(SlimefunItems.MAGIC_LUMP_1.item(), 2));
 
         addRecipe(10, new ItemStack(Material.ENDER_EYE), CustomItemStack.create(SlimefunItems.ENDER_LUMP_1.item(), 2));
         addRecipe(12, new SlimefunItemStack(SlimefunItems.ENDER_LUMP_1, 4), SlimefunItems.ENDER_LUMP_2);
-        addRecipe(14, new SlimefunItemStack(SlimefunItems.ENDER_LUMP_2, 4), SlimefunItems.ENDER_LUMP_3);
+        addRecipe(10, new ItemStack(Material.ENDER_EYE), CustomItemStack.create(SlimefunItems.ENDER_LUMP_1.item(), 2));
 
         addRecipe(18, new SlimefunItemStack(SlimefunItems.TINY_URANIUM, 9), SlimefunItems.SMALL_URANIUM);
         addRecipe(24, new SlimefunItemStack(SlimefunItems.SMALL_URANIUM, 4), SlimefunItems.URANIUM);

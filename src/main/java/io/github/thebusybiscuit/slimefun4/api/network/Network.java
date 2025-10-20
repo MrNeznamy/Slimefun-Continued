@@ -15,7 +15,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 
-import io.github.bakedlibs.dough.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.NetworkListener;

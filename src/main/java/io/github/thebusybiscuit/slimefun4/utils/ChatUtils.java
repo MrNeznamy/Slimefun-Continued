@@ -5,13 +5,13 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
-import org.bukkit.ChatColor;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import io.github.bakedlibs.dough.chat.ChatInput;
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.chat.ChatInput;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**
@@ -29,28 +29,28 @@ public final class ChatUtils {
         // If we get access to the URL prompt one day, we can just prompt the link to the Player that way.
         sender.sendMessage("");
         Slimefun.getLocalization().sendMessage(sender, "messages.link-prompt", false);
-        sender.sendMessage(ChatColors.color("&7&o" + url));
+        sender.sendMessage(ColorSystem.colorize("&7&o" + url));
         sender.sendMessage("");
     }
 
     public static @Nonnull String removeColorCodes(@Nonnull String string) {
-        return ChatColor.stripColor(ChatColors.color(string));
+        return ColorSystem.stripColor(string);
     }
 
-    public static @Nonnull String crop(@Nonnull ChatColor color, @Nonnull String string) {
-        if (ChatColor.stripColor(color + string).length() > 19) {
-            return (color + ChatColor.stripColor(string)).substring(0, 18) + "...";
+    public static @Nonnull String crop(@Nonnull String color, @Nonnull String string) {
+        if (ColorSystem.stripColor(color + string).length() > 19) {
+            return (color + ColorSystem.stripColor(string)).substring(0, 18) + "...";
         } else {
-            return color + ChatColor.stripColor(string);
+            return color + ColorSystem.stripColor(string);
         }
     }
 
     public static @Nonnull String christmas(@Nonnull String text) {
-        return ChatColors.alternating(text, ChatColor.GREEN, ChatColor.RED);
+        return ColorSystem.color(text, java.awt.Color.GREEN, java.awt.Color.RED);
     }
 
     public static void awaitInput(@Nonnull Player p, @Nonnull Consumer<String> callback) {
-        ChatInput.waitForPlayer(Slimefun.instance(), p, callback);
+        ChatInput.waitForPlayer(p, callback);
     }
 
     /**

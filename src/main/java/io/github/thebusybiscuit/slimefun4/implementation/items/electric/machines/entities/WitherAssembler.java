@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Wither;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -47,13 +47,13 @@ public class WitherAssembler extends AbstractEntityAssembler<Wither> {
     }
 
     @Override
-    public Material getHeadBorder() {
-        return Material.BLACK_STAINED_GLASS_PANE;
+    public ItemStack getBody() {
+        return new ItemStack(Material.SOUL_SAND, 4);
     }
 
     @Override
-    public ItemStack getBody() {
-        return new ItemStack(Material.SOUL_SAND, 4);
+    public Material getHeadBorder() {
+        return Material.BLACK_STAINED_GLASS_PANE;
     }
 
     @Override
@@ -63,6 +63,8 @@ public class WitherAssembler extends AbstractEntityAssembler<Wither> {
 
     @Override
     protected void constructMenu(BlockMenuPreset preset) {
+        super.constructMenu(preset);
+        
         preset.addItem(1, CustomItemStack.create(getHead(), "&7Wither Skeleton Skull Slot", "", "&fThis Slot accepts Wither Skeleton Skulls"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(7, CustomItemStack.create(getBody(), "&7Soul Sand Slot", "", "&fThis Slot accepts Soul Sand"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(13, CustomItemStack.create(Material.CLOCK, "&7Cooldown: &b30 Seconds", "", "&fThis Machine takes up to half a Minute to operate", "&fso give it some Time!"), ChestMenuUtils.getEmptyClickHandler());
@@ -72,5 +74,4 @@ public class WitherAssembler extends AbstractEntityAssembler<Wither> {
     public Wither spawnEntity(Location l) {
         return l.getWorld().spawn(l, Wither.class);
     }
-
 }

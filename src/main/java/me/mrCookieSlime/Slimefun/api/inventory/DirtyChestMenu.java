@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.inventory.InvUtils;
-import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.slimefun5.inventory.InvUtils;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
@@ -151,7 +151,7 @@ public class DirtyChestMenu extends ChestMenu {
     }
 
     public void consumeItem(int slot, int amount, boolean replaceConsumables) {
-        ItemUtils.consumeItem(getItemInSlot(slot), amount, replaceConsumables);
+        ItemUtils.consumeItem(getItemInSlot(slot), amount);
         markDirty();
     }
 

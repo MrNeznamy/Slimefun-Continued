@@ -30,8 +30,6 @@ public class CargoManager extends SlimefunItem implements HologramOwner {
     @ParametersAreNonnullByDefault
     public CargoManager(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-
-        addItemHandler(onBreak());
     }
 
     @Nonnull
@@ -47,7 +45,7 @@ public class CargoManager extends SlimefunItem implements HologramOwner {
 
     @Override
     public void preRegister() {
-        addItemHandler(new BlockTicker() {
+        addItemHandler(onBreak(), new BlockTicker() {
 
             @Override
             public void tick(Block b, SlimefunItem item, Config data) {

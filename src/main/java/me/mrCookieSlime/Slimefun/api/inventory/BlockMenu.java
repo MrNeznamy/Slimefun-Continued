@@ -9,7 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.config.Config;
+import eu.mrneznamy.slimefun5.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 // This class will be deprecated, relocated and rewritten in a future version.
@@ -64,7 +64,11 @@ public class BlockMenu extends DirtyChestMenu {
             cfg.setValue(String.valueOf(slot), getItemInSlot(slot));
         }
 
-        cfg.save();
+        try {
+            cfg.save();
+        } catch (IOException e) {
+            Slimefun.logger().log(Level.WARNING, "Failed to save BlockMenu data: " + e.getMessage());
+        }
 
         changes = 0;
     }

@@ -1,6 +1,8 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -16,8 +18,8 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.blocks.Vein;
-import io.github.bakedlibs.dough.protection.Interaction;
+import eu.mrneznamy.slimefun5.blocks.Vein;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -51,7 +53,8 @@ public class WoodcutterAndroid extends ProgrammableAndroid {
         }
 
         if (Tag.LOGS.isTagged(target.getType())) {
-            List<Block> list = Vein.find(target, MAX_REACH, block -> Tag.LOGS.isTagged(block.getType()));
+            Set<Block> veinBlocks = Vein.find(target, MAX_REACH, block -> Tag.LOGS.isTagged(block.getType()));
+            List<Block> list = new ArrayList<>(veinBlocks);
 
             if (!list.isEmpty()) {
                 Block log = list.get(list.size() - 1);

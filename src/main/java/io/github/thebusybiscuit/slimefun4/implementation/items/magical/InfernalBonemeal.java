@@ -12,7 +12,7 @@ import org.bukkit.block.data.Ageable;
 import org.bukkit.event.Event.Result;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -51,7 +51,7 @@ public class InfernalBonemeal extends SimpleSlimefunItem<ItemUseHandler> {
                         b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, Material.REDSTONE_BLOCK);
 
                         if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
-                            ItemUtils.consumeItem(e.getItem(), false);
+                            ItemUtils.consumeItem(e.getItem(), 1);
                         }
                     }
                 }

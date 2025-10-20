@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.implementation.items.androids;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,19 +9,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.config.Config;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
@@ -151,7 +153,7 @@ public final class Script {
     @Nonnull
     private String getScriptRatingPercentage() {
         float percentage = getRating();
-        return NumberUtils.getColorFromPercentage(percentage) + String.valueOf(percentage) + ChatColor.WHITE + "% ";
+        return NumberUtils.getColorFromPercentage(percentage) + String.valueOf(percentage) + ColorSystem.colorize("&f") + "% ";
     }
 
     /**
@@ -199,7 +201,11 @@ public final class Script {
     public void download() {
         config.reload();
         config.setValue("downloads", getDownloads() + 1);
-        config.save();
+        try {
+            config.save();
+        } catch (IOException e) {
+            Logger.getLogger(Script.class.getName()).log(Level.WARNING, "Failed to save script download count", e);
+        }
     }
 
     public void rate(@Nonnull Player p, boolean positive) {
@@ -210,7 +216,11 @@ public final class Script {
         list.add(p.getUniqueId().toString());
 
         config.setValue(path, list);
-        config.save();
+        try {
+            config.save();
+        } catch (IOException e) {
+            Logger.getLogger(Script.class.getName()).log(Level.WARNING, "Failed to save script rating", e);
+        }
     }
 
     @Nonnull
@@ -262,7 +272,11 @@ public final class Script {
         config.setValue("android", androidType.name());
         config.setValue("rating.positive", new ArrayList<String>());
         config.setValue("rating.negative", new ArrayList<String>());
-        config.save();
+        try {
+            config.save();
+        } catch (IOException e) {
+            Logger.getLogger(Script.class.getName()).log(Level.WARNING, "Failed to save script configuration", e);
+        }
     }
 
 }

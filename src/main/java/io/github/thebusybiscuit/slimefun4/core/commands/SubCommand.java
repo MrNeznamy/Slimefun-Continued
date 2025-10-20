@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.commands;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -64,6 +65,18 @@ public abstract class SubCommand {
     }
 
     public abstract void onExecute(@Nonnull CommandSender sender, @Nonnull String[] args);
+
+    /**
+     * This method provides tab completion for this {@link SubCommand}.
+     * Override this method to provide custom tab completion.
+     * 
+     * @param sender The {@link CommandSender} requesting tab completion
+     * @param args The command arguments
+     * @return A list of tab completion suggestions, or null for default behavior
+     */
+    public List<String> onTab(@Nonnull CommandSender sender, @Nonnull String[] args) {
+        return null; // Default implementation returns null for default behavior
+    }
 
     @Nonnull
     protected String getDescription() {

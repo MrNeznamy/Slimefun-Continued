@@ -10,8 +10,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
-import io.github.bakedlibs.dough.protection.Interaction;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -77,9 +77,7 @@ public class ReactorAccessPort extends SlimefunItem {
                         if (reactor != null) {
                             reactor.open(p);
                         }
-
                         newInstance(menu, b);
-
                         return false;
                     });
                 } else {
@@ -140,7 +138,7 @@ public class ReactorAccessPort extends SlimefunItem {
         preset.drawBackground(CustomItemStack.create(Material.GREEN_STAINED_GLASS_PANE, " "), outputBorder);
 
         preset.addItem(1, CustomItemStack.create(SlimefunItems.URANIUM.item(), "&7Fuel Slot", "", "&rThis Slot accepts radioactive Fuel such as:", "&2Uranium &ror &aNeptunium"), ChestMenuUtils.getEmptyClickHandler());
-        preset.addItem(22, CustomItemStack.create(SlimefunItems.PLUTONIUM.item(), "&7Byproduct Slot", "", "&rThis Slot contains the Reactor's Byproduct", "&rsuch as &aNeptunium &ror &7Plutonium"), ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(22, CustomItemStack.create(SlimefunItems.PLUTONIUM.item(), "&7Byproduct Slot", "", "&rThis Slot contains the Reactor\'s Byproduct", "&rsuch as &aNeptunium &ror &7Plutonium"), ChestMenuUtils.getEmptyClickHandler());
         preset.addItem(7, CustomItemStack.create(SlimefunItems.REACTOR_COOLANT_CELL.item(), "&bCoolant Slot", "", "&rThis Slot accepts Coolant Cells", "&4Without any Coolant Cells, your Reactor", "&4will explode"), ChestMenuUtils.getEmptyClickHandler());
     }
 

@@ -17,8 +17,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -186,7 +186,7 @@ public final class TeleportationManager {
         teleporterUsers.remove(uuid);
 
         if (p != null) {
-            p.sendTitle(ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.cancelled")), ChatColors.color("&c&k40&f&c%"), 20, 60, 20);
+            p.sendTitle(ColorSystem.colorize(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.cancelled")), ColorSystem.colorize("&c&k40&f&c%"), 20, 60, 20);
         }
     }
 
@@ -196,10 +196,10 @@ public final class TeleportationManager {
 
         if (isValid(p, source)) {
             if (progress > 99) {
-                p.sendTitle(ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleported")), ChatColors.color("&b100%"), 20, 60, 20);
+                p.sendTitle(ColorSystem.colorize(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleported")), ColorSystem.colorize("&b100%"), 20, 60, 20);
                 PaperLib.teleportAsync(p, destination).thenAccept(success -> onTeleport(p, destination, success, resistance));
             } else {
-                p.sendTitle(ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleporting")), ChatColors.color("&b" + progress + "%"), 0, 60, 0);
+                p.sendTitle(ColorSystem.colorize(Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.teleporting")), ColorSystem.colorize("&b" + progress + "%"), 0, 60, 0);
 
                 source.getWorld().spawnParticle(Particle.PORTAL, source, progress * 2, 0.2F, 0.8F, 0.2F);
                 SoundEffect.TELEPORT_UPDATE_SOUND.playFor(p);

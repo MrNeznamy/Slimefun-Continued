@@ -4,7 +4,7 @@ import java.util.OptionalInt;
 
 import javax.annotation.Nonnull;
 
-import io.github.bakedlibs.dough.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;
@@ -35,8 +35,10 @@ public class GEOMiningOperation extends MiningOperation {
     @Override
     public void onCancel(@Nonnull BlockPosition position) {
         ResourceManager resourceManager = Slimefun.getGPSNetwork().getResourceManager();
-        OptionalInt supplies = resourceManager.getSupplies(resource, position.getWorld(), position.getChunkX(), position.getChunkZ());
-        supplies.ifPresent(s -> resourceManager.setSupplies(resource, position.getWorld(), position.getChunkX(), position.getChunkZ(), s + 1));
+        int chunkX = position.getX() >> 4;
+        int chunkZ = position.getZ() >> 4;
+        OptionalInt supplies = resourceManager.getSupplies(resource, position.getWorld(), chunkX, chunkZ);
+        supplies.ifPresent(s -> resourceManager.setSupplies(resource, position.getWorld(), chunkX, chunkZ, s + 1));
     }
 
 }

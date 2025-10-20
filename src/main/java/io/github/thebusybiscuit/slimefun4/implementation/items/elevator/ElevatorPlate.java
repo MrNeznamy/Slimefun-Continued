@@ -18,8 +18,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -96,7 +96,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
 
         for (int y = b.getWorld().getMinHeight(); y < b.getWorld().getMaxHeight(); y++) {
             if (y == b.getY()) {
-                String name = ChatColors.color(BlockStorage.getLocationInfo(b.getLocation(), DATA_KEY));
+                String name = ColorSystem.colorize(BlockStorage.getLocationInfo(b.getLocation(), DATA_KEY));
                 floors.addFirst(new ElevatorFloor(name, index, b));
                 index++;
                 continue;
@@ -105,7 +105,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
             Block block = b.getWorld().getBlockAt(b.getX(), y, b.getZ());
 
             if (block.getType() == getItem().getType() && BlockStorage.check(block, getId())) {
-                String name = ChatColors.color(BlockStorage.getLocationInfo(block.getLocation(), DATA_KEY));
+                String name = ColorSystem.colorize(BlockStorage.getLocationInfo(block.getLocation(), DATA_KEY));
                 floors.addFirst(new ElevatorFloor(name, index, block));
                 index++;
             }
@@ -193,7 +193,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
 
             PaperLib.teleportAsync(player, destination).thenAccept(teleported -> {
                 if (teleported.booleanValue()) {
-                    player.sendTitle(ChatColor.WHITE + ChatColors.color(floor.getName()), null, 20, 60, 20);
+                    player.sendTitle(ChatColor.WHITE + ColorSystem.colorize(floor.getName()), null, 20, 60, 20);
                 }
             });
         });
@@ -203,7 +203,7 @@ public class ElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> {
     public void openEditor(Player p, Block b) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "machines.ELEVATOR.editor-title"));
 
-        menu.addItem(4, CustomItemStack.create(Material.NAME_TAG, "&7Floor Name &e(Click to edit)", "", ChatColor.WHITE + ChatColors.color(BlockStorage.getLocationInfo(b.getLocation(), DATA_KEY))));
+        menu.addItem(4, CustomItemStack.create(Material.NAME_TAG, "&7Floor Name &e(Click to edit)", "", ChatColor.WHITE + ColorSystem.colorize(BlockStorage.getLocationInfo(b.getLocation(), DATA_KEY))));
         menu.addMenuClickHandler(4, (pl, slot, item, action) -> {
             pl.closeInventory();
             pl.sendMessage("");

@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -97,7 +98,7 @@ public final class PostSetup {
         sender.sendMessage(ChatColor.GREEN + "Slimefun is an Open-Source project that is kept alive by a large community.");
         sender.sendMessage(ChatColor.GREEN + "Consider helping us maintain this project by contributing on GitHub!");
 
-        if (Slimefun.getUpdater().getBranch().isOfficial()) {
+        if (Slimefun.getBranch().isOfficial()) {
             sender.sendMessage("");
             sender.sendMessage(ChatColor.GREEN + " - Source Code:  https://github.com/Slimefun/Slimefun4");
             sender.sendMessage(ChatColor.GREEN + " - Wiki:         https://github.com/Slimefun/Slimefun4/wiki");
@@ -110,8 +111,18 @@ public final class PostSetup {
 
         sender.sendMessage("");
 
-        Slimefun.getItemCfg().save();
-        Slimefun.getResearchCfg().save();
+        try {
+            Slimefun.getItemCfg().save();
+        } catch (IOException e) {
+            Logger.getLogger(PostSetup.class.getName()).log(Level.WARNING, "Failed to save item config", e);
+        }
+        
+        try {
+            Slimefun.getResearchCfg().save();
+        } catch (IOException e) {
+            Logger.getLogger(PostSetup.class.getName()).log(Level.WARNING, "Failed to save research config", e);
+        }
+        
         Slimefun.getRegistry().setAutoLoadingMode(true);
     }
 

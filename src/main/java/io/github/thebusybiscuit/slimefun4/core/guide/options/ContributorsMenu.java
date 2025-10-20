@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.common.CommonPatterns;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.core.services.github.Contributor;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -113,12 +113,12 @@ final class ContributorsMenu {
                 info += " &7(" + entry.getValue() + ' ' + commits + ')';
             }
 
-            lore.add(ChatColors.color(info));
+            lore.add(ColorSystem.colorize(info));
         }
 
         if (contributor.getProfile() != null) {
             lore.add("");
-            lore.add(ChatColors.color("&7\u21E8 &e") + Slimefun.getLocalization().getMessage(p, "guide.credits.profile-link"));
+            lore.add(ColorSystem.colorize("&7\u21E8 &e") + Slimefun.getLocalization().getMessage(p, "guide.credits.profile-link"));
         }
 
         meta.setLore(lore);

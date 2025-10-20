@@ -16,8 +16,8 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.inventory.InvUtils;
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.inventory.InvUtils;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
@@ -42,7 +42,6 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
-// TODO: Replace this with "AbstractContainer" and "AbstractElectricalMachine" classes.
 public abstract class AContainer extends SlimefunItem implements InventoryBlock, EnergyNetComponent, MachineProcessHolder<CraftingOperation> {
 
     private static final int[] BORDER = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44 };
@@ -383,16 +382,7 @@ public abstract class AContainer extends SlimefunItem implements InventoryBlock,
         }
     }
 
-    /**
-     * This method will remove charge from a location if it is chargeable.
-     *
-     * @param l
-     *            location to try to remove charge from
-     * @return Whether charge was taken if its chargeable
-     */
-    protected boolean takeCharge(@Nonnull Location l) {
-        Validate.notNull(l, "Can't attempt to take charge from a null location!");
-
+    private boolean takeCharge(Location l) {
         if (isChargeable()) {
             int charge = getCharge(l);
 

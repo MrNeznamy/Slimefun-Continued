@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.storage.backend.legacy;
 
-import io.github.bakedlibs.dough.config.Config;
+import eu.mrneznamy.slimefun5.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerBackpack;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
@@ -16,8 +16,11 @@ import com.google.common.annotations.Beta;
 
 import javax.annotation.Nonnull;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -138,8 +141,17 @@ public class LegacyStorage implements Storage {
         }
 
         // Save files
-        playerFile.save();
-        waypointsFile.save();
+        try {
+            playerFile.save();
+        } catch (IOException e) {
+            Logger.getLogger(LegacyStorage.class.getName()).log(Level.WARNING, "Failed to save player file", e);
+        }
+        
+        try {
+            waypointsFile.save();
+        } catch (IOException e) {
+            Logger.getLogger(LegacyStorage.class.getName()).log(Level.WARNING, "Failed to save waypoints file", e);
+        }
 
         long end = System.nanoTime();
         Slimefun.getAnalyticsService().recordPlayerProfileDataTime("legacy", false, end - start);

@@ -1,0 +1,12 @@
+# Slimefun Sounds Configuration
+# This file is used to assign the sounds which Slimefun will play
+
+ANCIENT_ALTAR_ITEM_CHECK_SOUND:
+  sound: BLOCK_STONE_BUTTON_CLICK_ON
+  volume: 0.5
+  pitch: 0.6
+
+GPS_NETWORK_OPEN_PANEL_SOUND:
+  sound: ITEM_BOOK_PAGE_TURN
+  volume: 1.0
+  pitch:

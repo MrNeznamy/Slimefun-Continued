@@ -20,8 +20,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.skins.PlayerHead;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
@@ -116,10 +116,10 @@ public class DebugFishListener implements Listener {
 
             if (!tags.isEmpty()) {
                 p.sendMessage(" ");
-                p.sendMessage(ChatColors.color("&dSlimefun tags for: &e") + b.getType().name());
+                p.sendMessage(ColorSystem.colorize("&dSlimefun tags for: &e") + b.getType().name());
 
                 for (SlimefunTag tag : tags) {
-                    p.sendMessage(ChatColors.color("&d* &e") + tag.name());
+                    p.sendMessage(ColorSystem.colorize("&d* &e") + tag.name());
                 }
 
                 p.sendMessage(" ");
@@ -132,55 +132,55 @@ public class DebugFishListener implements Listener {
         SlimefunItem item = BlockStorage.check(b);
 
         p.sendMessage(" ");
-        p.sendMessage(ChatColors.color("&d" + b.getType() + " &e@ X: " + b.getX() + " Y: " + b.getY() + " Z: " + b.getZ()));
-        p.sendMessage(ChatColors.color("&dId: " + "&e" + item.getId()));
-        p.sendMessage(ChatColors.color("&dPlugin: " + "&e" + item.getAddon().getName()));
+        p.sendMessage(ColorSystem.colorize("&d" + b.getType() + " &e@ X: " + b.getX() + " Y: " + b.getY() + " Z: " + b.getZ()));
+        p.sendMessage(ColorSystem.colorize("&dId: " + "&e" + item.getId()));
+        p.sendMessage(ColorSystem.colorize("&dPlugin: " + "&e" + item.getAddon().getName()));
 
         if (b.getState() instanceof Skull) {
-            p.sendMessage(ChatColors.color("&dSkull: " + greenCheckmark));
+            p.sendMessage(ColorSystem.colorize("&dSkull: " + greenCheckmark));
 
             // Check if the skull is a wall skull, and if so use Directional instead of Rotatable.
             if (b.getType() == Material.PLAYER_WALL_HEAD) {
-                p.sendMessage(ChatColors.color("  &dFacing: &e" + ((Directional) b.getBlockData()).getFacing().toString()));
+                p.sendMessage(ColorSystem.colorize("  &dFacing: &e" + ((Directional) b.getBlockData()).getFacing().toString()));
             } else {
-                p.sendMessage(ChatColors.color("  &dRotation: &e" + ((Rotatable) b.getBlockData()).getRotation().toString()));
+                p.sendMessage(ColorSystem.colorize("  &dRotation: &e" + ((Rotatable) b.getBlockData()).getRotation().toString()));
             }
         }
 
         if (BlockStorage.getStorage(b.getWorld()).hasInventory(b.getLocation())) {
-            p.sendMessage(ChatColors.color("&dInventory: " + greenCheckmark));
+            p.sendMessage(ColorSystem.colorize("&dInventory: " + greenCheckmark));
         } else {
-            p.sendMessage(ChatColors.color("&dInventory: " + redCross));
+            p.sendMessage(ColorSystem.colorize("&dInventory: " + redCross));
         }
 
         if (item.isTicking()) {
-            p.sendMessage(ChatColors.color("&dTicking: " + greenCheckmark));
-            p.sendMessage(ChatColors.color("  &dAsync: &e" + (item.getBlockTicker().isSynchronized() ? redCross : greenCheckmark)));
+            p.sendMessage(ColorSystem.colorize("&dTicking: " + greenCheckmark));
+            p.sendMessage(ColorSystem.colorize("  &dAsync: &e" + (item.getBlockTicker().isSynchronized() ? redCross : greenCheckmark)));
         } else if (item instanceof EnergyNetProvider) {
-            p.sendMessage(ChatColors.color("&dTicking: &3Indirect (Generator)"));
+            p.sendMessage(ColorSystem.colorize("&dTicking: &3Indirect (Generator)"));
         } else {
-            p.sendMessage(ChatColors.color("&dTicking: " + redCross));
+            p.sendMessage(ColorSystem.colorize("&dTicking: " + redCross));
         }
 
         if (Slimefun.getProfiler().hasTimings(b)) {
-            p.sendMessage(ChatColors.color("  &dTimings: &e" + Slimefun.getProfiler().getTime(b)));
-            p.sendMessage(ChatColors.color("  &dTotal Timings: &e" + Slimefun.getProfiler().getTime(item)));
-            p.sendMessage(ChatColors.color("  &dChunk Timings: &e" + Slimefun.getProfiler().getTime(b.getChunk())));
+            p.sendMessage(ColorSystem.colorize("  &dTimings: &e" + Slimefun.getProfiler().getTime(b)));
+            p.sendMessage(ColorSystem.colorize("  &dTotal Timings: &e" + Slimefun.getProfiler().getTime(item)));
+            p.sendMessage(ColorSystem.colorize("  &dChunk Timings: &e" + Slimefun.getProfiler().getTime(b.getChunk())));
         }
 
         if (item instanceof EnergyNetComponent component) {
-            p.sendMessage(ChatColors.color("&dEnergyNet Component"));
-            p.sendMessage(ChatColors.color("  &dType: &e" + component.getEnergyComponentType()));
+            p.sendMessage(ColorSystem.colorize("&dEnergyNet Component"));
+            p.sendMessage(ColorSystem.colorize("  &dType: &e" + component.getEnergyComponentType()));
 
             if (component.isChargeable()) {
-                p.sendMessage(ChatColors.color("  &dChargeable: " + greenCheckmark));
-                p.sendMessage(ChatColors.color("  &dEnergy: &e" + component.getCharge(b.getLocation()) + " / " + component.getCapacity()));
+                p.sendMessage(ColorSystem.colorize("  &dChargeable: " + greenCheckmark));
+                p.sendMessage(ColorSystem.colorize("  &dEnergy: &e" + component.getCharge(b.getLocation()) + " / " + component.getCapacity()));
             } else {
-                p.sendMessage(ChatColors.color("&dChargeable: " + redCross));
+                p.sendMessage(ColorSystem.colorize("&dChargeable: " + redCross));
             }
         }
 
-        p.sendMessage(ChatColors.color("&6" + BlockStorage.getBlockInfoAsJson(b)));
+        p.sendMessage(ColorSystem.colorize("&6" + BlockStorage.getBlockInfoAsJson(b)));
         p.sendMessage(" ");
     }
 }

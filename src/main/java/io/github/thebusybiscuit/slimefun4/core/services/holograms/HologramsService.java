@@ -1,9 +1,5 @@
 package io.github.thebusybiscuit.slimefun4.core.services.holograms;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 
@@ -14,234 +10,79 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Server;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
 
-import io.github.bakedlibs.dough.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
+import eu.mrneznamy.slimefun5.entities.holograms.EntityHologram;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;
 
 /**
- * This service is responsible for handling holograms.
+ * This service is responsible for handling holograms using the new entity-based system.
+ * This is a wrapper around {@link HologramManager} to maintain compatibility with existing Slimefun code.
  * 
  * @author TheBusyBiscuit
+ * @author NEZNAMY (Entity-based implementation)
  *
  * @see HologramOwner
+ * @see HologramManager
  */
 public class HologramsService {
 
     /**
-     * The radius in which we scan for holograms
-     */
-    private static final double RADIUS = 0.45;
-
-    /**
-     * The frequency at which to purge.
-     * Every 45 seconds.
-     */
-    private static final long PURGE_RATE = 45L * 20L;
-
-    /**
      * Our {@link Plugin} instance
      */
-    private final Plugin plugin;
+    private final org.bukkit.plugin.Plugin plugin;
 
     /**
-     * The default hologram offset
-     */
-    private final Vector defaultOffset = new Vector(0.5, 0.75, 0.5);
-
-    /**
-     * The {@link NamespacedKey} used to store data on a hologram
-     */
-    private final NamespacedKey persistentDataKey;
-
-    /**
-     * Our cache to save {@link Entity} lookups
-     */
-    private final Map<BlockPosition, Hologram> cache = new HashMap<>();
-
-    /**
-     * This constructs a new {@link HologramsService}.
+     * This creates a new {@link HologramsService} for the given {@link Plugin}.
      * 
      * @param plugin
      *            Our {@link Plugin} instance
      */
-    public HologramsService(@Nonnull Plugin plugin) {
+    public HologramsService(@Nonnull org.bukkit.plugin.Plugin plugin) {
         this.plugin = plugin;
-
-        // Null-Validation is performed in the NamespacedKey constructor
-        persistentDataKey = new NamespacedKey(plugin, "hologram_id");
     }
 
     /**
-     * This will start the {@link HologramsService} and schedule a repeating
-     * purge-task.
+     * This will start the {@link HologramsService} and schedule the purge task.
      */
     public void start() {
-        plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this::purge, PURGE_RATE, PURGE_RATE);
+        // The new HologramManager is initialized statically, no need to start anything
     }
 
     /**
-     * This returns the default {@link Hologram} offset.
-     * 
-     * @return The default offset
-     */
-    @Nonnull
-    public Vector getDefaultOffset() {
-        return defaultOffset;
-    }
-
-    /**
-     * This purges any expired {@link Hologram}.
-     */
-    private void purge() {
-        Iterator<Hologram> iterator = cache.values().iterator();
-
-        while (iterator.hasNext()) {
-            Hologram hologram = iterator.next();
-
-            if (hologram.hasExpired()) {
-                iterator.remove();
-            }
-        }
-    }
-
-    /**
-     * This returns the {@link Hologram} associated with the given {@link Location}.
-     * If createIfNoneExists is set to true a new {@link ArmorStand} will be spawned
-     * if no existing one could be found.
+     * This will get a {@link Hologram} for the given {@link Location}.
+     * If no {@link Hologram} exists, a new one will be created.
      * 
      * @param loc
      *            The {@link Location}
-     * @param createIfNoneExists
-     *            Whether to create a new {@link ArmorStand} if none was found
      * 
-     * @return The existing (or newly created) hologram
+     * @return The {@link Hologram} (legacy wrapper)
+     * 
+     * @deprecated Use {@link HologramManager} directly for better performance
      */
     @Nullable
-    private Hologram getHologram(@Nonnull Location loc, boolean createIfNoneExists) {
+    @Deprecated
+    public Hologram getHologram(@Nonnull Location loc) {
         Validate.notNull(loc, "Location cannot be null");
 
-        BlockPosition position = new BlockPosition(loc);
-        Hologram hologram = cache.get(position);
-
-        // Check if the ArmorStand was cached and still exists
-        if (hologram != null && !hologram.hasDespawned()) {
-            return hologram;
+        // Create or get hologram using new system
+        EntityHologram entityHologram = HologramManager.getHologram(plugin, loc);
+        if (entityHologram == null) {
+            entityHologram = HologramManager.createHologram(plugin, loc, "");
         }
-
-        // Scan all nearby entities which could be possible holograms
-        Collection<Entity> holograms = loc.getWorld().getNearbyEntities(loc, RADIUS, RADIUS, RADIUS, this::isHologram);
-
-        for (Entity n : holograms) {
-            if (n instanceof ArmorStand) {
-                PersistentDataContainer container = n.getPersistentDataContainer();
-
-                /*
-                 * Any hologram we created will have a persistent data key for identification.
-                 * Make sure that the value matches our BlockPosition.
-                 */
-                if (hasHologramData(container, position)) {
-                    if (hologram != null) {
-                        // Fixes #2927 - Remove any duplicates we find
-                        n.remove();
-                    } else {
-                        hologram = getAsHologram(position, n, container);
-                    }
-                }
-            }
-        }
-
-        if (hologram == null && createIfNoneExists) {
-            // Spawn a new ArmorStand
-            ArmorStand armorstand = (ArmorStand) loc.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
-            PersistentDataContainer container = armorstand.getPersistentDataContainer();
-
-            return getAsHologram(position, armorstand, container);
-        } else {
-            return hologram;
-        }
-    }
-
-    @ParametersAreNonnullByDefault
-    private boolean hasHologramData(PersistentDataContainer container, BlockPosition position) {
-        if (container.has(persistentDataKey, PersistentDataType.LONG)) {
-            long value = container.get(persistentDataKey, PersistentDataType.LONG);
-            return value == position.getPosition();
-        } else {
-            return false;
-        }
+        
+        // Return legacy wrapper for compatibility
+        return entityHologram != null ? new LegacyHologramWrapper(entityHologram) : null;
     }
 
     /**
-     * This checks if a given {@link Entity} is an {@link ArmorStand}
-     * and whether it has the correct attributes to be considered a {@link Hologram}.
-     * 
-     * @param n
-     *            The {@link Entity} to check
-     * 
-     * @return Whether this could be a hologram
-     */
-    private boolean isHologram(@Nonnull Entity n) {
-        if (n instanceof ArmorStand armorStand) {
-            // The absolute minimum requirements to count as a hologram
-            return !armorStand.isVisible() && armorStand.isSilent() && !armorStand.hasGravity();
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * This will cast the {@link Entity} to an {@link ArmorStand} and it will apply
-     * all necessary attributes to the {@link ArmorStand}, then return a {@link Hologram}.
-     * 
-     * @param position
-     *            The {@link BlockPosition} of this hologram
-     * @param entity
-     *            The {@link Entity}
-     * @param container
-     *            The {@link PersistentDataContainer} of the given {@link Entity}
-     * 
-     * @return The {@link Hologram}
-     */
-    @Nullable
-    private Hologram getAsHologram(@Nonnull BlockPosition position, @Nonnull Entity entity, @Nonnull PersistentDataContainer container) {
-        if (entity instanceof ArmorStand armorStand) {
-            armorStand.setVisible(false);
-            armorStand.setInvulnerable(true);
-            armorStand.setSilent(true);
-            armorStand.setMarker(true);
-            armorStand.setAI(false);
-            armorStand.setGravity(false);
-            armorStand.setRemoveWhenFarAway(false);
-
-            // Set a persistent tag to re-identify the correct hologram later
-            container.set(persistentDataKey, PersistentDataType.LONG, position.getPosition());
-
-            // Store in cache for faster access
-            Hologram hologram = new Hologram(armorStand.getUniqueId());
-            cache.put(position, hologram);
-
-            return hologram;
-        } else {
-            // This should never be reached
-            return null;
-        }
-    }
-
-    /**
-     * This updates the {@link Hologram}.
+     * This will update the {@link Hologram}.
      * You can use it to set the nametag or other properties.
      * <p>
-     * <strong>This method must be executed on the main {@link Server} {@link Thread}.</strong>
+     * <strong>This method must be executed on the main {@link org.bukkit.Server} {@link Thread}.</strong>
      * 
      * @param loc
      *            The {@link Location}
@@ -254,7 +95,7 @@ public class HologramsService {
 
         Runnable runnable = () -> {
             try {
-                Hologram hologram = getHologram(loc, true);
+                Hologram hologram = getHologram(loc);
 
                 if (hologram != null) {
                     consumer.accept(hologram);
@@ -275,7 +116,7 @@ public class HologramsService {
     /**
      * This removes the {@link Hologram} at that given {@link Location}.
      * <p>
-     * <strong>This method must be executed on the main {@link Server} {@link Thread}.</strong>
+     * <strong>This method must be executed on the main {@link org.bukkit.Server} {@link Thread}.</strong>
      * 
      * @param loc
      *            The {@link Location}
@@ -288,15 +129,7 @@ public class HologramsService {
 
         if (Bukkit.isPrimaryThread()) {
             try {
-                Hologram hologram = getHologram(loc, false);
-
-                if (hologram != null) {
-                    cache.remove(new BlockPosition(loc));
-                    hologram.remove();
-                    return true;
-                } else {
-                    return false;
-                }
+                return HologramManager.removeHologram(plugin, loc);
             } catch (Exception | LinkageError x) {
                 Slimefun.logger().log(Level.SEVERE, "Hologram located at {0}", new BlockPosition(loc));
                 Slimefun.logger().log(Level.SEVERE, "Something went wrong while trying to remove this hologram", x);
@@ -319,6 +152,51 @@ public class HologramsService {
         Validate.notNull(loc, "Location must not be null");
 
         updateHologram(loc, hologram -> hologram.setLabel(label));
+    }
+
+    /**
+     * Gets the underlying {@link HologramManager} class for direct access to the new entity-based system.
+     * 
+     * @return The {@link HologramManager} class
+     * @deprecated Use static methods in {@link HologramManager} directly
+     */
+    @Nonnull
+    @Deprecated
+    public Class<HologramManager> getHologramManager() {
+        return HologramManager.class;
+    }
+
+    /**
+     * Legacy wrapper class to maintain compatibility with existing Slimefun code.
+     * This wraps the new {@link EntityHologram} to provide the old {@link Hologram} interface.
+     */
+    private static class LegacyHologramWrapper extends Hologram {
+        private final EntityHologram entityHologram;
+
+        public LegacyHologramWrapper(@Nonnull EntityHologram entityHologram) {
+            super(entityHologram.getUniqueId());
+            this.entityHologram = entityHologram;
+        }
+
+        @Override
+        void setLabel(@Nullable String label) {
+            entityHologram.setLabel(label);
+        }
+
+        @Override
+        void remove() {
+            entityHologram.remove();
+        }
+
+        @Override
+        boolean hasDespawned() {
+            return entityHologram.hasDespawned();
+        }
+
+        @Override
+        boolean hasExpired() {
+            return entityHologram.hasExpired();
+        }
     }
 
 }

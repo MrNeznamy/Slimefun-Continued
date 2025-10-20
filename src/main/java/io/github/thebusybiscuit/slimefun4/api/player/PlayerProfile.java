@@ -27,9 +27,9 @@ import org.bukkit.inventory.ItemStack;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.common.CommonPatterns;
-import io.github.bakedlibs.dough.config.Config;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.events.AsyncProfileLoadEvent;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
 import io.github.thebusybiscuit.slimefun4.api.items.HashedArmorpiece;
@@ -322,11 +322,11 @@ public class PlayerProfile {
         float progress = Math.round(((unlockedResearches * 100.0F) / allResearches) * 100.0F) / 100.0F;
 
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&7Statistics for Player: &b" + name));
+        sender.sendMessage(ColorSystem.colorize("&7Statistics for Player: &b" + name));
         sender.sendMessage("");
-        sender.sendMessage(ChatColors.color("&7Title: " + ChatColor.AQUA + getTitle()));
-        sender.sendMessage(ChatColors.color("&7Research Progress: " + NumberUtils.getColorFromPercentage(progress) + progress + " &r% " + ChatColor.YELLOW + '(' + unlockedResearches + " / " + allResearches + ')'));
-        sender.sendMessage(ChatColors.color("&7Total XP Levels spent: " + ChatColor.AQUA + levels));
+        sender.sendMessage(ColorSystem.colorize("&7Title: " + ChatColor.AQUA + getTitle()));
+        sender.sendMessage(ColorSystem.colorize("&7Research Progress: " + NumberUtils.getColorFromPercentage(progress) + progress + " &r% " + ChatColor.YELLOW + '(' + unlockedResearches + " / " + allResearches + ')'));
+        sender.sendMessage(ColorSystem.colorize("&7Total XP Levels spent: " + ChatColor.AQUA + levels));
     }
 
     /**
@@ -484,12 +484,12 @@ public class PlayerProfile {
         String uuid = "";
 
         for (String line : item.getItemMeta().getLore()) {
-            if (line.startsWith(ChatColors.color("&7ID: ")) && line.indexOf('#') != -1) {
+            if (line.startsWith(ColorSystem.colorize("&7ID: ")) && line.indexOf('#') != -1) {
                 String[] splitLine = CommonPatterns.HASH.split(line);
 
                 if (CommonPatterns.NUMERIC.matcher(splitLine[1]).matches()) {
                     id = OptionalInt.of(Integer.parseInt(splitLine[1]));
-                    uuid = splitLine[0].replace(ChatColors.color("&7ID: "), "");
+                    uuid = splitLine[0].replace(ColorSystem.colorize("&7ID: "), "");
                 }
             }
         }

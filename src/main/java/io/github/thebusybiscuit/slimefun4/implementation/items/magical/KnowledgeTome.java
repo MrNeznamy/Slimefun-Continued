@@ -6,15 +6,15 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.ChatColor;
+
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Result;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.bakedlibs.dough.common.ChatColors;
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.utils.ColorSystem;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
@@ -51,13 +51,13 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
             List<String> lore = im.getLore();
 
             if (lore.get(1).isEmpty()) {
-                lore.set(0, ChatColors.color("&7Owner: &b" + p.getName()));
-                lore.set(1, ChatColor.BLACK + "" + p.getUniqueId());
+                lore.set(0, ColorSystem.colorize("&7Owner: &b" + p.getName()));
+                lore.set(1, ColorSystem.colorize("&0" + p.getUniqueId()));
                 im.setLore(lore);
                 item.setItemMeta(im);
                 SoundEffect.TOME_OF_KNOWLEDGE_USE_SOUND.playFor(p);
             } else {
-                UUID uuid = UUID.fromString(ChatColor.stripColor(item.getItemMeta().getLore().get(1)));
+                UUID uuid = UUID.fromString(ColorSystem.stripColor(item.getItemMeta().getLore().get(1)));
 
                 if (p.getUniqueId().equals(uuid)) {
                     Slimefun.getLocalization().sendMessage(p, "messages.no-tome-yourself");
@@ -71,7 +71,7 @@ public class KnowledgeTome extends SimpleSlimefunItem<ItemUseHandler> {
                 }));
 
                 if (p.getGameMode() != GameMode.CREATIVE) {
-                    ItemUtils.consumeItem(item, false);
+                    ItemUtils.consumeItem(item, 1);
                 }
             }
         };

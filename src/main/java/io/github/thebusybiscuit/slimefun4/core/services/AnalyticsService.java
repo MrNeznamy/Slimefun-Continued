@@ -42,21 +42,8 @@ public class AnalyticsService {
     }
 
     public void start() {
-        this.enabled = Slimefun.getCfg().getBoolean("metrics.analytics");
-
-        if (enabled) {
-            plugin.getLogger().info("Enabled Analytics Service");
-
-            // Send the timings data every minute
-            Slimefun.getThreadService().newScheduledThread(
-                plugin,
-                "AnalyticsService - Timings",
-                sendTimingsAnalytics(),
-                1,
-                1,
-                TimeUnit.MINUTES
-            );
-        }
+        // Analytics service disabled
+        this.enabled = false;
     }
 
     // We'll send some timing data every minute.
@@ -107,7 +94,7 @@ public class AnalyticsService {
         // If not enabled or not official build (e.g. local build) or a unit test, just ignore.
         if (
             !enabled
-            || !Slimefun.getUpdater().getBranch().isOfficial()
+            || !Slimefun.getBranch().isOfficial()
             || Slimefun.instance().isUnitTest()
         ) return;
 

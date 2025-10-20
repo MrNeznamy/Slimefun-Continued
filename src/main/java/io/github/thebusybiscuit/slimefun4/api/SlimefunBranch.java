@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 
 import org.apache.commons.lang.Validate;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
 
 /**
  * This enum represents the branch this Slimefun build is on.

@@ -22,8 +22,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.Permission;
 
-import io.github.bakedlibs.dough.collections.OptionalMap;
-import io.github.bakedlibs.dough.items.ItemUtils;
+import eu.mrneznamy.slimefun5.collections.OptionalMap;
+import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
@@ -108,7 +108,7 @@ public class SlimefunItem implements Placeable {
 
     private Optional<String> wikiURL = Optional.empty();
 
-    private final OptionalMap<Class<? extends ItemHandler>, ItemHandler> itemHandlers = new OptionalMap<>(HashMap::new);
+    private final OptionalMap<Class<? extends ItemHandler>, ItemHandler> itemHandlers = new OptionalMap<>();
     private final Set<ItemSetting<?>> itemSettings = new HashSet<>();
 
     private boolean ticking = false;
@@ -607,7 +607,7 @@ public class SlimefunItem implements Placeable {
      *            The {@link Class} from which to start this operation.
      */
     private void checkForDeprecations(@Nullable Class<?> c) {
-        if (Slimefun.getUpdater().getBranch() == SlimefunBranch.DEVELOPMENT) {
+        if (Slimefun.getBranch() == SlimefunBranch.DEVELOPMENT) {
             /*
              * This method is currently way too spammy with all the restructuring going on...
              * Since DEV builds are anyway under "development", things may be relocated.

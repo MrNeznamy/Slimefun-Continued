@@ -16,8 +16,8 @@ import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
 
-import io.github.bakedlibs.dough.skins.PlayerSkin;
-import io.github.bakedlibs.dough.skins.UUIDLookup;
+import eu.mrneznamy.slimefun5.skins.PlayerSkin;
+import eu.mrneznamy.slimefun5.skins.UUIDLookup;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**
@@ -133,7 +133,7 @@ class GitHubTask implements Runnable {
         Optional<UUID> uuid = contributor.getUniqueId();
 
         if (!uuid.isPresent()) {
-            CompletableFuture<UUID> future = UUIDLookup.getUuidFromUsername(Slimefun.instance(), contributor.getMinecraftName());
+            CompletableFuture<UUID> future = UUIDLookup.getUuidFromUsernameAsync(Slimefun.instance(), contributor.getMinecraftName());
 
             // Fixes #3241 - Do not wait for more than 30 seconds
             uuid = Optional.ofNullable(future.get(30, TimeUnit.SECONDS));
@@ -141,10 +141,10 @@ class GitHubTask implements Runnable {
         }
 
         if (uuid.isPresent()) {
-            CompletableFuture<PlayerSkin> future = PlayerSkin.fromPlayerUUID(Slimefun.instance(), uuid.get());
-            Optional<String> skin = Optional.of(future.get().getProfile().getBase64Texture());
-            skins.put(contributor.getMinecraftName(), skin.orElse(""));
-            return skin.orElse(null);
+            PlayerSkin skin = PlayerSkin.fromPlayerUUID(uuid.get());
+            String texture = skin.getTexture();
+            skins.put(contributor.getMinecraftName(), texture != null ? texture : "");
+            return texture;
         } else {
             return null;
         }

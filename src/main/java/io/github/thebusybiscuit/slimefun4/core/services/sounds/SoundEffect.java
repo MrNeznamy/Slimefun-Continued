@@ -10,7 +10,6 @@ import javax.annotation.Nullable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -29,111 +28,110 @@ import com.google.common.base.Preconditions;
  */
 public enum SoundEffect {
 
-    ANCIENT_ALTAR_ITEM_CHECK_SOUND(Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 2F),
-    ANCIENT_ALTAR_ITEM_DROP_SOUND(Sound.ENTITY_ZOMBIE_ATTACK_IRON_DOOR, 1F, 1F),
-    ANCIENT_ALTAR_ITEM_PICK_UP_SOUND(Sound.ENTITY_ITEM_PICKUP, 1F, 1F),
-    ANCIENT_ALTAR_FINISH_SOUND(Sound.ENTITY_ZOMBIE_VILLAGER_CURE, 1F, 1F),
-    ANCIENT_ALTAR_START_SOUND(Sound.ENTITY_ILLUSIONER_PREPARE_MIRROR, 1F, 1F),
-    ANCIENT_PEDESTAL_ITEM_PLACE_SOUND(Sound.ENTITY_ITEM_PICKUP, 0.5F, 0.5F),
-    ARMOR_FORGE_FINISH_SOUND(Sound.BLOCK_ANVIL_USE, 1F, 1F),
-    ARMOR_FORGE_WORKING_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    AUTO_CRAFTER_GUI_CLICK_SOUND(Sound.UI_BUTTON_CLICK, 1F, 1F),
-    AUTO_CRAFTER_UPDATE_RECIPE(Sound.UI_BUTTON_CLICK, 1F, 1F),
-    AUTOMATED_PANNING_MACHINE_FAIL_SOUND(Sound.ENTITY_ARMOR_STAND_BREAK, 1F, 1F),
-    AUTOMATED_PANNING_MACHINE_SUCCESS_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    BEE_BOOTS_FALL_SOUND(Sound.BLOCK_HONEY_BLOCK_FALL, 1F, 1F),
-    BACKPACK_CLOSE_SOUND(Sound.ENTITY_HORSE_ARMOR, 1F, 1F),
-    BACKPACK_OPEN_SOUND(Sound.ENTITY_HORSE_ARMOR, 1F, 1F),
-    COMPOSTER_COMPOST_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    COMPRESSOR_CRAFT_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    COMPRESSOR_CRAFT_CONTRACT_SOUND(Sound.BLOCK_PISTON_CONTRACT, 1F, 1F),
-    COMPRESSOR_CRAFT_EXTEND_SOUND(Sound.BLOCK_PISTON_EXTEND, 1F, 1F),
-    COOLER_CONSUME_SOUND(Sound.ENTITY_GENERIC_DRINK, 1F, 1F),
-    CRUCIBLE_ADD_WATER_SOUND(Sound.ENTITY_PLAYER_SPLASH, 1F, 1F),
-    CRUCIBLE_ADD_LAVA_SOUND(Sound.BLOCK_LAVA_POP, 1F , 1F),
-    CRUCIBLE_BLOCK_BREAK_SOUND(Sound.BLOCK_METAL_BREAK, 1F, 1F),
-    CRUCIBLE_GENERATE_LIQUID_SOUND(Sound.BLOCK_LAVA_EXTINGUISH, 1F, 1F),
-    CRUCIBLE_INTERACT_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    CRUCIBLE_PLACE_LAVA_SOUND(Sound.BLOCK_LAVA_POP, 1F , 1F),
-    CRUCIBLE_PLACE_WATER_SOUND(Sound.ENTITY_PLAYER_SPLASH, 1F, 1F),
-    DEBUG_FISH_CLICK_SOUND(Sound.BLOCK_BAMBOO_PLACE, 1F, 1F),
-    DIET_COOKIE_CONSUME_SOUND(Sound.ENTITY_GENERIC_EAT, 1F, 1F),
-    ENCHANTMENT_RUNE_ADD_ENCHANT_SOUND(Sound.ENTITY_ZOMBIE_VILLAGER_CURE, 1F, 1F),
-    ENDER_BACKPACK_OPEN_SOUND(Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 1F),
-    ENHANCED_CRAFTING_TABLE_CRAFT_SOUND(Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1F, 1F),
-    ELYTRA_CAP_IMPACT_SOUND(Sound.BLOCK_STONE_HIT, 1F, 1F),
-    EXPLOSIVE_BOW_HIT_SOUND(Sound.ENTITY_GENERIC_EXPLODE, 1F, 1F),
-    EXPLOSIVE_TOOL_EXPLODE_SOUND(Sound.ENTITY_GENERIC_EXPLODE, 0.2F, 1F),
-    FISHERMAN_ANDROID_FISHING_SOUND(Sound.ENTITY_PLAYER_SPLASH, 0.3F, 0.7F),
-    FLASK_OF_KNOWLEDGE_FILLUP_SOUND(Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 0.5F),
-    GUIDE_BUTTON_CLICK_SOUND(Sound.ITEM_BOOK_PAGE_TURN, 1F, 1F),
-    GUIDE_CONTRIBUTORS_OPEN_SOUND(Sound.BLOCK_NOTE_BLOCK_HARP, 0.7F, 0.7F),
-    GUIDE_LANGUAGE_OPEN_SOUND(Sound.BLOCK_NOTE_BLOCK_HARP, 0.7F, 0.7F),
-    GUIDE_OPEN_SETTING_SOUND(Sound.BLOCK_NOTE_BLOCK_HARP, 0.7F, 0.7F),
-    GRIND_STONE_INTERACT_SOUND(Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1F, 1F),
-    IGNITION_CHAMBER_USE_FLINT_AND_STEEL_SOUND(Sound.ENTITY_ITEM_BREAK, 1F, 1F),
-    INFUSED_HOPPER_TELEPORT_SOUND(Sound.ENTITY_ENDERMAN_TELEPORT, 0.5F, 2F),
-    INFUSED_MAGNET_TELEPORT_SOUND(Sound.ENTITY_ENDERMAN_TELEPORT, 0.25F, 0.9F),
-    IRON_GOLEM_ASSEMBLER_ASSEMBLE_SOUND(Sound.ENTITY_IRON_GOLEM_REPAIR, 0.5F, 1F),
-    JETBOOTS_THRUST_SOUND(Sound.ENTITY_TNT_PRIMED, 0.25F, 1F),
-    JETPACK_THRUST_SOUND(Sound.ENTITY_GENERIC_EXPLODE, 0.25F, 1F),
-    JUICER_USE_SOUND(Sound.ENTITY_PLAYER_SPLASH, 1F, 1F),
-    LIMITED_USE_ITEM_BREAK_SOUND(Sound.ENTITY_ITEM_BREAK, 1F, 1F),
-    MAGICAL_EYE_OF_ENDER_USE_SOUND(Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 1F),
-    MAGIC_SUGAR_CONSUME_SOUND(Sound.ENTITY_GENERIC_EAT, 1F, 1F),
-    MAGIC_WORKBENCH_FINISH_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    MAGIC_WORKBENCH_START_ANIMATION_SOUND(Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1F, 1F),
-    MINER_ANDROID_BLOCK_GENERATION_SOUND(Sound.BLOCK_FIRE_EXTINGUISH, 0.075F, 0.8F),
-    MINING_TASK_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 0.2F, 1F),
-    ORE_WASHER_WASH_SOUND(Sound.ENTITY_PLAYER_SPLASH, 1F, 1F),
-    PLAYER_RESEARCHING_SOUND(Sound.ENTITY_BAT_TAKEOFF, 0.7F, 1F),
-    PORTABLE_DUSTBIN_OPEN_SOUND(Sound.BLOCK_ANVIL_LAND, 1F, 1F),
-    PORTABLE_CRAFTER_OPEN_SOUND(Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1F, 1F),
-    PRESSURE_CHAMBER_FINISH_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F),
-    PRESSURE_CHAMBER_WORKING_SOUND(Sound.ENTITY_TNT_PRIMED, 1F, 1F),
-    PROGRAMMABLE_ANDROID_SCRIPT_DOWNLOAD_SOUND(Sound.BLOCK_NOTE_BLOCK_HAT, 0.7F, 0.7F),
-    SLIME_BOOTS_FALL_SOUND(Sound.BLOCK_SLIME_BLOCK_FALL, 1F, 1F),
-    TELEPORTATION_MANAGER_OPEN_GUI(Sound.UI_BUTTON_CLICK, 1F, 1F),
-    GPS_NETWORK_ADD_WAYPOINT(Sound.BLOCK_NOTE_BLOCK_PLING, 1F, 1F),
-    GPS_NETWORK_CREATE_WAYPOINT(Sound.BLOCK_NOTE_BLOCK_PLING, 0.5F, 1F),
-    GPS_NETWORK_OPEN_PANEL_SOUND(Sound.UI_BUTTON_CLICK, 1F, 1F),
-    SMELTERY_CRAFT_SOUND(Sound.BLOCK_LAVA_POP, 1F, 1F),
-    SOULBOUND_RUNE_RITUAL_SOUND(Sound.ENTITY_GENERIC_EXPLODE, 0.3F, 1F),
-    SPLINT_CONSUME_SOUND(Sound.ENTITY_SKELETON_HURT, 1F, 1F),
-    STOMPER_BOOTS_STOMP_SOUND(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 1F, 2F),
-    TAPE_MEASURE_MEASURE_SOUND(Sound.ITEM_BOOK_PUT, 1, 0.7F),
-    TOME_OF_KNOWLEDGE_USE_SOUND(Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F),
-    TELEPORT_UPDATE_SOUND(Sound.BLOCK_BEACON_AMBIENT, 1F, 0.6F),
-    TELEPORT_SOUND(Sound.BLOCK_BEACON_ACTIVATE, 1F, 1F),
-    VAMPIRE_BLADE_HEALING_SOUND(Sound.ENTITY_ARROW_HIT_PLAYER, 0.7F, 0.7F),
-    VANILLA_AUTO_CRAFTER_UPDATE_RECIPE_SOUND(Sound.UI_BUTTON_CLICK, 1F, 1F),
-    VILLAGER_RUNE_TRANSFORM_SOUND(Sound.ENTITY_VILLAGER_CELEBRATE, 1F, 1.4F),
-    VITAMINS_CONSUME_SOUND(Sound.ENTITY_GENERIC_EAT, 1F, 1F),
-    WIND_STAFF_USE_SOUND(Sound.ENTITY_TNT_PRIMED, 1F, 1F);
+    ANCIENT_ALTAR_ITEM_CHECK_SOUND("entity.enderman.teleport", 1F, 2F),
+    ANCIENT_ALTAR_ITEM_DROP_SOUND("entity.zombie.attack_iron_door", 1F, 1F),
+    ANCIENT_ALTAR_ITEM_PICK_UP_SOUND("entity.item.pickup", 1F, 1F),
+    ANCIENT_ALTAR_FINISH_SOUND("entity.zombie_villager.cure", 1F, 1F),
+    ANCIENT_ALTAR_START_SOUND("entity.illusioner.prepare_mirror", 1F, 1F),
+    ANCIENT_PEDESTAL_ITEM_PLACE_SOUND("entity.item.pickup", 0.5F, 0.5F),
+    ARMOR_FORGE_FINISH_SOUND("block.anvil.use", 1F, 1F),
+    ARMOR_FORGE_WORKING_SOUND("entity.arrow.hit_player", 1F, 1F),
+    AUTO_CRAFTER_GUI_CLICK_SOUND("ui.button.click", 1F, 1F),
+    AUTO_CRAFTER_UPDATE_RECIPE("ui.button.click", 1F, 1F),
+    AUTOMATED_PANNING_MACHINE_FAIL_SOUND("entity.armor_stand.break", 1F, 1F),
+    AUTOMATED_PANNING_MACHINE_SUCCESS_SOUND("entity.arrow.hit_player", 1F, 1F),
+    BEE_BOOTS_FALL_SOUND("block.honey_block.fall", 1F, 1F),
+    BACKPACK_CLOSE_SOUND("entity.horse.armor", 1F, 1F),
+    BACKPACK_OPEN_SOUND("entity.horse.armor", 1F, 1F),
+    COMPOSTER_COMPOST_SOUND("entity.arrow.hit_player", 1F, 1F),
+    COMPRESSOR_CRAFT_SOUND("entity.arrow.hit_player", 1F, 1F),
+    COMPRESSOR_CRAFT_CONTRACT_SOUND("block.piston.contract", 1F, 1F),
+    COMPRESSOR_CRAFT_EXTEND_SOUND("block.piston.extend", 1F, 1F),
+    COOLER_CONSUME_SOUND("entity.generic.drink", 1F, 1F),
+    CRUCIBLE_ADD_WATER_SOUND("entity.player.splash", 1F, 1F),
+    CRUCIBLE_ADD_LAVA_SOUND("block.lava.pop", 1F , 1F),
+    CRUCIBLE_BLOCK_BREAK_SOUND("block.metal.break", 1F, 1F),
+    CRUCIBLE_GENERATE_LIQUID_SOUND("block.lava.extinguish", 1F, 1F),
+    CRUCIBLE_INTERACT_SOUND("entity.arrow.hit_player", 1F, 1F),
+    CRUCIBLE_PLACE_LAVA_SOUND("block.lava.pop", 1F , 1F),
+    CRUCIBLE_PLACE_WATER_SOUND("entity.player.splash", 1F, 1F),
+    DEBUG_FISH_CLICK_SOUND("block.bamboo.place", 1F, 1F),
+    DIET_COOKIE_CONSUME_SOUND("entity.generic.eat", 1F, 1F),
+    ENCHANTMENT_RUNE_ADD_ENCHANT_SOUND("entity.zombie_villager.cure", 1F, 1F),
+    ENDER_BACKPACK_OPEN_SOUND("entity.enderman.teleport", 1F, 1F),
+    ENHANCED_CRAFTING_TABLE_CRAFT_SOUND("block.wooden_button.click_on", 1F, 1F),
+    ELYTRA_CAP_IMPACT_SOUND("block.stone.hit", 1F, 1F),
+    EXPLOSIVE_BOW_HIT_SOUND("entity.generic.explode", 1F, 1F),
+    EXPLOSIVE_TOOL_EXPLODE_SOUND("entity.generic.explode", 0.2F, 1F),
+    FISHERMAN_ANDROID_FISHING_SOUND("entity.player.splash", 0.3F, 0.7F),
+    FLASK_OF_KNOWLEDGE_FILLUP_SOUND("entity.experience_orb.pickup", 1F, 0.5F),
+    GUIDE_BUTTON_CLICK_SOUND("item.book.page_turn", 1F, 1F),
+    GUIDE_CONTRIBUTORS_OPEN_SOUND("block.note_block.harp", 0.7F, 0.7F),
+    GUIDE_LANGUAGE_OPEN_SOUND("block.note_block.harp", 0.7F, 0.7F),
+    GUIDE_OPEN_SETTING_SOUND("block.note_block.harp", 0.7F, 0.7F),
+    GRIND_STONE_INTERACT_SOUND("block.wooden_button.click_on", 1F, 1F),
+    IGNITION_CHAMBER_USE_FLINT_AND_STEEL_SOUND("entity.item.break", 1F, 1F),
+    INFUSED_HOPPER_TELEPORT_SOUND("entity.enderman.teleport", 0.5F, 2F),
+    INFUSED_MAGNET_TELEPORT_SOUND("entity.enderman.teleport", 0.25F, 0.9F),
+    IRON_GOLEM_ASSEMBLER_ASSEMBLE_SOUND("entity.iron_golem.repair", 0.5F, 1F),
+    JETBOOTS_THRUST_SOUND("entity.tnt.primed", 0.25F, 1F),
+    JETPACK_THRUST_SOUND("entity.generic.explode", 0.25F, 1F),
+    JUICER_USE_SOUND("entity.player.splash", 1F, 1F),
+    LIMITED_USE_ITEM_BREAK_SOUND("entity.item.break", 1F, 1F),
+    MAGICAL_EYE_OF_ENDER_USE_SOUND("entity.enderman.teleport", 1F, 1F),
+    MAGIC_SUGAR_CONSUME_SOUND("entity.generic.eat", 1F, 1F),
+    MAGIC_WORKBENCH_FINISH_SOUND("entity.arrow.hit_player", 1F, 1F),
+    MAGIC_WORKBENCH_START_ANIMATION_SOUND("block.wooden_button.click_on", 1F, 1F),
+    MINER_ANDROID_BLOCK_GENERATION_SOUND("block.fire.extinguish", 0.075F, 0.8F),
+    MINING_TASK_SOUND("entity.arrow.hit_player", 0.2F, 1F),
+    ORE_WASHER_WASH_SOUND("entity.player.splash", 1F, 1F),
+    PLAYER_RESEARCHING_SOUND("entity.bat.takeoff", 0.7F, 1F),
+    PORTABLE_DUSTBIN_OPEN_SOUND("block.anvil.land", 1F, 1F),
+    PORTABLE_CRAFTER_OPEN_SOUND("block.wooden_button.click_on", 1F, 1F),
+    PRESSURE_CHAMBER_FINISH_SOUND("entity.arrow.hit_player", 1F, 1F),
+    PRESSURE_CHAMBER_WORKING_SOUND("entity.tnt.primed", 1F, 1F),
+    PROGRAMMABLE_ANDROID_SCRIPT_DOWNLOAD_SOUND("block.note_block.hat", 0.7F, 0.7F),
+    SLIME_BOOTS_FALL_SOUND("block.slime_block.fall", 1F, 1F),
+    TELEPORTATION_MANAGER_OPEN_GUI("ui.button.click", 1F, 1F),
+    GPS_NETWORK_ADD_WAYPOINT("block.note_block.pling", 1F, 1F),
+    GPS_NETWORK_CREATE_WAYPOINT("block.note_block.pling", 0.5F, 1F),
+    GPS_NETWORK_OPEN_PANEL_SOUND("ui.button.click", 1F, 1F),
+    SMELTERY_CRAFT_SOUND("block.lava.pop", 1F, 1F),
+    SOULBOUND_RUNE_RITUAL_SOUND("entity.generic.explode", 0.3F, 1F),
+    SPLINT_CONSUME_SOUND("entity.skeleton.hurt", 1F, 1F),
+    STOMPER_BOOTS_STOMP_SOUND("entity.zombie.break_wooden_door", 1F, 2F),
+    TAPE_MEASURE_MEASURE_SOUND("item.book.put", 1, 0.7F),
+    TOME_OF_KNOWLEDGE_USE_SOUND("entity.player.levelup", 1F, 1F),
+    TELEPORT_UPDATE_SOUND("block.beacon.ambient", 1F, 0.6F),
+    TELEPORT_SOUND("block.beacon.activate", 1F, 1F),
+    VAMPIRE_BLADE_HEALING_SOUND("entity.arrow.hit_player", 0.7F, 0.7F),
+    VANILLA_AUTO_CRAFTER_UPDATE_RECIPE_SOUND("ui.button.click", 1F, 1F),
+    VILLAGER_RUNE_TRANSFORM_SOUND("entity.villager.celebrate", 1F, 1.4F),
+    VITAMINS_CONSUME_SOUND("entity.generic.eat", 1F, 1F),
+    WIND_STAFF_USE_SOUND("entity.tnt.primed", 1F, 1F);
 
     private final String defaultSound;
     private final float defaultVolume;
     private final float defaultPitch;
 
-    SoundEffect(@Nonnull String sound, float volume, float pitch) {
-        Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
+    /**
+     * This constructs a new {@link SoundEffect} with the given sound key, volume and pitch.
+     *
+     * @param soundKey The sound key to play (e.g. "entity.enderman.teleport")
+     * @param volume   The volume of this {@link SoundEffect}
+     * @param pitch    The pitch of this {@link SoundEffect}
+     */
+    SoundEffect(@Nonnull String soundKey, float volume, float pitch) {
+        Preconditions.checkNotNull(soundKey, "The Sound id cannot be null!");
         Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
         Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
 
-        this.defaultSound = sound;
+        this.defaultSound = soundKey;
         this.defaultVolume = volume;
         this.defaultPitch = pitch;
     }
 
-    SoundEffect(@Nonnull Sound sound, float volume, float pitch) {
-        Preconditions.checkNotNull(sound, "The Sound id cannot be null!");
-        Preconditions.checkArgument(volume >= 0, "The volume cannot be a negative number.");
-        Preconditions.checkArgument(pitch >= 0.5, "A pitch below 0.5 has no effect on the sound.");
 
-        this.defaultSound = sound.getKey().getKey();
-        this.defaultVolume = volume;
-        this.defaultPitch = pitch;
-    }
 
     private @Nullable SoundConfiguration getConfiguration() {
         SoundConfiguration config = Slimefun.getSoundService().getConfiguration(this);

@@ -12,9 +12,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 
-import io.github.bakedlibs.dough.common.CommonPatterns;
+import eu.mrneznamy.slimefun5.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**
@@ -94,28 +94,27 @@ public final class NumberUtils {
     }
 
     /**
-     * This will return a representative color for the given percentage.
-     * Lower levels will result in a darker tone of red, higher levels will
-     * result in more brighter shades of green.
+     * This method returns a representative color code for the given percentage.
+     * The percentage should be a value between 0 and 100.
      * 
      * @param percentage
      *            The amount of percentage as a float
      * 
-     * @return A representative {@link ChatColor}
+     * @return A representative color code as String
      */
-    public static @Nonnull ChatColor getColorFromPercentage(float percentage) {
+    public static @Nonnull String getColorFromPercentage(float percentage) {
         if (percentage < 16.0F) {
-            return ChatColor.DARK_RED;
+            return "&4"; // DARK_RED
         } else if (percentage < 32.0F) {
-            return ChatColor.RED;
+            return "&c"; // RED
         } else if (percentage < 48.0F) {
-            return ChatColor.GOLD;
+            return "&6"; // GOLD
         } else if (percentage < 64.0F) {
-            return ChatColor.YELLOW;
+            return "&e"; // YELLOW
         } else if (percentage < 80.0F) {
-            return ChatColor.DARK_GREEN;
+            return "&2"; // DARK_GREEN
         } else {
-            return ChatColor.GREEN;
+            return "&a"; // GREEN
         }
     }
 

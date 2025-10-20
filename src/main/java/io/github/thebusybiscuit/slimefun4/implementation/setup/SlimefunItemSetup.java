@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -379,7 +379,7 @@ public final class SlimefunItemSetup {
 
         new LongFallBoots(itemGroups.magicalArmor, SlimefunItems.SLIME_BOOTS, RecipeType.ARMOR_FORGE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.SLIME_BALL), null, new ItemStack(Material.SLIME_BALL), new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT)},
-                new PotionEffect[] {new PotionEffect(VersionedPotionEffectType.JUMP_BOOST, 300, 5)},
+                VersionedPotionEffectType.JUMP_BOOST != null ? new PotionEffect[] {new PotionEffect(VersionedPotionEffectType.JUMP_BOOST, 300, 5)} : new PotionEffect[0],
                 SoundEffect.SLIME_BOOTS_FALL_SOUND)
                 .register(plugin);
 
@@ -912,7 +912,7 @@ public final class SlimefunItemSetup {
 
         new Talisman(SlimefunItems.TALISMAN_WARRIOR,
                 new ItemStack[] {SlimefunItems.MAGIC_LUMP_3.item(), null, SlimefunItems.MAGIC_LUMP_3.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.COMMON_TALISMAN.item(), SlimefunItems.REINFORCED_ALLOY_INGOT.item(), SlimefunItems.MAGIC_LUMP_3.item(), null, SlimefunItems.MAGIC_LUMP_3.item()},
-                true, true, "warrior", new PotionEffect(VersionedPotionEffectType.STRENGTH, 3600, 2))
+                true, true, "warrior", VersionedPotionEffectType.STRENGTH != null ? new PotionEffect(VersionedPotionEffectType.STRENGTH, 3600, 2) : new PotionEffect(PotionEffectType.STRENGTH, 3600, 2))
                 .register(plugin);
 
         new Talisman(SlimefunItems.TALISMAN_KNIGHT,
@@ -922,7 +922,7 @@ public final class SlimefunItemSetup {
 
         new Talisman(SlimefunItems.TALISMAN_CAVEMAN,
                 new ItemStack[] { SlimefunItems.MAGIC_LUMP_3.item(), null, SlimefunItems.MAGIC_LUMP_3.item(), new ItemStack(Material.GOLDEN_PICKAXE), SlimefunItems.TALISMAN_MINER.item(), SlimefunItems.EARTH_RUNE.item(), SlimefunItems.MAGIC_LUMP_3.item(), null, SlimefunItems.MAGIC_LUMP_3.item()},
-                false, false, "caveman", 50, new PotionEffect(VersionedPotionEffectType.HASTE, 800, 2))
+                false, false, "caveman", 50, VersionedPotionEffectType.HASTE != null ? new PotionEffect(VersionedPotionEffectType.HASTE, 800, 2) : new PotionEffect(PotionEffectType.HASTE, 800, 2))
                 .register(plugin);
 
         new Talisman(SlimefunItems.TALISMAN_WISE,
@@ -1090,7 +1090,7 @@ public final class SlimefunItemSetup {
 
         new LongFallBoots(itemGroups.magicalArmor, SlimefunItems.SLIME_BOOTS_STEEL, RecipeType.ARMOR_FORGE,
                 new ItemStack[] {null, null, null, new ItemStack(Material.SLIME_BALL), null, new ItemStack(Material.SLIME_BALL), new ItemStack(Material.SLIME_BALL), SlimefunItems.STEEL_PLATE.item(), new ItemStack(Material.SLIME_BALL)},
-                new PotionEffect[] {new PotionEffect(VersionedPotionEffectType.JUMP_BOOST, 300, 5)},
+                VersionedPotionEffectType.JUMP_BOOST != null ? new PotionEffect[] {new PotionEffect(VersionedPotionEffectType.JUMP_BOOST, 300, 5)} : new PotionEffect[0],
                 SoundEffect.SLIME_BOOTS_FALL_SOUND)
                 .register(plugin);
 
@@ -2653,7 +2653,7 @@ public final class SlimefunItemSetup {
 
         new LongFallBoots(itemGroups.magicalArmor, SlimefunItems.BEE_BOOTS, RecipeType.ARMOR_FORGE,
                 new ItemStack[] {null, null, null, SlimefunItems.GOLD_8K.item(), null, SlimefunItems.GOLD_8K.item(), new ItemStack(Material.HONEY_BLOCK), null, new ItemStack(Material.HONEY_BLOCK)},
-                new PotionEffect[] {new PotionEffect(VersionedPotionEffectType.JUMP_BOOST, 300, 2)},
+                VersionedPotionEffectType.JUMP_BOOST != null ? new PotionEffect[] {new PotionEffect(VersionedPotionEffectType.JUMP_BOOST, 300, 2)} : new PotionEffect[0],
                 SoundEffect.BEE_BOOTS_FALL_SOUND)
                 .register(plugin);
 

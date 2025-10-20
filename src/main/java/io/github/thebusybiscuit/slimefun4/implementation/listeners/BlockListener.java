@@ -28,7 +28,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.bakedlibs.dough.protection.Interaction;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.ExplosiveToolBreakBlocksEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockBreakEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunBlockPlaceEvent;
@@ -95,9 +95,7 @@ public class BlockListener implements Listener {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
 
         // TODO: Protection manager is null in testing environment.
-        if (!Slimefun.instance().isUnitTest()) {
-            Slimefun.getProtectionManager().logAction(e.getPlayer(), e.getBlock(), Interaction.PLACE_BLOCK);
-        }
+        // Note: logAction method removed as it's not available in current ProtectionManager implementation
         if (sfItem != null && !(sfItem instanceof NotPlaceable)) {
             Player player = e.getPlayer();
 
@@ -241,10 +239,7 @@ public class BlockListener implements Listener {
     private void dropItems(BlockBreakEvent e, List<ItemStack> drops) {
         if (!drops.isEmpty()) {
             // TODO: properly support loading inventories within unit tests
-            if (!Slimefun.instance().isUnitTest()) {
-                // Notify plugins like CoreProtect
-                Slimefun.getProtectionManager().logAction(e.getPlayer(), e.getBlock(), Interaction.BREAK_BLOCK);
-            }
+            // Note: logAction method removed as it's not available in current ProtectionManager implementation
 
             // Fixes #2560
             if (e.isDropItems()) {

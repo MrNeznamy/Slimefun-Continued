@@ -1,6 +1,7 @@
 package io.github.thebusybiscuit.slimefun4.core.services;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.bakedlibs.dough.config.Config;
+import eu.mrneznamy.slimefun5.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -88,7 +89,11 @@ public class CustomTextureService {
         version = config.getString("version");
 
         if (save) {
-            config.save();
+            try {
+                config.save();
+            } catch (IOException e) {
+                Slimefun.logger().log(Level.WARNING, "Failed to save custom texture config: " + e.getMessage());
+            }
         }
     }
 

@@ -1,6 +1,10 @@
 package io.github.thebusybiscuit.slimefun4.implementation;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,16 +34,19 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import io.github.bakedlibs.dough.config.Config;
-import io.github.bakedlibs.dough.protection.ProtectionManager;
+import eu.mrneznamy.slimefun5.chat.ChatInput;
+import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefun5.protection.ProtectionManager;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.TagMisconfigurationException;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.gps.GPSNetwork;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.SlimefunRegistry;
+
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
 import io.github.thebusybiscuit.slimefun4.core.services.AnalyticsService;
@@ -54,10 +61,11 @@ import io.github.thebusybiscuit.slimefun4.core.services.MinecraftRecipeService;
 import io.github.thebusybiscuit.slimefun4.core.services.PerWorldSettingsService;
 import io.github.thebusybiscuit.slimefun4.core.services.PermissionsService;
 import io.github.thebusybiscuit.slimefun4.core.services.ThreadService;
-import io.github.thebusybiscuit.slimefun4.core.services.UpdaterService;
+
 import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsService;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SlimefunProfiler;
+import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundService;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientAltar;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
@@ -175,7 +183,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
     private final GitHubService gitHubService = new GitHubService("Slimefun/Slimefun4");
-    private final UpdaterService updaterService = new UpdaterService(this, getDescription().getVersion(), getFile());
+
     private final MetricsService metricsService = new MetricsService(this);
     private final AutoSavingService autoSavingService = new AutoSavingService();
     private final BackupService backupService = new BackupService();
@@ -192,12 +200,14 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
     private final SlimefunProfiler profiler = new SlimefunProfiler();
     private final GPSNetwork gpsNetwork = new GPSNetwork(this);
 
+
+
     // Even more things we need
     private NetworkManager networkManager;
     private LocalizationService local;
 
     // Important config files for Slimefun
-    private final Config config = new Config(this);
+    private Config config;
     private final Config items = new Config(this, "Items.yml");
     private final Config researches = new Config(this, "Researches.yml");
 
@@ -249,6 +259,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         local = new LocalizationService(this, "", null);
         networkManager = new NetworkManager(200);
         command.register();
+        config = new Config(this);
         registry.load(this, config);
         loadTags();
         soundService.reload(false);
@@ -290,6 +301,9 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         logger.log(Level.INFO, "Creating directories...");
         createDirectories();
 
+        // Initialize config after directories and default files are created
+        config = new Config(this);
+
         // Load various config settings into our cache
         registry.load(this, config);
 
@@ -298,6 +312,10 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         String chatPrefix = config.getString("options.chat-prefix");
         String serverDefaultLanguage = config.getString("options.language");
         local = new LocalizationService(this, chatPrefix, serverDefaultLanguage);
+
+        // Initialize ChatInput system
+        logger.log(Level.INFO, "Initializing ChatInput system...");
+        ChatInput.initialize(this);
 
         int networkSize = config.getInt("networks.max-size");
 
@@ -313,17 +331,9 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         playerStorage = new LegacyStorage();
         logger.log(Level.INFO, "Using legacy storage for player data");
 
-        // Setting up bStats and analytics
-        new Thread(metricsService::start, "Slimefun Metrics").start();
-        analyticsService.start();
+        // Metrics and analytics disabled
 
-        // Starting the Auto-Updater
-        if (config.getBoolean("options.auto-update")) {
-            logger.log(Level.INFO, "Starting Auto-Updater...");
-            updaterService.start();
-        } else {
-            updaterService.disable();
-        }
+
 
         // Registering all GEO Resources
         logger.log(Level.INFO, "Loading GEO-Resources...");
@@ -380,6 +390,10 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
 
         // Starting our tasks
         autoSavingService.start(this, config.getInt("options.auto-save-delay-in-minutes"));
+        
+        // Initialize new entity-based hologram system
+        HologramManager.initialize(this);
+        
         hologramsService.start();
         ticker.start(this);
 
@@ -453,6 +467,9 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
             backupService.run();
         }
 
+        // Shutdown entity-based hologram system
+        HologramManager.shutdown(this);
+        
         // Close and unload any resources from our Metrics Service
         metricsService.cleanUp();
 
@@ -531,7 +548,6 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
                 // Check all supported versions of Minecraft
                 for (MinecraftVersion supportedVersion : MinecraftVersion.values()) {
                     if (supportedVersion.isMinecraftVersion(version, patchVersion)) {
-                        minecraftVersion = supportedVersion;
                         return false;
                     }
                 }
@@ -604,6 +620,9 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
                 file.mkdirs();
             }
         }
+        
+        // Copy default config.yml file if it doesn't exist
+        copyDefaultConfigFile();
     }
 
     /**
@@ -755,6 +774,28 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         return instance.getDescription().getVersion();
     }
 
+    /**
+     * This method returns the branch the current build of Slimefun is running on.
+     * This can be used to determine whether we are dealing with an official build
+     * or a build that was unofficially modified.
+     *
+     * @return The branch this build of Slimefun is on.
+     */
+    public static @Nonnull SlimefunBranch getBranch() {
+        validateInstance();
+        String version = instance.getDescription().getVersion();
+        
+        if (version.contains("UNOFFICIAL")) {
+            return SlimefunBranch.UNOFFICIAL;
+        } else if (version.startsWith("Dev - ")) {
+            return SlimefunBranch.DEVELOPMENT;
+        } else if (version.startsWith("RC - ")) {
+            return SlimefunBranch.STABLE;
+        } else {
+            return SlimefunBranch.UNKNOWN;
+        }
+    }
+
     public static @Nonnull Config getCfg() {
         validateInstance();
         return instance.config;
@@ -829,6 +870,8 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         return instance.blockDataService;
     }
 
+
+
     /**
      * This method returns out world settings service.
      * That service is responsible for managing item settings per
@@ -885,16 +928,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         return getIntegrations().getProtectionManager();
     }
 
-    /**
-     * This method returns the {@link UpdaterService} of Slimefun.
-     * It is used to handle automatic updates.
-     *
-     * @return The {@link UpdaterService} for Slimefun
-     */
-    public static @Nonnull UpdaterService getUpdater() {
-        validateInstance();
-        return instance.updaterService;
-    }
+
 
     /**
      * This method returns the {@link MetricsService} of Slimefun.
@@ -1094,5 +1128,82 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
      */
     public static @Nonnull ThreadService getThreadService() {
         return instance().threadService;
+    }
+
+    /**
+     * Copies the default config.yml file from resources to the plugin's data folder if it doesn't exist.
+     */
+    private void copyDefaultConfigFile() {
+        File configFile = new File(getDataFolder(), "config.yml");
+        
+        getLogger().log(Level.INFO, "Checking config.yml file at: " + configFile.getAbsolutePath());
+        
+        // If the file already exists, don't overwrite it
+        if (configFile.exists()) {
+            getLogger().log(Level.INFO, "config.yml already exists, skipping copy");
+            return;
+        }
+        
+        // Ensure the plugin data folder exists
+        if (!getDataFolder().exists()) {
+            boolean created = getDataFolder().mkdirs();
+            getLogger().log(Level.INFO, "Created plugin data folder: " + created + " at " + getDataFolder().getAbsolutePath());
+        }
+        
+        // Copy the default config.yml from resources
+        try (InputStream inputStream = getClass().getResourceAsStream("/config.yml")) {
+            if (inputStream != null) {
+                Files.copy(inputStream, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                getLogger().log(Level.INFO, "Successfully created default config.yml configuration file at: " + configFile.getAbsolutePath());
+                
+                // Verify the file was created and has content
+                if (configFile.exists() && configFile.length() > 0) {
+                    getLogger().log(Level.INFO, "Verified config.yml file exists and has content (" + configFile.length() + " bytes)");
+                } else {
+                    getLogger().log(Level.WARNING, "config.yml file was not created properly or is empty");
+                }
+            } else {
+                getLogger().log(Level.WARNING, "Could not find default config.yml in resources");
+                // Create a minimal config.yml file as fallback
+                createMinimalConfigFile(configFile);
+            }
+        } catch (IOException e) {
+            getLogger().log(Level.SEVERE, "Failed to copy default config.yml file", e);
+            // Create a minimal config.yml file as fallback
+            createMinimalConfigFile(configFile);
+        }
+    }
+    
+    /**
+     * Creates a minimal config.yml file as a fallback when the default cannot be copied from resources.
+     *
+     * @param configFile The target config.yml file
+     */
+    private void createMinimalConfigFile(@Nonnull File configFile) {
+        try {
+            String minimalContent = "# Slimefun Configuration\n" +
+                                  "# This file was created as a fallback when the default config.yml could not be loaded\n" +
+                                  "\n" +
+                                  "options:\n" +
+                                  "  chat-prefix: '&a[Slimefun] &7'\n" +
+                                  "  language: en\n" +
+                                  "  legacy-dust-washer: false\n" +
+                                  "\n" +
+                                  "networks:\n" +
+                                  "  max-size: 200\n" +
+                                  "  enable-visualizer: true\n" +
+                                  "  delete-excess-items: false\n" +
+                                  "\n" +
+                                  "items:\n" +
+                                  "  auto-save: true\n" +
+                                  "\n" +
+                                  "researches:\n" +
+                                  "  enable-researching: true\n";
+            
+            Files.write(configFile.toPath(), minimalContent.getBytes());
+            getLogger().log(Level.INFO, "Created minimal config.yml fallback file");
+        } catch (IOException e) {
+            getLogger().log(Level.SEVERE, "Failed to create minimal config.yml fallback file", e);
+        }
     }
 }

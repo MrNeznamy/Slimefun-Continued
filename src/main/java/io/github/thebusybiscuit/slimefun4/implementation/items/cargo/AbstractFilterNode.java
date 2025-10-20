@@ -10,7 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.bakedlibs.dough.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -95,14 +95,14 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
             menu.replaceExistingItem(15, CustomItemStack.create(Material.WHITE_WOOL, "&7Type: &rWhitelist", "", "&e> Click to change it to Blacklist"));
             menu.addMenuClickHandler(15, (p, slot, item, action) -> {
                 BlockStorage.addBlockInfo(b, FILTER_TYPE, "blacklist");
-                updateBlockMenu(menu, b);
+            menu.replaceExistingItem(15, CustomItemStack.create(Material.WHITE_WOOL, "&7Type: &rWhitelist", "", "&e> Click to change it to Blacklist"));
                 return false;
             });
         } else {
             menu.replaceExistingItem(15, CustomItemStack.create(Material.BLACK_WOOL, "&7Type: &8Blacklist", "", "&e> Click to change it to Whitelist"));
             menu.addMenuClickHandler(15, (p, slot, item, action) -> {
                 BlockStorage.addBlockInfo(b, FILTER_TYPE, "whitelist");
-                updateBlockMenu(menu, b);
+            menu.replaceExistingItem(15, CustomItemStack.create(Material.BLACK_WOOL, "&7Type: &8Blacklist", "", "&e> Click to change it to Whitelist"));
                 return false;
             });
         }
@@ -113,14 +113,14 @@ abstract class AbstractFilterNode extends AbstractCargoNode {
             menu.replaceExistingItem(25, CustomItemStack.create(Material.MAP, "&7Include Lore: &2\u2714", "", "&e> Click to toggle whether the Lore has to match"));
             menu.addMenuClickHandler(25, (p, slot, item, action) -> {
                 BlockStorage.addBlockInfo(b, FILTER_LORE, String.valueOf(false));
-                updateBlockMenu(menu, b);
+            menu.replaceExistingItem(25, CustomItemStack.create(Material.MAP, "&7Include Lore: &2\u2714", "", "&e> Click to toggle whether the Lore has to match"));
                 return false;
             });
         } else {
             menu.replaceExistingItem(25, CustomItemStack.create(Material.MAP, "&7Include Lore: &4\u2718", "", "&e> Click to toggle whether the Lore has to match"));
             menu.addMenuClickHandler(25, (p, slot, item, action) -> {
                 BlockStorage.addBlockInfo(b, FILTER_LORE, String.valueOf(true));
-                updateBlockMenu(menu, b);
+            menu.replaceExistingItem(25, CustomItemStack.create(Material.MAP, "&7Include Lore: &4\u2718", "", "&e> Click to toggle whether the Lore has to match"));
                 return false;
             });
         }
