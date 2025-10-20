@@ -18,7 +18,7 @@ From one single person working on this plugin back then, we grew to a community 
 * **[:interrobang: FAQ](https://github.com/Slimefun/Slimefun4/wiki/FAQ)**
 
 ## :floppy_disk: Download Slimefun 5
-Slimefun requires your Minecraft Server to be running on [Spigot](https://spigotmc.org/), [Paper](https://papermc.io/) or on any fork of these and have installed [MrLibCore](https://modrinth.com/plugin/mrlibcore).<br>
+Slimefun requires your Minecraft Server to be running on [Spigot](https://spigotmc.org/), [Paper](https://papermc.io/) or on any fork of these and have installed [slimefun5](https://modrinth.com/plugin/slimefun5).<br>
 (See also: [How to install Slimefun](https://github.com/Slimefun/Slimefun4/wiki/Installing-Slimefun))
 
 Slimefun 5 can be downloaded **for free** on modrinth.<br>
