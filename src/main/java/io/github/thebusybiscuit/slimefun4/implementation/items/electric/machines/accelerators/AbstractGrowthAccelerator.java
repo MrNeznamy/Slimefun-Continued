@@ -53,6 +53,9 @@ public abstract class AbstractGrowthAccelerator extends SlimefunItem implements 
     }
 
     private void constructMenu(BlockMenuPreset preset) {
+        // Set inventory size to 54 slots to accommodate all border slots (up to slot 53)
+        preset.setSize(54);
+        
         for (int i : BORDER) {
             preset.addItem(i, CustomItemStack.create(Material.CYAN_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
         }

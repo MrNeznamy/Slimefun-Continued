@@ -13,11 +13,13 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import eu.mrneznamy.slimefun5.inventory.InvUtils;
 import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefun5.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemState;
@@ -29,6 +31,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -60,7 +63,7 @@ public abstract class AContainer extends SlimefunItem implements InventoryBlock,
         super(itemGroup, item, recipeType, recipe);
 
         processor.setProgressBar(getProgressBar());
-        createPreset(this, getInventoryTitle(), this::constructMenu);
+        createPreset(this, getInventoryTitle(), this::constructMenu, this::canOpen);
 
         addItemHandler(onBlockBreak());
     }
@@ -96,6 +99,9 @@ public abstract class AContainer extends SlimefunItem implements InventoryBlock,
     }
 
     protected void constructMenu(BlockMenuPreset preset) {
+        // Set inventory size to 45 slots to accommodate all BORDER slots (up to slot 44)
+        preset.setSize(45);
+        
         for (int i : BORDER) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
@@ -112,6 +118,26 @@ public abstract class AContainer extends SlimefunItem implements InventoryBlock,
 
         for (int i : getOutputSlots()) {
             preset.addMenuClickHandler(i, ChestMenuUtils.getDefaultOutputHandler());
+        }
+    }
+
+    /**
+     * This method determines whether a Player can open the BlockMenu.
+     * Override this method to add custom access control.
+     * 
+     * @param b The Block being accessed
+     * @param p The Player trying to open the menu
+     * @return Whether the Player can open the menu
+     */
+    protected boolean canOpen(Block b, Player p) {
+        if (p.hasPermission("slimefun.inventory.bypass")) {
+            return true;
+        } else {
+            return canUse(p, false) && (
+                // Protection manager doesn't exist in unit tests
+                Slimefun.instance().isUnitTest()
+                || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)
+            );
         }
     }
 

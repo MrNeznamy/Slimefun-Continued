@@ -39,37 +39,21 @@ public class OilPump extends AContainer implements RecipeDisplayItem {
         super(itemGroup, item, recipeType, recipe);
 
         oil = Slimefun.getRegistry().getGEOResources().get(new NamespacedKey(Slimefun.instance(), "oil"));
+        // BlockMenuPreset is already created by AContainer parent class
+    }
 
-        new BlockMenuPreset(getId(), getInventoryTitle()) {
+    @Override
+    protected boolean canOpen(Block b, Player p) {
+        if (!(p.hasPermission("slimefun.inventory.bypass") || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK))) {
+            return false;
+        }
 
-            @Override
-            public void init() {
-                constructMenu(this);
-            }
+        if (!Slimefun.getGPSNetwork().getResourceManager().getSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4).isPresent()) {
+            Slimefun.getLocalization().sendMessage(p, "gps.geo.scan-required", true);
+            return false;
+        }
 
-            @Override
-            public boolean canOpen(Block b, Player p) {
-                if (!(p.hasPermission("slimefun.inventory.bypass") || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK))) {
-                    return false;
-                }
-
-                if (!Slimefun.getGPSNetwork().getResourceManager().getSupplies(oil, b.getWorld(), b.getX() >> 4, b.getZ() >> 4).isPresent()) {
-                    Slimefun.getLocalization().sendMessage(p, "gps.geo.scan-required", true);
-                    return false;
-                }
-
-                return true;
-            }
-
-            @Override
-            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
-                if (flow == ItemTransportFlow.INSERT) {
-                    return getInputSlots();
-                } else {
-                    return getOutputSlots();
-                }
-            }
-        };
+        return true;
     }
 
     @Override

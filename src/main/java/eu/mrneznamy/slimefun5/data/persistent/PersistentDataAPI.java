@@ -159,6 +159,37 @@ public final class PersistentDataAPI {
     }
 
     /**
+     * Sets a long value
+     * @param holder The data holder
+     * @param key The namespaced key
+     * @param value The long value
+     */
+    public static void setLong(@Nonnull PersistentDataHolder holder, @Nonnull NamespacedKey key, long value) {
+        set(holder, key, PersistentDataType.LONG, value);
+    }
+
+    /**
+     * Gets a long value
+     * @param holder The data holder
+     * @param key The namespaced key
+     * @return The long value or 0 if not found
+     */
+    public static long getLong(@Nonnull PersistentDataHolder holder, @Nonnull NamespacedKey key) {
+        return getOrDefault(holder, key, PersistentDataType.LONG, 0L);
+    }
+
+    /**
+     * Gets a long value with default
+     * @param holder The data holder
+     * @param key The namespaced key
+     * @param defaultValue The default value if not found
+     * @return The long value or default if not found
+     */
+    public static long getLong(@Nonnull PersistentDataHolder holder, @Nonnull NamespacedKey key, long defaultValue) {
+        return getOrDefault(holder, key, PersistentDataType.LONG, defaultValue);
+    }
+
+    /**
      * Sets a boolean value
      * @param holder The data holder
      * @param key The namespaced key

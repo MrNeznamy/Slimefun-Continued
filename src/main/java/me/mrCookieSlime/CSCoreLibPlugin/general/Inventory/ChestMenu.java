@@ -221,9 +221,13 @@ public class ChestMenu {
     }
 
     private void setup() {
-        if (this.inv != null)
+        if (this.inv != null) {
             return;
-        this.inv = Bukkit.createInventory(null, ((int) Math.ceil(this.items.size() / 9F)) * 9, title);
+        }
+        
+        int calculatedSize = ((int) Math.ceil(this.items.size() / 9F)) * 9;
+        this.inv = Bukkit.createInventory(null, calculatedSize, title);
+        
         for (int i = 0; i < this.items.size(); i++) {
             this.inv.setItem(i, this.items.get(i));
         }
@@ -250,6 +254,17 @@ public class ChestMenu {
     public void replaceExistingItem(int slot, ItemStack item) {
         setup();
         this.inv.setItem(slot, item);
+        
+        // Force update for all viewers to ensure live updates
+        if (this.inv != null && !this.inv.getViewers().isEmpty()) {
+            // Update all viewers with the new item
+            for (org.bukkit.entity.HumanEntity viewer : this.inv.getViewers()) {
+                if (viewer instanceof org.bukkit.entity.Player player) {
+                    // Force the client to update this specific slot
+                    player.updateInventory();
+                }
+            }
+        }
     }
 
     /**
@@ -260,11 +275,14 @@ public class ChestMenu {
      */
     public void open(Player... players) {
         setup();
+        
         for (Player p : players) {
             p.openInventory(this.inv);
             MenuListener.menus.put(p.getUniqueId(), this);
-            if (open != null)
+            
+            if (open != null) {
                 open.onOpen(p);
+            }
         }
     }
 

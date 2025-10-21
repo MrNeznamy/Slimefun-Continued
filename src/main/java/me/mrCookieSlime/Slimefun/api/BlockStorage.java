@@ -762,15 +762,6 @@ public class BlockStorage {
 
     @Nullable
     public static String checkID(@Nonnull Block b) {
-        // Only access the BlockState when on the main thread
-        if (Bukkit.isPrimaryThread() && Slimefun.getBlockDataService().isTileEntity(b.getType())) {
-            Optional<String> blockData = Slimefun.getBlockDataService().getBlockData(b);
-
-            if (blockData.isPresent()) {
-                return blockData.get();
-            }
-        }
-
         return checkID(b.getLocation());
     }
 
@@ -879,7 +870,9 @@ public class BlockStorage {
         if (menu != null) {
             return menu;
         } else {
-            return storage.loadInventory(l, BlockMenuPreset.getPreset(checkID(l)));
+            String id = checkID(l);
+            BlockMenuPreset preset = BlockMenuPreset.getPreset(id);
+            return storage.loadInventory(l, preset);
         }
     }
 

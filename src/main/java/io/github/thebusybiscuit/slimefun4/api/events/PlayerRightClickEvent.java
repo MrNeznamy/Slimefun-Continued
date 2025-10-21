@@ -126,7 +126,7 @@ public class PlayerRightClickEvent extends PlayerEvent {
     public Optional<SlimefunItem> getSlimefunItem() {
         if (!slimefunItem.isComputed()) {
             if (itemStack.isPresent()) {
-                slimefunItem.compute(SlimefunItem.getByItem(itemStack.get()));
+                slimefunItem = slimefunItem.compute(SlimefunItem.getByItem(itemStack.get()));
             } else {
                 slimefunItem = TriStateOptional.empty();
             }
@@ -137,15 +137,14 @@ public class PlayerRightClickEvent extends PlayerEvent {
 
     @Nonnull
     public Optional<SlimefunItem> getSlimefunBlock() {
-        if (!slimefunBlock.isComputed()) {
-            if (clickedBlock.isPresent()) {
-                slimefunBlock.compute(BlockStorage.check(clickedBlock.get()));
-            } else {
-                slimefunBlock = TriStateOptional.empty();
-            }
+        // BYPASS CACHE COMPLETELY - Direct lookup to fix the broken cache
+        if (clickedBlock.isPresent()) {
+            Block block = clickedBlock.get();
+            SlimefunItem directResult = BlockStorage.check(block);
+            return Optional.ofNullable(directResult);
+        } else {
+            return Optional.empty();
         }
-
-        return slimefunBlock.getAsOptional();
     }
 
     /**

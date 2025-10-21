@@ -105,6 +105,9 @@ public abstract class AGenerator extends AbstractEnergyProvider implements Machi
     }
 
     private void constructMenu(BlockMenuPreset preset) {
+        // Set inventory size to 45 slots to accommodate all border slots (up to slot 44)
+        preset.setSize(45);
+        
         for (int i : border) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }

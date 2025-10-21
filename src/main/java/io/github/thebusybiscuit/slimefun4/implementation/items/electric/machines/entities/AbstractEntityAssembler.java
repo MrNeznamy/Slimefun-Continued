@@ -236,6 +236,9 @@ public abstract class AbstractEntityAssembler<T extends Entity> extends SimpleSl
     }
 
     protected void constructMenu(BlockMenuPreset preset) {
+        // Set inventory size to 45 slots to accommodate all border slots (up to slot 44)
+        preset.setSize(45);
+        
         for (int i : border) {
             preset.addItem(i, CustomItemStack.create(Material.GRAY_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
         }

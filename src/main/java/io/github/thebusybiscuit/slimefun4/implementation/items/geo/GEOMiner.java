@@ -250,6 +250,9 @@ public class GEOMiner extends SlimefunItem implements RecipeDisplayItem, EnergyN
     }
 
     protected void constructMenu(@Nonnull BlockMenuPreset preset) {
+        // Set inventory size to 54 slots to accommodate all border slots (up to slot 53)
+        preset.setSize(54);
+        
         for (int i : BORDER) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }

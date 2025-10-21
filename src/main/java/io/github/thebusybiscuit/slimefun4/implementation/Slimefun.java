@@ -94,6 +94,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.listeners.HopperListene
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.ItemDropListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.ItemPickupListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.JoinListener;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.MenuDebugListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.MiddleClickListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.MiningAndroidListener;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.MultiBlockListener;
@@ -274,6 +275,9 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
     private void onPluginStart() {
         long timestamp = System.nanoTime();
         Logger logger = getLogger();
+        
+        // Startup banner with custom colors
+
 
         // Check if Paper (<3) is installed
         if (PaperLib.isPaper()) {
@@ -403,7 +407,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         gitHubService.start(this);
 
         // Hooray!
-        logger.log(Level.INFO, "Slimefun has finished loading in {0}", getStartupTime(timestamp));
+        logger.log(Level.INFO, "Slimefun has finished loading in " + getStartupTime(timestamp));
     }
 
     @Override
@@ -668,6 +672,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         new SoulboundListener(this);
         new AutoCrafterListener(this);
         new SlimefunItemHitListener(this);
+        new MenuDebugListener(this);
         new MiddleClickListener(this);
         new BeeListener(this);
         new BeeWingsListener(this, (BeeWings) SlimefunItems.BEE_WINGS.getItem());

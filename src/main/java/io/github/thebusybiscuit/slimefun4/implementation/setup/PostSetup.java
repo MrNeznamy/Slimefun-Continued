@@ -90,23 +90,29 @@ public final class PostSetup {
         int slimefunOnly = countNonAddonItems();
 
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.GREEN + "######################### - Slimefun v" + Slimefun.getVersion() + " - #########################");
+        String header = eu.mrneznamy.utils.ColorSystem.colorize("#926CDE######################### - #E982D9SLIMEFUN 5 #926CDEv" + Slimefun.getVersion() + " - #########################");
+        sender.sendMessage(header);
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.GREEN + "Successfully loaded " + total + " Items and " + Slimefun.getRegistry().getResearches().size() + " Researches");
-        sender.sendMessage(ChatColor.GREEN + "( " + slimefunOnly + " Items from Slimefun, " + (total - slimefunOnly) + " Items from " + Slimefun.getInstalledAddons().size() + " Addons )");
+        String itemsLoaded = eu.mrneznamy.utils.ColorSystem.colorize("#E982D9Successfully loaded #926CDE" + total + " #E982D9Items and #926CDE" + Slimefun.getRegistry().getResearches().size() + " #E982D9Researches");
+        sender.sendMessage(itemsLoaded);
+        String breakdown = eu.mrneznamy.utils.ColorSystem.colorize("#926CDE( " + slimefunOnly + " Items from #E982D9Slimefun#926CDE, " + (total - slimefunOnly) + " Items from " + Slimefun.getInstalledAddons().size() + " Addons )");
+        sender.sendMessage(breakdown);
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.GREEN + "Slimefun is an Open-Source project that is kept alive by a large community.");
-        sender.sendMessage(ChatColor.GREEN + "Consider helping us maintain this project by contributing on GitHub!");
+        String opensource = eu.mrneznamy.utils.ColorSystem.colorize("#E982D9Slimefun is an Open-Source project that is kept alive by a large community.");
+        sender.sendMessage(opensource);
+        String contribute = eu.mrneznamy.utils.ColorSystem.colorize("#926CDEConsider helping us maintain this project by contributing on GitHub!");
+        sender.sendMessage(contribute);
 
         if (Slimefun.getBranch().isOfficial()) {
             sender.sendMessage("");
-            sender.sendMessage(ChatColor.GREEN + " - Source Code:  https://github.com/Slimefun/Slimefun4");
-            sender.sendMessage(ChatColor.GREEN + " - Wiki:         https://github.com/Slimefun/Slimefun4/wiki");
-            sender.sendMessage(ChatColor.GREEN + " - Addons:       https://github.com/Slimefun/Slimefun4/wiki/Addons");
-            sender.sendMessage(ChatColor.GREEN + " - Bug Reports:  https://github.com/Slimefun/Slimefun4/issues");
-            sender.sendMessage(ChatColor.GREEN + " - Discord:      https://discord.gg/slimefun");
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Source Code:  #E982D9https://github.com/MrNeznamy/Slimefun5"));
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Wiki:         #E982D9https://slimefun5.mrneznamy.eu/wiki"));
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Addons:       #E982D9https://slimefun5.mrneznamy.eu/addons"));    
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Bug Reports:  #E982D9https://github.com/MrNeznamy/Slimefun5/issues"));
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Discord:      #E982D9https://discord.gg/sgHFbKgSBk"));
         } else {
-            sender.sendMessage(ChatColor.GREEN + " - UNOFFICIALLY MODIFIED BUILD - NO OFFICIAL SUPPORT GIVEN");
+            String modifiedBuild = eu.mrneznamy.utils.ColorSystem.colorize("#E982D9 - #926CDETHIS BUILD IS NOT OFFICAL SLIMEFUN 4 #E982D9- #926CDENO OFFICIAL SUPPORT GIVEN");
+            sender.sendMessage(modifiedBuild);
         }
 
         sender.sendMessage("");

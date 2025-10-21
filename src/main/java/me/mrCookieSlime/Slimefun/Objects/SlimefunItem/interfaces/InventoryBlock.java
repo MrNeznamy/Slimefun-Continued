@@ -1,6 +1,7 @@
 package me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces;
 
 import java.lang.reflect.Array;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 import org.bukkit.block.Block;
@@ -43,6 +44,20 @@ public interface InventoryBlock {
     }
 
     default void createPreset(SlimefunItem item, String title, Consumer<BlockMenuPreset> setup) {
+        createPreset(item, title, setup, (b, p) -> {
+            if (p.hasPermission("slimefun.inventory.bypass")) {
+                return true;
+            } else {
+                return item.canUse(p, false) && (
+                    // Protection manager doesn't exist in unit tests
+                    Slimefun.instance().isUnitTest()
+                    || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)
+                );
+            }
+        });
+    }
+
+    default void createPreset(SlimefunItem item, String title, Consumer<BlockMenuPreset> setup, BiFunction<Block, Player, Boolean> canOpenFunction) {
         new BlockMenuPreset(item.getId(), title) {
 
             @Override
@@ -61,15 +76,7 @@ public interface InventoryBlock {
 
             @Override
             public boolean canOpen(Block b, Player p) {
-                if (p.hasPermission("slimefun.inventory.bypass")) {
-                    return true;
-                } else {
-                    return item.canUse(p, false) && (
-                        // Protection manager doesn't exist in unit tests
-                        Slimefun.instance().isUnitTest()
-                        || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)
-                    );
-                }
+                return canOpenFunction.apply(b, p);
             }
         };
     }

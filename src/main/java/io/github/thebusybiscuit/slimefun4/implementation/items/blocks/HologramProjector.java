@@ -161,8 +161,10 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
             String currentOffsetStr = BlockStorage.getLocationInfo(projector.getLocation(), OFFSET_PARAMETER);
             double currentOffsetValue = currentOffsetStr != null ? Double.parseDouble(currentOffsetStr) : 0.5;
             double newOffset = Math.round((currentOffsetValue + (action.isRightClicked() ? -0.1F : 0.1F)) * 10.0) / 10.0;
-            updateHologramOffset(projector, newOffset);
+            
+            // First update the BlockStorage with new offset, then update hologram
             BlockStorage.addBlockInfo(projector, OFFSET_PARAMETER, String.valueOf(newOffset));
+            updateHologramOffset(projector, currentOffsetValue, newOffset);
             openEditor(pl, projector);
             return false;
         });
@@ -217,25 +219,42 @@ public class HologramProjector extends SlimefunItem implements HologramOwner {
      * Updates the offset (position) of an existing hologram.
      * 
      * @param projector The projector block
-     * @param offset The new Y offset from the block
+     * @param oldOffset The current Y offset from the block
+     * @param newOffset The new Y offset from the block
      */
-    private void updateHologramOffset(@Nonnull Block projector, double offset) {
+    private void updateHologramOffset(@Nonnull Block projector, double oldOffset, double newOffset) {
         try {
-            // Get the old location first
-            String oldOffsetStr = BlockStorage.getLocationInfo(projector.getLocation(), OFFSET_PARAMETER);
-            double oldOffset = oldOffsetStr != null ? Double.parseDouble(oldOffsetStr) : 0.7;
+            // Calculate the old location using the old offset
             Location oldLocation = getHologramLocation(projector, oldOffset);
             
             // Remove the old hologram
             HologramManager.removeHologram(Slimefun.instance(), oldLocation);
             
-            // Create a new hologram at the new location
+            // Create a new hologram at the new location (using the new offset from BlockStorage)
             createHologram(projector);
         } catch (Exception e) {
             Slimefun.logger().warning("Failed to update hologram offset for projector at " + projector.getLocation() + ": " + e.getMessage());
         }
     }
     
+    /**
+     * Removes the hologram associated with the projector block.
+     * 
+     * @param projector The projector block
+     */
+    @Override
+    public void removeHologram(@Nonnull Block projector) {
+        try {
+            String offsetStr = BlockStorage.getLocationInfo(projector.getLocation(), OFFSET_PARAMETER);
+            double offset = offsetStr != null ? Double.parseDouble(offsetStr) : 0.7;
+            Location hologramLocation = getHologramLocation(projector, offset);
+            
+            HologramManager.removeHologram(Slimefun.instance(), hologramLocation);
+        } catch (Exception e) {
+            Slimefun.logger().warning("Failed to remove hologram for projector at " + projector.getLocation() + ": " + e.getMessage());
+        }
+    }
+
     /**
      * Calculates the hologram location based on the projector block and offset.
      * 

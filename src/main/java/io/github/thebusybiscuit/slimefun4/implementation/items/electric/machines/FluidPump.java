@@ -86,6 +86,9 @@ public class FluidPump extends SimpleSlimefunItem<BlockTicker> implements Invent
     }
 
     private void constructMenu(@Nonnull BlockMenuPreset preset) {
+        // Set inventory size to 45 slots to accommodate all border slots (up to slot 44)
+        preset.setSize(45);
+        
         for (int i : border) {
             preset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }

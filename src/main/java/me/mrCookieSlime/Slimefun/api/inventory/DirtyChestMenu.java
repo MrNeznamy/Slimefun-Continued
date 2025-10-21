@@ -16,6 +16,7 @@ import eu.mrneznamy.slimefun5.inventory.InvUtils;
 import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import eu.mrneznamy.slimefun5.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 
@@ -64,10 +65,14 @@ public class DirtyChestMenu extends ChestMenu {
 
     @Override
     public void open(Player... players) {
-        super.open(players);
-
-        // The Inventory will likely be modified soon
-        markDirty();
+        try {
+            super.open(players);
+            
+            // The Inventory will likely be modified soon
+            markDirty();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public void close() {

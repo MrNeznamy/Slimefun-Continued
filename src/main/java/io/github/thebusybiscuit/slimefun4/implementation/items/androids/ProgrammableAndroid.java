@@ -840,6 +840,9 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
     }
 
     private void constructMenu(@Nonnull BlockMenuPreset preset) {
+        // Set inventory size to 54 slots to accommodate all border slots (up to slot 53)
+        preset.setSize(54);
+        
         preset.drawBackground(BORDER);
         preset.drawBackground(ChestMenuUtils.getOutputSlotTexture(), OUTPUT_BORDER);
 

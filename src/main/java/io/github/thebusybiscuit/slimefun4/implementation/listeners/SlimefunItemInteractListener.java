@@ -68,15 +68,24 @@ public class SlimefunItemInteractListener implements Listener {
             PlayerRightClickEvent event = new PlayerRightClickEvent(e);
             Bukkit.getPluginManager().callEvent(event);
 
-            boolean itemUsed = e.getHand() == EquipmentSlot.OFF_HAND;
+            boolean itemUsed = e.getHand() == EquipmentSlot.HAND;
 
             // Only handle the Item if it hasn't been denied
             if (event.useItem() != Result.DENY) {
                 rightClickItem(e, event, itemUsed);
             }
 
-            if (!itemUsed && event.useBlock() != Result.DENY && !rightClickBlock(event)) {
-                return;
+            // Check if the clicked block is a Slimefun block first
+            Block clickedBlock = event.getInteractEvent().getClickedBlock();
+            SlimefunItem conditionCheckItem = clickedBlock != null ? BlockStorage.check(clickedBlock) : null;
+            boolean isSlimefunBlock = conditionCheckItem != null;
+            
+            // Allow rightClickBlock if: 1) no item used, OR 2) clicking on Slimefun block (takes priority)
+            if ((!itemUsed || isSlimefunBlock) && event.useBlock() != Result.DENY) {
+                boolean result = rightClickBlock(event);
+                if (!result) {
+                    return;
+                }
             }
 
             /**
@@ -119,18 +128,19 @@ public class SlimefunItemInteractListener implements Listener {
 
         if (optional.isPresent()) {
             SlimefunItem sfItem = optional.get();
+            Player p = event.getPlayer();
 
             if (!sfItem.canUse(event.getPlayer(), true)) {
                 event.getInteractEvent().setCancelled(true);
                 return false;
             }
 
-            boolean interactable = sfItem.callItemHandler(BlockUseHandler.class, handler -> handler.onRightClick(event));
+            sfItem.callItemHandler(BlockUseHandler.class, handler -> handler.onRightClick(event));
 
-            if (!interactable) {
-                Player p = event.getPlayer();
-
-                if (BlockMenuPreset.isInventory(sfItem.getId())) {
+            // Check if the event was cancelled by the BlockUseHandler
+            if (event.useBlock() != Result.DENY) {
+                boolean hasPreset = BlockMenuPreset.isInventory(sfItem.getId());
+                if (hasPreset) {
                     openInventory(p, sfItem, event.getInteractEvent().getClickedBlock(), event);
                     return false;
                 }
@@ -145,7 +155,7 @@ public class SlimefunItemInteractListener implements Listener {
         try {
             if (!p.isSneaking() || event.getItem().getType() == Material.AIR) {
                 event.getInteractEvent().setCancelled(true);
-
+                
                 if (BlockStorage.hasUniversalInventory(item.getId())) {
                     UniversalBlockMenu menu = BlockStorage.getUniversalInventory(item.getId());
 
@@ -154,13 +164,22 @@ public class SlimefunItemInteractListener implements Listener {
                     } else {
                         Slimefun.getLocalization().sendMessage(p, "inventory.no-access", true);
                     }
-                } else if (BlockStorage.getStorage(clickedBlock.getWorld()).hasInventory(clickedBlock.getLocation())) {
-                    BlockMenu menu = BlockStorage.getInventory(clickedBlock.getLocation());
+                } else {
+                    BlockStorage storage = BlockStorage.getStorage(clickedBlock.getWorld());
+                    if (storage == null) {
+                        return;
+                    }
+                    
+                    boolean hasInventory = storage.hasInventory(clickedBlock.getLocation());
+                    
+                    if (hasInventory) {
+                        BlockMenu menu = BlockStorage.getInventory(clickedBlock.getLocation());
 
-                    if (menu.canOpen(clickedBlock, p)) {
-                        menu.open(p);
-                    } else {
-                        Slimefun.getLocalization().sendMessage(p, "inventory.no-access", true);
+                        if (menu != null && menu.canOpen(clickedBlock, p)) {
+                            menu.open(p);
+                        } else {
+                            Slimefun.getLocalization().sendMessage(p, "inventory.no-access", true);
+                        }
                     }
                 }
             }

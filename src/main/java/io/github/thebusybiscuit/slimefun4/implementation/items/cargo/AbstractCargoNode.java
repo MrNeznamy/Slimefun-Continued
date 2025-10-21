@@ -49,6 +49,9 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
             @Override
             public void init() {
                 createBorder(this);
+                // Ensure all cargo nodes have 54 slots to prevent ArrayIndexOutOfBoundsException
+                // when accessing higher slot numbers (e.g., slot 41 in AbstractFilterNode)
+                setSize(54);
             }
 
             @Override
@@ -107,8 +110,12 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
         if (channel == 16) {
             menu.replaceExistingItem(slotCurrent, CustomItemStack.create(HeadTexture.CHEST_TERMINAL.getAsItemStack(), "&bChannel ID: &3" + (channel + 1)));
             menu.addMenuClickHandler(slotCurrent, ChestMenuUtils.getEmptyClickHandler());
-        } else {
+        } else if (channel >= 0 && channel < 16) {
             menu.replaceExistingItem(slotCurrent, CustomItemStack.create(ColoredMaterial.WOOL.get(channel), "&bChannel ID: &3" + (channel + 1)));
+            menu.addMenuClickHandler(slotCurrent, ChestMenuUtils.getEmptyClickHandler());
+        } else {
+            // Fallback for invalid channel values
+            menu.replaceExistingItem(slotCurrent, CustomItemStack.create(ColoredMaterial.WOOL.get(15), "&bChannel ID: &3" + (channel + 1)));
             menu.addMenuClickHandler(slotCurrent, ChestMenuUtils.getEmptyClickHandler());
         }
 

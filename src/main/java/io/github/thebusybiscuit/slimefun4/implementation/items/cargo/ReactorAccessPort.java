@@ -131,6 +131,9 @@ public class ReactorAccessPort extends SlimefunItem {
     }
 
     private void constructMenu(@Nonnull BlockMenuPreset preset) {
+        // Set inventory size to 54 slots to accommodate all border slots (up to slot 53)
+        preset.setSize(54);
+        
         preset.drawBackground(ChestMenuUtils.getBackground(), background);
 
         preset.drawBackground(CustomItemStack.create(Material.LIME_STAINED_GLASS_PANE, " "), fuelBorder);

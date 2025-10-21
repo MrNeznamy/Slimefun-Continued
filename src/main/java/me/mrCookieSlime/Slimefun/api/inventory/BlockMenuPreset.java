@@ -46,6 +46,7 @@ public abstract class BlockMenuPreset extends ChestMenu {
         this.id = id;
         this.inventoryTitle = title;
         this.universal = universal;
+        
         init();
 
         Slimefun.getRegistry().getMenuPresets().put(id, this);
@@ -290,7 +291,8 @@ public abstract class BlockMenuPreset extends ChestMenu {
     }
 
     public static boolean isInventory(String id) {
-        return Slimefun.getRegistry().getMenuPresets().containsKey(id);
+        boolean hasPreset = Slimefun.getRegistry().getMenuPresets().containsKey(id);
+        return hasPreset;
     }
 
     public static boolean isUniversalInventory(String id) {

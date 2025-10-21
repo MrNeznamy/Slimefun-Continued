@@ -46,6 +46,7 @@ import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlock;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.guide.MaterialsRequiredMenu;
 import io.github.thebusybiscuit.slimefun4.implementation.tasks.AsyncRecipeChoiceTask;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -516,16 +517,36 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
         }
 
         ChestMenu menu = create(p);
-        Optional<String> wiki = item.getWikipage();
-
-        if (wiki.isPresent()) {
-            menu.addItem(8, CustomItemStack.create(Material.KNOWLEDGE_BOOK, ColorSystem.colorize("&f" + Slimefun.getLocalization().getMessage(p, "guide.tooltips.wiki")), "", ColorSystem.colorize("&7\u21E8 &a" + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup"))));
+        
+        // Add Materials Required button in slot 8 (only for SlimefunItems) - replaces wiki button
+        if (item instanceof SlimefunItem slimefunItem) {
+            String materialsTitle = Slimefun.getLocalization().getMessage(p, "guide.tooltips.materials-required");
+            if (materialsTitle.equals("guide.tooltips.materials-required")) {
+                materialsTitle = "Materials Required";
+            }
+            
+            menu.addItem(8, CustomItemStack.create(Material.BOOK, 
+                ColorSystem.colorize("&f" + materialsTitle), 
+                "", 
+                ColorSystem.colorize("&7\u21E8 &a" + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup"))));
             menu.addMenuClickHandler(8, (pl, slot, itemstack, action) -> {
-                pl.closeInventory();
-                ChatUtils.sendURL(pl, wiki.get());
+                MaterialsRequiredMenu.open(pl, slimefunItem, 0);
                 return false;
             });
+        } else {
+            // For non-SlimefunItems, show wiki button if available
+            Optional<String> wiki = item.getWikipage();
+            if (wiki.isPresent()) {
+                menu.addItem(8, CustomItemStack.create(Material.KNOWLEDGE_BOOK, ColorSystem.colorize("&f" + Slimefun.getLocalization().getMessage(p, "guide.tooltips.wiki")), "", ColorSystem.colorize("&7\u21E8 &a" + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup"))));
+                menu.addMenuClickHandler(8, (pl, slot, itemstack, action) -> {
+                    pl.closeInventory();
+                    ChatUtils.sendURL(pl, wiki.get());
+                    return false;
+                });
+            }
         }
+
+
 
         AsyncRecipeChoiceTask task = new AsyncRecipeChoiceTask();
 
