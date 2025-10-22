@@ -53,10 +53,10 @@ class PerformanceSummary {
 
     public void send(@Nonnull PerformanceInspector sender) {
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.GREEN + "===== Slimefun Lag Profiler =====");
-        sender.sendMessage(ChatColor.GOLD + "Total time: " + ChatColor.YELLOW + NumberUtils.getAsMillis(totalElapsedTime));
-        sender.sendMessage(ChatColor.GOLD + "Running every: " + ChatColor.YELLOW + NumberUtils.roundDecimalNumber(tickRate / 20.0) + "s (" + tickRate + " ticks)");
-        sender.sendMessage(ChatColor.GOLD + "Performance: " + getPerformanceRating());
+        sender.sendMessage(ColorSystem.colorize("&a===== Slimefun Lag Profiler ====="));
+        sender.sendMessage(ColorSystem.colorize("&6Total time: &e" + NumberUtils.getAsMillis(totalElapsedTime)));
+        sender.sendMessage(ColorSystem.colorize("&6Running every: &e" + NumberUtils.roundDecimalNumber(tickRate / 20.0) + "s (" + tickRate + " ticks)"));
+        sender.sendMessage(ColorSystem.colorize("&6Performance: " + getPerformanceRating()));
         sender.sendMessage("");
 
         summarizeTimings(totalTickedBlocks, "block", sender, items, entry -> {
@@ -111,11 +111,11 @@ class PerformanceSummary {
     @ParametersAreNonnullByDefault
     private TextComponent summarizeAsTextComponent(int count, String prefix, List<Map.Entry<String, Long>> results, Function<Entry<String, Long>, String> formatter) {
         TextComponent component = new TextComponent(prefix);
-        component.setColor(ChatColor.YELLOW);
+        component.setColor(net.md_5.bungee.api.ChatColor.YELLOW);
 
         if (count > 0) {
             TextComponent hoverComponent = new TextComponent("  (Hover for details)");
-            hoverComponent.setColor(ChatColor.GRAY);
+            hoverComponent.setColor(net.md_5.bungee.api.ChatColor.GRAY);
             StringBuilder builder = new StringBuilder();
 
             int shownEntries = 0;
@@ -123,7 +123,7 @@ class PerformanceSummary {
 
             for (Map.Entry<String, Long> entry : results) {
                 if (shownEntries < MAX_ITEMS && (shownEntries < MIN_ITEMS || entry.getValue() > VISIBILITY_THRESHOLD)) {
-                    builder.append("\n").append(ChatColor.YELLOW).append(formatter.apply(entry));
+                    builder.append("\n").append("&e").append(formatter.apply(entry));
                     shownEntries++;
                 } else {
                     hiddenEntries++;
@@ -150,15 +150,15 @@ class PerformanceSummary {
         int hiddenEntries = 0;
 
         StringBuilder builder = new StringBuilder();
-        builder.append(ChatColor.GOLD).append(prefix);
+        builder.append("&6").append(prefix);
 
         if (count > 0) {
-            builder.append(ChatColor.YELLOW);
+            builder.append("&e");
 
             for (Map.Entry<String, Long> entry : results) {
                 if (inspector.isVerbose() || (shownEntries < MAX_ITEMS && (shownEntries < MIN_ITEMS || entry.getValue() > VISIBILITY_THRESHOLD))) {
                     builder.append("\n  ");
-                    builder.append(ChatColor.stripColor(formatter.apply(entry)));
+                    builder.append(ColorSystem.stripColor(formatter.apply(entry)));
                     shownEntries++;
                 } else {
                     hiddenEntries++;
@@ -184,15 +184,15 @@ class PerformanceSummary {
             rest--;
         }
 
-        builder.append(ChatColor.DARK_GRAY)
+        builder.append("&8")
             .append(":".repeat(Math.max(0, rest)))
             .append(" - ")
             .append(rating.getColor()).append(ChatUtils.humanize(rating.name()))
-            .append(ChatColor.GRAY)
+            .append("&7")
             .append(" (")
             .append(NumberUtils.roundDecimalNumber(percentage))
             .append("%)");
 
-        return builder.toString();
+        return ColorSystem.colorize(builder.toString());
     }
 }

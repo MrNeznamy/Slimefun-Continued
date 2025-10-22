@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.SoundCategory;
@@ -154,7 +154,7 @@ public class VanillaAutoCrafter extends AbstractAutoCrafter {
 
         AbstractRecipe recipe = AbstractRecipe.of(recipes.get(index));
 
-        menu.replaceExistingItem(49, CustomItemStack.create(Material.CRAFTING_TABLE, ChatColor.GREEN + Slimefun.getLocalization().getMessage(p, "messages.auto-crafting.select")));
+        menu.replaceExistingItem(49, CustomItemStack.create(Material.CRAFTING_TABLE, "&a" + Slimefun.getLocalization().getMessage(p, "messages.auto-crafting.select")));
         menu.addMenuClickHandler(49, (pl, slot, item, action) -> {
             setSelectedRecipe(b, recipe);
             pl.closeInventory();

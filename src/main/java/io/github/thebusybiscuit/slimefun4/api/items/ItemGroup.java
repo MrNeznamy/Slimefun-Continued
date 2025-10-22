@@ -223,14 +223,108 @@ public class ItemGroup implements Keyed {
                 name = item.getItemMeta().getDisplayName();
             }
 
-            if (this instanceof SeasonalItemGroup) {
-                meta.setDisplayName(ColorSystem.colorize("&6") + name);
-            } else {
-                meta.setDisplayName(ColorSystem.colorize("&e") + name);
+            // Determine color scheme based on category type
+            String[] colors = getColorScheme();
+            String primaryColor = colors[0];
+            String secondaryColor = colors[1];
+
+            // Set category name with appropriate color scheme
+            meta.setDisplayName(ColorSystem.colorize(primaryColor) + name);
+
+            // Create enhanced lore with INFORMATIONS and DESCRIPTION sections
+            List<String> lore = new ArrayList<>();
+            
+            // Add empty line after category name
+            lore.add(ColorSystem.colorize("&f"));
+            
+            // INFORMATIONS section header
+            String informationsHeader = Slimefun.getLocalization().getMessage(p, "guide.categories.informations");
+            if (informationsHeader != null) {
+                String coloredHeader = informationsHeader.replace("{PRIMARY_COLOR}", primaryColor)
+                                                        .replace("{SECONDARY_COLOR}", secondaryColor);
+                lore.add(ColorSystem.colorize(coloredHeader));
+            }
+            
+            // Items count
+            int itemCount = items.size();
+            String itemCountText = Slimefun.getLocalization().getMessage(p, "guide.categories.items-count");
+            if (itemCountText != null) {
+                String coloredItemCount = itemCountText.replace("{PRIMARY_COLOR}", primaryColor)
+                                                      .replace("{SECONDARY_COLOR}", secondaryColor)
+                                                      .replace("{0}", String.valueOf(itemCount));
+                lore.add(ColorSystem.colorize(coloredItemCount));
+            }
+            
+            lore.add(ColorSystem.colorize("&f")); // Empty white line
+            
+            // DESCRIPTION section header
+            String descriptionHeader = Slimefun.getLocalization().getMessage(p, "guide.categories.description-header");
+            if (descriptionHeader != null) {
+                String coloredDescHeader = descriptionHeader.replace("{PRIMARY_COLOR}", primaryColor)
+                                                           .replace("{SECONDARY_COLOR}", secondaryColor);
+                lore.add(ColorSystem.colorize(coloredDescHeader));
+            }
+            
+            // Category description
+            String categoryKey = getKey().getKey();
+            String descriptionKey = "guide.categories.descriptions." + categoryKey;
+            String description = Slimefun.getLocalization().getMessage(p, descriptionKey);
+            if (description != null) {
+                String descriptionText = Slimefun.getLocalization().getMessage(p, "guide.categories.description-text");
+                if (descriptionText != null) {
+                    String coloredDescText = descriptionText.replace("{PRIMARY_COLOR}", primaryColor)
+                                                           .replace("{SECONDARY_COLOR}", secondaryColor)
+                                                           .replace("{0}", description);
+                    lore.add(ColorSystem.colorize(coloredDescText));
+                }
+            }
+            
+            lore.add(ColorSystem.colorize("&f")); // Empty white line
+            
+            // Click instruction
+            String clickInstruction = Slimefun.getLocalization().getMessage(p, "guide.categories.click-instruction");
+            if (clickInstruction != null) {
+                String coloredClickInstruction = clickInstruction.replace("{PRIMARY_COLOR}", primaryColor)
+                                                                .replace("{SECONDARY_COLOR}", secondaryColor);
+                lore.add(ColorSystem.colorize(coloredClickInstruction));
             }
 
-            meta.setLore(Arrays.asList("", ColorSystem.colorize("&7") + "\u21E8 " + ColorSystem.colorize("&a") + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
+            meta.setLore(lore);
         });
+    }
+
+    /**
+     * Gets the color scheme for this ItemGroup based on its type.
+     * Returns an array with [primaryColor, secondaryColor].
+     * Colors are loaded from localization files with fallback to defaults.
+     *
+     * @return Color scheme array
+     */
+    private @Nonnull String[] getColorScheme() {
+        String categoryKey = getKey().getKey();
+        
+        // Try to load colors from localization
+        String primaryColorKey = "guide.categories.colors." + categoryKey + ".primary";
+        String secondaryColorKey = "guide.categories.colors." + categoryKey + ".secondary";
+        
+        String primaryColor = Slimefun.getLocalization().getMessage(primaryColorKey);
+        String secondaryColor = Slimefun.getLocalization().getMessage(secondaryColorKey);
+        
+        // If specific category colors not found, try default colors
+        if (primaryColor == null || secondaryColor == null) {
+            primaryColor = Slimefun.getLocalization().getMessage("guide.categories.colors.default.primary");
+            secondaryColor = Slimefun.getLocalization().getMessage("guide.categories.colors.default.secondary");
+        }
+        
+        // Final fallback to hardcoded defaults if localization fails
+        if (primaryColor == null) {
+            primaryColor = "#926CDE";
+        }
+        if (secondaryColor == null) {
+            secondaryColor = "#E982D9";
+        }
+        
+        return new String[]{primaryColor, secondaryColor};
     }
 
     /**

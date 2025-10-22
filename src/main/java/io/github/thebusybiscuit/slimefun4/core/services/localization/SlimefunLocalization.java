@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -332,14 +332,14 @@ public abstract class SlimefunLocalization implements Keyed {
 
             // Set the display name if possible, else keep the default item name.
             if (displayName != null) {
-                meta.setDisplayName(ChatColor.AQUA + displayName);
+                meta.setDisplayName("&b" + displayName);
             }
 
             List<String> lore = getStringListOrNull(language, LanguageFile.RECIPES, key.getNamespace() + "." + key.getKey() + ".lore");
 
             // Set the lore if possible, else keep the default lore.
             if (lore != null) {
-                lore.replaceAll(line -> ChatColor.GRAY + line);
+                lore.replaceAll(line -> "&7" + line);
                 meta.setLore(lore);
             }
 
@@ -357,7 +357,7 @@ public abstract class SlimefunLocalization implements Keyed {
         if (recipient instanceof Player player) {
             recipient.sendMessage(ColorSystem.colorize(prefix + getMessage(player, key)));
         } else {
-            recipient.sendMessage(ChatColor.stripColor(ColorSystem.colorize(prefix + getMessage(key))));
+            recipient.sendMessage(ColorSystem.stripColor(ColorSystem.colorize(prefix + getMessage(key))));
         }
     }
 
@@ -392,7 +392,7 @@ public abstract class SlimefunLocalization implements Keyed {
         if (recipient instanceof Player player) {
             recipient.sendMessage(ColorSystem.colorize(prefix + function.apply(getMessage(player, key))));
         } else {
-            recipient.sendMessage(ChatColor.stripColor(ColorSystem.colorize(prefix + function.apply(getMessage(key)))));
+            recipient.sendMessage(ColorSystem.stripColor(ColorSystem.colorize(prefix + function.apply(getMessage(key)))));
         }
     }
 
@@ -407,7 +407,7 @@ public abstract class SlimefunLocalization implements Keyed {
         } else {
             for (String translation : getDefaultMessages(key)) {
                 String message = ColorSystem.colorize(prefix + translation);
-                recipient.sendMessage(ChatColor.stripColor(message));
+                recipient.sendMessage(ColorSystem.stripColor(message));
             }
         }
     }
@@ -424,7 +424,7 @@ public abstract class SlimefunLocalization implements Keyed {
         } else {
             for (String translation : getDefaultMessages(key)) {
                 String message = ColorSystem.colorize(prefix + function.apply(translation));
-                recipient.sendMessage(ChatColor.stripColor(message));
+                recipient.sendMessage(ColorSystem.stripColor(message));
             }
         }
     }

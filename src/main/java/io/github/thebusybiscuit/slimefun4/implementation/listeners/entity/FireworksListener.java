@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners.entity;
 
 import javax.annotation.Nonnull;
 
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,7 +37,7 @@ public class FireworksListener implements Listener {
 
               Entity display names do not work either as Firework cannot be named.
              */
-            if (meta.hasDisplayName() && meta.getDisplayName().equals(ChatColor.GREEN + "Slimefun Research")) {
+            if (meta.hasDisplayName() && meta.getDisplayName().equals(ColorSystem.colorize("&aSlimefun Research"))) {
                 e.setCancelled(true);
             }
         }

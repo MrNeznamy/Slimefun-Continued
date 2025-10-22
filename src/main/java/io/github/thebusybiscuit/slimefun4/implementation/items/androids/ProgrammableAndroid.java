@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -233,7 +233,7 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
 
     @ParametersAreNonnullByDefault
     public void openScript(Player p, Block b, String sourceCode) {
-        ChestMenu menu = new ChestMenu(ChatColor.DARK_AQUA + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
+        ChestMenu menu = new ChestMenu("&3" + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
         menu.setEmptySlotsClickable(false);
 
         menu.addItem(0, CustomItemStack.create(Instruction.START.getItem(), Slimefun.getLocalization().getMessage(p, "android.scripts.instructions.START"), "", "&7\u21E8 &eLeft Click &7to return to the Android's interface"));
@@ -484,7 +484,7 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
     }
 
     public void openScriptEditor(Player p, Block b) {
-        ChestMenu menu = new ChestMenu(ChatColor.DARK_AQUA + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
+        ChestMenu menu = new ChestMenu("&3" + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
         menu.setEmptySlotsClickable(false);
 
         menu.addItem(1, CustomItemStack.create(HeadTexture.SCRIPT_FORWARD.getAsItemStack(), "&2> Edit Script", "", "&aEdits your current Script"));
@@ -549,7 +549,7 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
     }
 
     protected void editInstruction(Player p, Block b, String[] script, int index) {
-        ChestMenu menu = new ChestMenu(ChatColor.DARK_AQUA + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
+        ChestMenu menu = new ChestMenu("&3" + Slimefun.getLocalization().getMessage(p, "android.scripts.editor"));
         ChestMenuUtils.drawBackground(menu, 0, 1, 2, 3, 4, 5, 6, 7, 8);
 
         menu.setEmptySlotsClickable(false);

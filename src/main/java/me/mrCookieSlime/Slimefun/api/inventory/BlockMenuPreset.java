@@ -226,12 +226,13 @@ public abstract class BlockMenuPreset extends ChestMenu {
     protected void clone(@Nonnull DirtyChestMenu menu) {
         menu.setPlayerInventoryClickable(true);
 
-        for (int slot : occupiedSlots) {
-            menu.addItem(slot, getItemInSlot(slot));
-        }
-
+        // Set the size first to ensure the inventory can accommodate all slots
         if (size > -1) {
             menu.addItem(size - 1, null);
+        }
+
+        for (int slot : occupiedSlots) {
+            menu.addItem(slot, getItemInSlot(slot));
         }
 
         if (menu instanceof BlockMenu blockMenu) {

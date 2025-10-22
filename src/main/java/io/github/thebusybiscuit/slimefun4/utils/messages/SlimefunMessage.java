@@ -5,9 +5,11 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.ChatColor;
+
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import eu.mrneznamy.utils.ColorSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +82,7 @@ public class SlimefunMessage {
      */
     private String colorize(String text) {
         if (text == null) return null;
-        return ChatColor.translateAlternateColorCodes('&', text);
+        return ColorSystem.colorize(text);
     }
     
     /**

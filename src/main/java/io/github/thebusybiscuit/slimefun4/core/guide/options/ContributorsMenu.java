@@ -14,6 +14,7 @@ import eu.mrneznamy.utils.ColorSystem;
 import eu.mrneznamy.slimefun5.common.CommonPatterns;
 import eu.mrneznamy.slimefun5.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.core.services.github.Contributor;
+import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
@@ -33,6 +34,14 @@ final class ContributorsMenu {
     private ContributorsMenu() {}
 
     public static void open(Player p, int page) {
+        openWithService(p, page, Slimefun.getGitHubService(), false);
+    }
+
+    public static void openSF4Contributors(Player p, int page) {
+        openWithService(p, page, Slimefun.getSF4GitHubService(), true);
+    }
+
+    private static void openWithService(Player p, int page, GitHubService githubService, boolean isSF4) {
         ChestMenu menu = new ChestMenu(Slimefun.getLocalization().getMessage(p, "guide.title.credits"));
 
         menu.setEmptySlotsClickable(false);
@@ -46,7 +55,7 @@ final class ContributorsMenu {
             return false;
         });
 
-        List<Contributor> contributors = new ArrayList<>(Slimefun.getGitHubService().getContributors().values());
+        List<Contributor> contributors = new ArrayList<>(githubService.getContributors().values());
         contributors.sort(Comparator.comparingInt(Contributor::getPosition));
 
         for (int i = page * 36; i < contributors.size() && i < (page + 1) * 36; i++) {
@@ -68,7 +77,11 @@ final class ContributorsMenu {
         menu.addItem(46, ChestMenuUtils.getPreviousButton(p, page + 1, pages));
         menu.addMenuClickHandler(46, (pl, slot, item, action) -> {
             if (page > 0) {
-                open(pl, page - 1);
+                if (isSF4) {
+                    openSF4Contributors(pl, page - 1);
+                } else {
+                    open(pl, page - 1);
+                }
             }
 
             return false;
@@ -77,7 +90,11 @@ final class ContributorsMenu {
         menu.addItem(52, ChestMenuUtils.getNextButton(p, page + 1, pages));
         menu.addMenuClickHandler(52, (pl, slot, item, action) -> {
             if (page + 1 < pages) {
-                open(pl, page + 1);
+                if (isSF4) {
+                    openSF4Contributors(pl, page + 1);
+                } else {
+                    open(pl, page + 1);
+                }
             }
 
             return false;

@@ -7,7 +7,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -56,15 +56,15 @@ class GuideModeOption implements SlimefunGuideOption<SlimefunGuideMode> {
             }
 
             ItemMeta meta = item.getItemMeta();
-            meta.setDisplayName(ChatColor.GRAY + Slimefun.getLocalization().getMessage(p, "guide.modes.selected") +
-                    ChatColor.YELLOW + Slimefun.getLocalization().getMessage(p, "guide.modes." + selectedMode.name()));
+            meta.setDisplayName("&7" + Slimefun.getLocalization().getMessage(p, "guide.modes.selected") +
+                    "&e" + Slimefun.getLocalization().getMessage(p, "guide.modes." + selectedMode.name()));
             List<String> lore = new ArrayList<>();
             lore.add("");
-            lore.add((selectedMode == SlimefunGuideMode.SURVIVAL_MODE ? ChatColor.GREEN : ChatColor.GRAY) + Slimefun.getLocalization().getMessage(p, "guide.modes.SURVIVAL_MODE"));
-            lore.add((selectedMode == SlimefunGuideMode.CHEAT_MODE ? ChatColor.GREEN : ChatColor.GRAY) + Slimefun.getLocalization().getMessage(p, "guide.modes.CHEAT_MODE"));
+            lore.add((selectedMode == SlimefunGuideMode.SURVIVAL_MODE ? "&a" : "&7") + Slimefun.getLocalization().getMessage(p, "guide.modes.SURVIVAL_MODE"));
+            lore.add((selectedMode == SlimefunGuideMode.CHEAT_MODE ? "&a" : "&7") + Slimefun.getLocalization().getMessage(p, "guide.modes.CHEAT_MODE"));
 
             lore.add("");
-            lore.add(ChatColor.GRAY + "\u21E8 " + ChatColor.YELLOW + Slimefun.getLocalization().getMessage(p, "guide.modes.change"));
+            lore.add("&7\u21E8 &e" + Slimefun.getLocalization().getMessage(p, "guide.modes.change"));
             meta.setLore(lore);
             item.setItemMeta(meta);
 

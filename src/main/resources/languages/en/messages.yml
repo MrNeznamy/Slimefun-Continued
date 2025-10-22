@@ -63,8 +63,60 @@ guide:
     wiki: 'View this Item on the official Slimefun Wiki'
 
   categories:
-    items-count: '#926CDE&l➥ &8| #E982D9Items in this category: {0}'
-    click-instruction: '#926CDELeft-Click &8| #E982D9To open this category!'
+    informations: '{PRIMARY_COLOR}&lINFORMATIONS:'
+    items-count: '{PRIMARY_COLOR}&l➥ &8| {SECONDARY_COLOR}Items in this category: {0}'
+    description-header: '{PRIMARY_COLOR}&lDESCRIPTION:'
+    description-text: '{PRIMARY_COLOR}&l➥ &8| {SECONDARY_COLOR}{0}'
+    click-instruction: '{PRIMARY_COLOR}Left-Click &8| {SECONDARY_COLOR}To open this category!'
+    
+    colors:
+      # Default colors
+      default:
+        primary: '#926CDE'
+        secondary: '#E982D9'
+      
+      # Seasonal colors
+      halloween:
+        primary: '#FF6B35'
+        secondary: '#2C2C2C'
+      christmas:
+        primary: '#DC143C'
+        secondary: '#228B22'
+      easter:
+        primary: '#FFB6C1'
+        secondary: '#98FB98'
+      valentines_day:
+        primary: '#FF69B4'
+        secondary: '#DC143C'
+      birthday:
+        primary: '#FFD700'
+        secondary: '#FF4500'
+
+    descriptions:
+      halloween: 'Spooky items for Halloween celebrations!'
+      christmas: 'Festive items for Christmas season!'
+      easter: 'Colorful items for Easter festivities!'
+      valentines_day: 'Romantic items for Valentine''s Day!'
+      birthday: 'Special items for TheBusyBiscuit''s birthday!'
+      weapons: 'Combat weapons and tools'
+      tools: 'Useful tools for various tasks'
+      items: 'Miscellaneous useful items'
+      food: 'Edible items and consumables'
+      basic_machines: 'Essential machines for automation'
+      electricity: 'Energy generation and electrical components'
+      androids: 'Programmable robotic assistants'
+      gps: 'GPS-based machines and navigation'
+      armor: 'Protective equipment and gear'
+      magical_items: 'Items with magical properties'
+      magical_gadgets: 'Magical tools and devices'
+      misc: 'Various miscellaneous items'
+      technical_gadgets: 'Advanced technical devices'
+      resources: 'Raw materials and resources'
+      cargo: 'Cargo management and transportation'
+      tech_misc: 'Technical components and parts'
+      magical_armor: 'Armor with magical enhancements'
+      talismans: 'Protective talismans (Tier I)'
+      ender_talismans: 'Enhanced ender talismans (Tier II)'
 
     recipes:
       machine: 'Recipes made in this Machine'

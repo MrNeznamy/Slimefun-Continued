@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -37,7 +37,7 @@ public class ChestMenu {
      *            The title of the Menu
      */
     public ChestMenu(String title) {
-        this.title = ChatColor.translateAlternateColorCodes('&', title);
+        this.title = ColorSystem.colorize(title);
         this.clickable = false;
         this.emptyClickable = true;
         this.items = new ArrayList<>();

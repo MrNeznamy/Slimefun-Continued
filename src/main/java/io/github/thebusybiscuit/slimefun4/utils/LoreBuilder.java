@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import eu.mrneznamy.utils.ColorSystem;
 
 /**
  * This utility class provides a few handy methods and constants to build the lore of any
@@ -23,11 +24,11 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
  */
 public final class LoreBuilder {
 
-    public static final String HAZMAT_SUIT_REQUIRED = "&8\u21E8 &4Hazmat Suit required!";
-    public static final String RAINBOW = "&dCycles through all Colors of the Rainbow!";
-    public static final String RIGHT_CLICK_TO_USE = "&eRight Click&7 to use";
-    public static final String RIGHT_CLICK_TO_OPEN = "&eRight Click&7 to open";
-    public static final String CROUCH_TO_USE = "&eCrouch&7 to use";
+    public static final String HAZMAT_SUIT_REQUIRED = ColorSystem.colorize("&8\u21E8 &4Hazmat Suit required!");
+    public static final String RAINBOW = ColorSystem.colorize("&dCycles through all Colors of the Rainbow!");
+    public static final String RIGHT_CLICK_TO_USE = ColorSystem.colorize("&eRight Click&7 to use");
+    public static final String RIGHT_CLICK_TO_OPEN = ColorSystem.colorize("&eRight Click&7 to open");
+    public static final String CROUCH_TO_USE = ColorSystem.colorize("&eCrouch&7 to use");
 
     private static final DecimalFormat hungerFormat = new DecimalFormat("#.0", DecimalFormatSymbols.getInstance(Locale.ROOT));
 
@@ -42,7 +43,7 @@ public final class LoreBuilder {
     }
 
     public static @Nonnull String speed(float speed) {
-        return "&8\u21E8 &b\u26A1 &7Speed: &b" + speed + 'x';
+        return ColorSystem.colorize("&8\u21E8 &b\u26A1 &7Speed: &b" + speed + 'x');
     }
 
     public static @Nonnull String powerBuffer(int power) {
@@ -54,27 +55,27 @@ public final class LoreBuilder {
     }
 
     public static @Nonnull String power(int power, @Nonnull String suffix) {
-        return "&8\u21E8 &e\u26A1 &7" + power + " J" + suffix;
+        return ColorSystem.colorize("&8\u21E8 &e\u26A1 &7" + power + " J" + suffix);
     }
 
     public static @Nonnull String powerCharged(int charge, int capacity) {
-        return "&8\u21E8 &e\u26A1 &7" + charge + " / " + capacity + " J";
+        return ColorSystem.colorize("&8\u21E8 &e\u26A1 &7" + charge + " / " + capacity + " J");
     }
 
     public static @Nonnull String material(@Nonnull String material) {
-        return "&8\u21E8 &7Material: &b" + material;
+        return ColorSystem.colorize("&8\u21E8 &7Material: &b" + material);
     }
 
     public static @Nonnull String hunger(double value) {
-        return "&7&oRestores &b&o" + hungerFormat.format(value) + " &7&oHunger";
+        return ColorSystem.colorize("&7&oRestores &b&o" + hungerFormat.format(value) + " &7&oHunger");
     }
 
     public static @Nonnull String range(int blocks) {
-        return "&7Range: &c" + blocks + " blocks";
+        return ColorSystem.colorize("&7Range: &c" + blocks + " blocks");
     }
 
     public static @Nonnull String usesLeft(int usesLeft) {
-        return "&e" + usesLeft + ' ' + (usesLeft > 1 ? "Uses" : "Use") + " &7left";
+        return ColorSystem.colorize("&e" + usesLeft + ' ' + (usesLeft > 1 ? "Uses" : "Use") + " &7left");
     }
 
 }

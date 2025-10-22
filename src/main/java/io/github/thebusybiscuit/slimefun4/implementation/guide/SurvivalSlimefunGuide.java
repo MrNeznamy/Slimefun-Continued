@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.entity.Player;

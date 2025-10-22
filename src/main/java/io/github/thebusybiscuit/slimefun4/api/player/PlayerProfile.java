@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 import io.github.thebusybiscuit.slimefun4.storage.data.PlayerData;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -324,9 +324,9 @@ public class PlayerProfile {
         sender.sendMessage("");
         sender.sendMessage(ColorSystem.colorize("&7Statistics for Player: &b" + name));
         sender.sendMessage("");
-        sender.sendMessage(ColorSystem.colorize("&7Title: " + ChatColor.AQUA + getTitle()));
-        sender.sendMessage(ColorSystem.colorize("&7Research Progress: " + NumberUtils.getColorFromPercentage(progress) + progress + " &r% " + ChatColor.YELLOW + '(' + unlockedResearches + " / " + allResearches + ')'));
-        sender.sendMessage(ColorSystem.colorize("&7Total XP Levels spent: " + ChatColor.AQUA + levels));
+        sender.sendMessage(ColorSystem.colorize("&7Title: " + "&b" + getTitle()));
+        sender.sendMessage(ColorSystem.colorize("&7Research Progress: " + NumberUtils.getColorFromPercentage(progress) + progress + " &r% " + "&e" + '(' + unlockedResearches + " / " + allResearches + ')'));
+        sender.sendMessage(ColorSystem.colorize("&7Total XP Levels spent: " + "&b" + levels));
     }
 
     /**

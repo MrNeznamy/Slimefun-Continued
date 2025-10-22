@@ -18,6 +18,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
@@ -52,6 +53,13 @@ public class SlimefunItemInteractListener implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent e) {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            // Only process main hand events - ignore off-hand completely
+            if (e.getHand() != EquipmentSlot.HAND) {
+                return;
+            }
+            
+
+            
             // Exclude the Debug Fish here because it is handled in a seperate Listener
             if (SlimefunUtils.isItemSimilar(e.getItem(), SlimefunItems.DEBUG_FISH.item(), true)) {
                 return;
@@ -68,7 +76,7 @@ public class SlimefunItemInteractListener implements Listener {
             PlayerRightClickEvent event = new PlayerRightClickEvent(e);
             Bukkit.getPluginManager().callEvent(event);
 
-            boolean itemUsed = e.getHand() == EquipmentSlot.HAND;
+            boolean itemUsed = (e.getHand() == EquipmentSlot.HAND);
 
             // Only handle the Item if it hasn't been denied
             if (event.useItem() != Result.DENY) {
@@ -113,7 +121,9 @@ public class SlimefunItemInteractListener implements Listener {
             SlimefunItem sfItem = optional.get();
 
             if (sfItem.canUse(e.getPlayer(), true)) {
-                return sfItem.callItemHandler(ItemUseHandler.class, handler -> handler.onRightClick(event));
+                return sfItem.callItemHandler(ItemUseHandler.class, handler -> {
+                    handler.onRightClick(event);
+                });
             } else {
                 event.setUseItem(Result.DENY);
             }

@@ -5,7 +5,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -70,11 +70,11 @@ public class CargoManager extends SlimefunItem implements HologramOwner {
                     if (BlockStorage.getLocationInfo(b.getLocation(), "visualizer") == null) {
                         // Visualizer is currently enabled (null = enabled), so disable it
                         BlockStorage.addBlockInfo(b, "visualizer", "disabled");
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cCargo Net Visualizer: " + "&4\u2718 &7(Disabled)"));
+                        p.sendMessage(ColorSystem.colorize("&cCargo Net Visualizer: " + "&4\u2718 &7(Disabled)"));
                     } else {
                         // Visualizer is currently disabled, so enable it
                         BlockStorage.addBlockInfo(b, "visualizer", null);
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aCargo Net Visualizer: " + "&2\u2714 &7(Enabled)"));
+                        p.sendMessage(ColorSystem.colorize("&aCargo Net Visualizer: " + "&2\u2714 &7(Enabled)"));
                     }
                 }
             }

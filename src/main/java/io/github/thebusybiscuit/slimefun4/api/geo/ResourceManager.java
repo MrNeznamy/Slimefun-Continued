@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -233,7 +233,7 @@ public class ResourceManager {
             menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
 
-        menu.addItem(4, CustomItemStack.create(HeadTexture.MINECRAFT_CHUNK.getAsItemStack(), ChatColor.YELLOW + Slimefun.getLocalization().getResourceString(p, "tooltips.chunk"), "", "&8\u21E8 &7" + Slimefun.getLocalization().getResourceString(p, "tooltips.world") + ": " + block.getWorld().getName(), "&8\u21E8 &7X: " + x + " Z: " + z), ChestMenuUtils.getEmptyClickHandler());
+        menu.addItem(4, CustomItemStack.create(HeadTexture.MINECRAFT_CHUNK.getAsItemStack(), "&e" + Slimefun.getLocalization().getResourceString(p, "tooltips.chunk"), "", "&8\u21E8 &7" + Slimefun.getLocalization().getResourceString(p, "tooltips.world") + ": " + block.getWorld().getName(), "&8\u21E8 &7X: " + x + " Z: " + z), ChestMenuUtils.getEmptyClickHandler());
         List<GEOResource> resources = new ArrayList<>(Slimefun.getRegistry().getGEOResources().values());
         resources.sort(Comparator.comparing(a -> a.getName(p).toLowerCase(Locale.ROOT)));
 

@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 
 /**
  * This enum is used to quantify Slimefun's performance impact. This way we can assign a
@@ -21,20 +21,20 @@ public enum PerformanceRating implements Predicate<Float> {
 
     // Thresholds might change in the future!
 
-    UNKNOWN(ChatColor.WHITE, -1),
+    UNKNOWN(ColorSystem.colorize("&f"), -1),
 
-    GOOD(ChatColor.DARK_GREEN, 10),
-    FINE(ChatColor.DARK_GREEN, 20),
-    OKAY(ChatColor.GREEN, 30),
-    MODERATE(ChatColor.YELLOW, 55),
-    SEVERE(ChatColor.RED, 85),
-    HURTFUL(ChatColor.DARK_RED, 500),
-    BAD(ChatColor.DARK_RED, Float.MAX_VALUE);
+    GOOD(ColorSystem.colorize("&2"), 10),
+    FINE(ColorSystem.colorize("&2"), 20),
+    OKAY(ColorSystem.colorize("&a"), 30),
+    MODERATE(ColorSystem.colorize("&e"), 55),
+    SEVERE(ColorSystem.colorize("&c"), 85),
+    HURTFUL(ColorSystem.colorize("&4"), 500),
+    BAD(ColorSystem.colorize("&4"), Float.MAX_VALUE);
 
-    private final ChatColor color;
+    private final String color;
     private final float threshold;
 
-    PerformanceRating(@Nonnull ChatColor color, float threshold) {
+    PerformanceRating(@Nonnull String color, float threshold) {
         Validate.notNull(color, "Color cannot be null");
         this.color = color;
         this.threshold = threshold;
@@ -51,7 +51,7 @@ public enum PerformanceRating implements Predicate<Float> {
     }
 
     @Nonnull
-    public ChatColor getColor() {
+    public String getColor() {
         return color;
     }
 

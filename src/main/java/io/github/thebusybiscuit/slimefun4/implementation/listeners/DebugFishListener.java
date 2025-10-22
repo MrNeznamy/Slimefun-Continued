@@ -49,8 +49,8 @@ public class DebugFishListener implements Listener {
     public DebugFishListener(@Nonnull Slimefun plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
-        greenCheckmark = "&2\u2714";
-        redCross = "&4\u2718";
+        greenCheckmark = ColorSystem.colorize("&2\u2714");
+        redCross = ColorSystem.colorize("&4\u2718");
     }
 
     @EventHandler

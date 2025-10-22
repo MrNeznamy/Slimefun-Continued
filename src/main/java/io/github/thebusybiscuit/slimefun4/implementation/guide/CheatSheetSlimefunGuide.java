@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 
+import eu.mrneznamy.utils.ColorSystem;
+
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
@@ -36,7 +38,7 @@ public class CheatSheetSlimefunGuide extends SurvivalSlimefunGuide {
     public CheatSheetSlimefunGuide() {
         super(false, true);
 
-        item = new SlimefunGuideItem(this, "&cSlimefun Guide &4(Cheat Sheet)");
+        item = new SlimefunGuideItem(this, ColorSystem.colorize("&cSlimefun Guide &4(Cheat Sheet)"));
     }
 
     /**

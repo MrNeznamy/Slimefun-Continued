@@ -10,7 +10,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -72,14 +72,14 @@ public final class TeleportationManager {
         if (teleporterUsers.add(p.getUniqueId())) {
             SoundEffect.TELEPORTATION_MANAGER_OPEN_GUI.playFor(p);
             PlayerProfile.fromUUID(ownerUUID, profile -> {
-                ChestMenu menu = new ChestMenu("&3Teleporter");
+                ChestMenu menu = new ChestMenu(ColorSystem.colorize("&3Teleporter"));
                 menu.addMenuCloseHandler(pl -> teleporterUsers.remove(pl.getUniqueId()));
 
                 for (int slot : teleporterBorder) {
                     menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
                 }
 
-                menu.addItem(4, CustomItemStack.create(HeadTexture.GLOBE_OVERWORLD.getAsItemStack(), ChatColor.YELLOW + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.title")));
+                menu.addItem(4, CustomItemStack.create(HeadTexture.GLOBE_OVERWORLD.getAsItemStack(), "&e" + Slimefun.getLocalization().getMessage(p, "machines.TELEPORTER.gui.title")));
                 menu.addMenuClickHandler(4, ChestMenuUtils.getEmptyClickHandler());
 
                 Location source = new Location(b.getWorld(), b.getX() + 0.5D, b.getY() + 2D, b.getZ() + 0.5D);

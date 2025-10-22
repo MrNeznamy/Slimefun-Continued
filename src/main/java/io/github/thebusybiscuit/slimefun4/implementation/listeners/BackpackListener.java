@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SoundCategory;
@@ -138,8 +138,10 @@ public class BackpackListener implements Listener {
     @ParametersAreNonnullByDefault
     public void openBackpack(Player p, ItemStack item, SlimefunBackpack backpack) {
         if (item.getAmount() == 1) {
-            if (backpack.canUse(p, true) && !PlayerProfile.get(p, profile -> openBackpack(p, item, profile, backpack.getSize()))) {
-                Slimefun.getLocalization().sendMessage(p, "messages.opening-backpack");
+            if (backpack.canUse(p, true)) {
+                if (!PlayerProfile.get(p, profile -> openBackpack(p, item, profile, backpack.getSize()))) {
+                    Slimefun.getLocalization().sendMessage(p, "messages.opening-backpack");
+                }
             }
         } else {
             Slimefun.getLocalization().sendMessage(p, "backpack.no-stack", true);
@@ -151,7 +153,7 @@ public class BackpackListener implements Listener {
         List<String> lore = item.getItemMeta().getLore();
 
         for (int line = 0; line < lore.size(); line++) {
-            if (lore.get(line).equals(ChatColor.GRAY + "ID: <ID>")) {
+            if (lore.get(line).equals(ColorSystem.colorize("&7ID: <ID>"))) {
                 setBackpackId(p, item, line, profile.createBackpack(size).getId());
                 break;
             }

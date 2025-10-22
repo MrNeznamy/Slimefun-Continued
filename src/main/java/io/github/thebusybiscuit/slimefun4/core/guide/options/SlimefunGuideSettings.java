@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -93,24 +93,24 @@ public final class SlimefunGuideSettings {
 
         List<String> contributorsLore = new ArrayList<>();
         contributorsLore.add("");
-        contributorsLore.addAll(locale.getMessages(p, "guide.credits.description", msg -> msg.replace("%contributors%", String.valueOf(github.getContributors().size()))));
+        contributorsLore.addAll(locale.getMessages(p, "guide.menu.contributors.description"));
         contributorsLore.add("");
         contributorsLore.add("&7\u21E8 &e" + locale.getMessage(p, "guide.credits.open"));
 
         // @formatter:off
         menu.addItem(2, CustomItemStack.create(SlimefunUtils.getCustomHead("e952d2b3f351a6b0487cc59db31bf5f2641133e5ba0006b18576e996a0293e52"),
-            "&c" + locale.getMessage(p, "guide.title.credits"),
+            "&" + locale.getMessage(p, "guide.title.credits"),
             contributorsLore.toArray(new String[0])));
         // @formatter:on
 
         menu.addMenuClickHandler(2, (pl, slot, action, item) -> {
-            ContributorsMenu.open(pl, 0);
+            ContributorsSelectionMenu.open(pl, guide);
             return false;
         });
 
         // @formatter:off
         menu.addItem(4, CustomItemStack.create(Material.WRITABLE_BOOK,
-            ChatColor.GREEN + locale.getMessage(p, "guide.title.versions"),
+            "&a" + locale.getMessage(p, "guide.title.versions"),
             "&7&o" + locale.getMessage(p, "guide.tooltips.versions-notice"),
             "",
             "&fMinecraft: &a" + Bukkit.getBukkitVersion(),
@@ -119,60 +119,63 @@ public final class SlimefunGuideSettings {
         );
         // @formatter:on
 
+        List<String> sourceLore = new ArrayList<>();
+        sourceLore.add("");
+        sourceLore.add("&7Last Activity: &a" + NumberUtils.getElapsedTime(github.getLastUpdate()) + " ago");
+        sourceLore.add("&7Forks: &e" + github.getForks());
+        sourceLore.add("&7Stars: &e" + github.getStars());
+        sourceLore.add("");
+        sourceLore.addAll(locale.getMessages(p, "guide.menu.source.description"));
+        sourceLore.add("");
+        sourceLore.add("&7\u21E8 &eClick to go to GitHub");
+
         // @formatter:off
         menu.addItem(6, CustomItemStack.create(Material.COMPARATOR,
-           "&e" + locale.getMessage(p, "guide.title.source"),
-           "", "&7Last Activity: &a" + NumberUtils.getElapsedTime(github.getLastUpdate()) + " ago",
-           "&7Forks: &e" + github.getForks(),
-           "&7Stars: &e" + github.getStars(),
-           "",
-           "&7&oSlimefun 4 is a community project,",
-           "&7&othe source code is available on GitHub",
-           "&7&oand if you want to keep this Plugin alive,",
-           "&7&othen please consider contributing to it",
-           "",
-           "&7\u21E8 &eClick to go to GitHub"));
+           "#E982D9" + locale.getMessage(p, "guide.title.source"),
+           sourceLore.toArray(new String[0])));
         // @formatter:on
 
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://github.com/Slimefun/Slimefun4");
+            ChatUtils.sendURL(pl, "https://github.com/MrNeznamy/Slimefun5");
             return false;
         });
 
+        List<String> wikiLore = new ArrayList<>();
+        wikiLore.add("");
+        wikiLore.addAll(locale.getMessages(p, "guide.menu.wiki.description"));
+        wikiLore.add("");
+        wikiLore.add("&7\u21E8 &eClick to go to the official Slimefun 5 Wiki");
+
         // @formatter:off
         menu.addItem(8, CustomItemStack.create(Material.KNOWLEDGE_BOOK,
-            "&3" + locale.getMessage(p, "guide.title.wiki"),
-            "", "&7Do you need help with an Item or machine?",
-            "&7You cannot figure out what to do?",
-            "&7Check out our community-maintained Wiki",
-            "&7and become one of our Editors!",
-            "",
-            "&7\u21E8 &eClick to go to the official Slimefun Wiki"));
+            "&" + locale.getMessage(p, "guide.title.wiki"),
+            wikiLore.toArray(new String[0])));
         // @formatter:on
 
         menu.addMenuClickHandler(8, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://github.com/Slimefun/Slimefun4/wiki");
+            ChatUtils.sendURL(pl, "https://slimefun5.mrneznamy.eu/wiki");
             return false;
         });
 
+        List<String> addonsLore = new ArrayList<>();
+        addonsLore.add("");
+        addonsLore.addAll(locale.getMessages(p, "guide.menu.addons.description"));
+        addonsLore.add("");
+        addonsLore.add("&7Installed on this Server: &b" + Slimefun.getInstalledAddons().size());
+        addonsLore.add("");
+        addonsLore.add("&7\u21E8 &eClick to see all available addons for Slimefun5");
+
         // @formatter:off
         menu.addItem(47, CustomItemStack.create(Material.BOOKSHELF,
-            "&3" + locale.getMessage(p, "guide.title.addons"),
-            "",
-            "&7Slimefun is huge. But its addons are what makes",
-            "&7this plugin truly shine. Go check them out, some",
-            "&7of them may be exactly what you were missing out on!",
-            "",
-            "&7Installed on this Server: &b" + Slimefun.getInstalledAddons().size(),
-            "",
-            "&7\u21E8 &eClick to see all available addons for Slimefun4"));
+            "#E982D9" + locale.getMessage(p, "guide.title.addons"),
+            addonsLore.toArray(new String[0])));
         // @formatter:on
 
         menu.addMenuClickHandler(47, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://github.com/Slimefun/Slimefun4/wiki/Addons");
+            ChatUtils.sendURL(pl, "https://slimefun5.mrneznamy.eu/addons");
             return false;
         });
 
@@ -198,7 +201,7 @@ public final class SlimefunGuideSettings {
             menu.addItem(49, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
 
-        menu.addItem(51, CustomItemStack.create(Material.TOTEM_OF_UNDYING, ChatColor.RED + locale.getMessage(p, "guide.work-in-progress")), (pl, slot, item, action) -> {
+        menu.addItem(51, CustomItemStack.create(Material.TOTEM_OF_UNDYING, "&c" + locale.getMessage(p, "guide.work-in-progress")), (pl, slot, item, action) -> {
             // Add something here
             return false;
         });

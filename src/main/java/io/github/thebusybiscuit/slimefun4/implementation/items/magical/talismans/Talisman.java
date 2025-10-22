@@ -11,7 +11,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -78,7 +78,7 @@ public class Talisman extends SlimefunItem {
         addOfficialWikipage(WIKI_PAGE);
 
         if (!(this instanceof EnderTalisman)) {
-            String name = "&5Ender " + ChatColor.stripColor(getItem().getItemMeta().getDisplayName());
+            String name = "&5Ender " + ColorSystem.stripColor(getItem().getItemMeta().getDisplayName());
             List<String> lore = new ArrayList<>();
             lore.add("&7&oEnder Infused");
             lore.add("");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -39,7 +39,7 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
     public Optional<ItemStack> getDisplayItem(Player p, ItemStack guide) {
         if (Slimefun.getLocalization().isEnabled()) {
             Language language = Slimefun.getLocalization().getLanguage(p);
-            String languageName = language.isDefault() ? (Slimefun.getLocalization().getMessage(p, "languages.default") + ChatColor.DARK_GRAY + " (" + language.getName(p) + ")") : Slimefun.getLocalization().getMessage(p, "languages." + language.getId());
+            String languageName = language.isDefault() ? (Slimefun.getLocalization().getMessage(p, "languages.default") + "&8 (" + language.getName(p) + ")") : Slimefun.getLocalization().getMessage(p, "languages." + language.getId());
 
             List<String> lore = new ArrayList<>();
             lore.add("");
@@ -101,7 +101,7 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
         Language defaultLanguage = Slimefun.getLocalization().getDefaultLanguage();
         String defaultLanguageString = Slimefun.getLocalization().getMessage(p, "languages.default");
 
-        menu.addItem(9, CustomItemStack.create(defaultLanguage.getItem(), ChatColor.GRAY + defaultLanguageString + ChatColor.DARK_GRAY + " (" + defaultLanguage.getName(p) + ")", "", "&7\u21E8 &e" + Slimefun.getLocalization().getMessage(p, "guide.languages.select-default")), (pl, i, item, action) -> {
+        menu.addItem(9, CustomItemStack.create(defaultLanguage.getItem(), "&7" + defaultLanguageString + "&8 (" + defaultLanguage.getName(p) + ")", "", "&7\u21E8 &e" + Slimefun.getLocalization().getMessage(p, "guide.languages.select-default")), (pl, i, item, action) -> {
             Slimefun.instance().getServer().getPluginManager().callEvent(new PlayerLanguageChangeEvent(pl, Slimefun.getLocalization().getLanguage(pl), defaultLanguage));
             setSelectedOption(pl, guide, null);
 
@@ -114,7 +114,7 @@ class PlayerLanguageOption implements SlimefunGuideOption<String> {
         int slot = 10;
 
         for (Language language : Slimefun.getLocalization().getLanguages()) {
-            menu.addItem(slot, CustomItemStack.create(language.getItem(), ChatColor.GREEN + language.getName(p), "&b" + language.getTranslationProgress() + '%', "", "&7\u21E8 &e" + Slimefun.getLocalization().getMessage(p, "guide.languages.select")), (pl, i, item, action) -> {
+            menu.addItem(slot, CustomItemStack.create(language.getItem(), "&a" + language.getName(p), "&b" + language.getTranslationProgress() + '%', "", "&7\u21E8 &e" + Slimefun.getLocalization().getMessage(p, "guide.languages.select")), (pl, i, item, action) -> {
                 Slimefun.instance().getServer().getPluginManager().callEvent(new PlayerLanguageChangeEvent(pl, Slimefun.getLocalization().getLanguage(pl), language));
                 setSelectedOption(pl, guide, language.getId());
 

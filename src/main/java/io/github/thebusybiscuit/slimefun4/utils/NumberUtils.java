@@ -104,17 +104,17 @@ public final class NumberUtils {
      */
     public static @Nonnull String getColorFromPercentage(float percentage) {
         if (percentage < 16.0F) {
-            return "&4"; // DARK_RED
+            return ColorSystem.colorize("&4"); // DARK_RED
         } else if (percentage < 32.0F) {
-            return "&c"; // RED
+            return ColorSystem.colorize("&c"); // RED
         } else if (percentage < 48.0F) {
-            return "&6"; // GOLD
+            return ColorSystem.colorize("&6"); // GOLD
         } else if (percentage < 64.0F) {
-            return "&e"; // YELLOW
+            return ColorSystem.colorize("&e"); // YELLOW
         } else if (percentage < 80.0F) {
-            return "&2"; // DARK_GREEN
+            return ColorSystem.colorize("&2"); // DARK_GREEN
         } else {
-            return "&a"; // GREEN
+            return ColorSystem.colorize("&a"); // GREEN
         }
     }
 

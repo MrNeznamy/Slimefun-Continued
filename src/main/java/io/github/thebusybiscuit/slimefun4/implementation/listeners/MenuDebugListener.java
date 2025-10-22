@@ -2,7 +2,7 @@ package io.github.thebusybiscuit.slimefun4.implementation.listeners;
 
 import javax.annotation.Nonnull;
 
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -48,44 +48,44 @@ public class MenuDebugListener implements Listener {
         // Check if it's a Slimefun block
         SlimefunItem sfItem = BlockStorage.check(block);
         if (sfItem == null) {
-            player.sendMessage(ChatColor.RED + "Not a Slimefun block");
-            return;
-        }
+            player.sendMessage(ColorSystem.colorize("&cNot a Slimefun block"));
+        return;
+    }
 
-        player.sendMessage(ChatColor.YELLOW + "=== Menu Debug Info ===");
-        player.sendMessage(ChatColor.GREEN + "Block: " + sfItem.getId());
+    player.sendMessage(ColorSystem.colorize("&e=== Menu Debug Info ==="));
+    player.sendMessage(ColorSystem.colorize("&aBlock: " + sfItem.getId()));
+    
+    // Check if preset exists
+    boolean hasPreset = BlockMenuPreset.isInventory(sfItem.getId());
+    player.sendMessage(ColorSystem.colorize("&aHas Preset: " + hasPreset));
+    
+    if (hasPreset) {
+        BlockMenuPreset preset = BlockMenuPreset.getPreset(sfItem.getId());
+        player.sendMessage(ColorSystem.colorize("&aPreset ID: " + (preset != null ? preset.getID() : "null")));
+    }
+    
+    // Check if inventory exists
+    boolean hasInventory = BlockStorage.hasInventory(block);
+    player.sendMessage(ColorSystem.colorize("&aHas Inventory: " + hasInventory));
+    
+    if (hasInventory) {
+        BlockMenu menu = BlockStorage.getInventory(block);
+        player.sendMessage(ColorSystem.colorize("&aMenu exists: " + (menu != null)));
         
-        // Check if preset exists
-        boolean hasPreset = BlockMenuPreset.isInventory(sfItem.getId());
-        player.sendMessage(ChatColor.GREEN + "Has Preset: " + hasPreset);
-        
-        if (hasPreset) {
-            BlockMenuPreset preset = BlockMenuPreset.getPreset(sfItem.getId());
-            player.sendMessage(ChatColor.GREEN + "Preset ID: " + (preset != null ? preset.getID() : "null"));
-        }
-        
-        // Check if inventory exists
-        boolean hasInventory = BlockStorage.hasInventory(block);
-        player.sendMessage(ChatColor.GREEN + "Has Inventory: " + hasInventory);
-        
-        if (hasInventory) {
-            BlockMenu menu = BlockStorage.getInventory(block);
-            player.sendMessage(ChatColor.GREEN + "Menu exists: " + (menu != null));
+        if (menu != null) {
+            boolean canOpen = menu.canOpen(block, player);
+            player.sendMessage(ColorSystem.colorize("&aCan Open: " + canOpen));
             
-            if (menu != null) {
-                boolean canOpen = menu.canOpen(block, player);
-                player.sendMessage(ChatColor.GREEN + "Can Open: " + canOpen);
-                
-                if (canOpen) {
-                    player.sendMessage(ChatColor.GREEN + "Attempting to open menu...");
-                    menu.open(player);
-                } else {
-                    player.sendMessage(ChatColor.RED + "Cannot open menu - permission denied");
-                }
+            if (canOpen) {
+                player.sendMessage(ColorSystem.colorize("&aAttempting to open menu..."));
+                menu.open(player);
+            } else {
+                player.sendMessage(ColorSystem.colorize("&cCannot open menu - permission denied"));
             }
-        } else {
-            player.sendMessage(ChatColor.RED + "No inventory found for this block");
         }
+    } else {
+        player.sendMessage(ColorSystem.colorize("&cNo inventory found for this block"));
+    }
         
         e.setCancelled(true);
     }

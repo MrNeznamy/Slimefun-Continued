@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -39,7 +39,7 @@ public class PortableDustbin extends SimpleSlimefunItem<ItemUseHandler> implemen
             e.cancel();
 
             Player p = e.getPlayer();
-            p.openInventory(Bukkit.createInventory(null, 9 * 3, ChatColor.DARK_RED + "Delete Items"));
+            p.openInventory(Bukkit.createInventory(null, 9 * 3, "&4Delete Items"));
             SoundEffect.PORTABLE_DUSTBIN_OPEN_SOUND.playFor(p);
         };
     }

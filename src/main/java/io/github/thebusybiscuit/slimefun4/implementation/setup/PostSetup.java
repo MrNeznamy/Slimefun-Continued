@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 

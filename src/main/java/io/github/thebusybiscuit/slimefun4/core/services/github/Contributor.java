@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 
 import eu.mrneznamy.slimefun5.data.TriStateOptional;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -243,7 +243,7 @@ public class Contributor {
      */
     @Nonnull
     public String getDisplayName() {
-        return ChatColor.GRAY + githubUsername + (!githubUsername.equals(minecraftUsername) ? ChatColor.DARK_GRAY + " (MC: " + minecraftUsername + ")" : "");
+        return "&7" + githubUsername + (!githubUsername.equals(minecraftUsername) ? "&8" + " (MC: " + minecraftUsername + ")" : "");
     }
 
     /**

@@ -12,7 +12,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -143,14 +143,14 @@ public class GPSNetwork {
      *            The {@link Player}
      */
     public void openTransmitterControlPanel(@Nonnull Player p) {
-        ChestMenu menu = new ChestMenu(ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
+        ChestMenu menu = new ChestMenu("&9" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
 
         for (int slot : border) {
             menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
         }
 
         menu.addItem(2, CustomItemStack.create(SlimefunItems.GPS_TRANSMITTER.item(), im -> {
-            im.setDisplayName(ChatColor.GRAY + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"));
+            im.setDisplayName("&7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"));
             im.setLore(null);
         }));
 
@@ -160,7 +160,7 @@ public class GPSNetwork {
         menu.addItem(4, CustomItemStack.create(SlimefunItems.GPS_CONTROL_PANEL.item(), "&7Network Info", "", "&8\u21E8 &7Status: " + getStatusText(p, complexity), "&8\u21E8 &7Complexity: &f" + complexity));
         menu.addMenuClickHandler(4, ChestMenuUtils.getEmptyClickHandler());
 
-        menu.addItem(6, CustomItemStack.create(HeadTexture.GLOBE_OVERWORLD.getAsItemStack(), "&7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.waypoints"), "", ChatColor.GRAY + "\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
+        menu.addItem(6, CustomItemStack.create(HeadTexture.GLOBE_OVERWORLD.getAsItemStack(), "&7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.waypoints"), "", "&7\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             openWaypointControlPanel(pl);
             return false;
@@ -226,13 +226,13 @@ public class GPSNetwork {
 
     public void openWaypointControlPanel(@Nonnull Player p) {
         PlayerProfile.get(p, profile -> {
-            ChestMenu menu = new ChestMenu(ChatColor.BLUE + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
+            ChestMenu menu = new ChestMenu("&9" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.title"));
 
             for (int slot : border) {
                 menu.addItem(slot, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
             }
 
-            menu.addItem(2, CustomItemStack.create(SlimefunItems.GPS_TRANSMITTER.item(), "&7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"), "", ChatColor.GRAY + "\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
+            menu.addItem(2, CustomItemStack.create(SlimefunItems.GPS_TRANSMITTER.item(), "&7" + Slimefun.getLocalization().getMessage(p, "machines.GPS_CONTROL_PANEL.transmitters"), "", "&7\u21E8 " + Slimefun.getLocalization().getMessage(p, "guide.tooltips.open-itemgroup")));
             menu.addMenuClickHandler(2, (pl, slot, item, action) -> {
                 openTransmitterControlPanel(pl);
                 return false;
@@ -322,7 +322,7 @@ public class GPSNetwork {
                 Bukkit.getPluginManager().callEvent(event);
 
                 if (!event.isCancelled()) {
-                    String id = ChatColor.stripColor(ColorSystem.colorize(event.getName())).toUpperCase(Locale.ROOT).replace(' ', '_');
+                    String id = ColorSystem.stripColor(ColorSystem.colorize(event.getName())).toUpperCase(Locale.ROOT).replace(' ', '_');
 
                     for (Waypoint wp : profile.getWaypoints()) {
                         if (wp.getId().equals(id)) {

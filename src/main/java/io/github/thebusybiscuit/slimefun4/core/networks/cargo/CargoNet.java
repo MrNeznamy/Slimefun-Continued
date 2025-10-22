@@ -49,6 +49,8 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
 
     protected final Map<Location, Integer> roundRobin = new HashMap<>();
     private int tickDelayThreshold = 0;
+    private int visualizerDelayThreshold = 0;
+    private static final int VISUALIZER_DELAY = 10; // Show particles every 20 ticks (1 second)
 
     public static @Nullable CargoNet getNetworkFromLocation(@Nonnull Location l) {
         return Slimefun.getNetworkManager().getNetworkFromLocation(l, CargoNet.class).orElse(null);
@@ -150,8 +152,15 @@ public class CargoNet extends AbstractItemNetwork implements HologramOwner {
             Map<Location, Integer> inputs = mapInputNodes();
             Map<Integer, List<Location>> outputs = mapOutputNodes();
 
+            // Only display visualizer if it's enabled for this specific cargo manager
+            // and reduce frequency to avoid excessive blinking
             if (BlockStorage.getLocationInfo(b.getLocation(), "visualizer") == null) {
-                display();
+                if (visualizerDelayThreshold >= VISUALIZER_DELAY) {
+                    display();
+                    visualizerDelayThreshold = 0;
+                } else {
+                    visualizerDelayThreshold++;
+                }
             }
 
             Slimefun.getProfiler().scheduleEntries(inputs.size() + 1);

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;

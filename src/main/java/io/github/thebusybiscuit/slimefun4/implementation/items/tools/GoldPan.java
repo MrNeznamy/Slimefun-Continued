@@ -140,13 +140,23 @@ public class GoldPan extends SimpleSlimefunItem<ItemUseHandler> implements Recip
     @Override
     public @Nonnull ItemUseHandler getItemHandler() {
         return e -> {
+            System.out.println("[DEBUG] GoldPan ItemUseHandler called for player: " + e.getPlayer().getName());
+            
             Optional<Block> block = e.getClickedBlock();
+            System.out.println("[DEBUG] Clicked block present: " + block.isPresent());
 
             if (block.isPresent()) {
                 Block b = block.get();
+                System.out.println("[DEBUG] Block type: " + b.getType());
+                
+                boolean isValidMaterial = isValidInputMaterial(b.getType());
+                System.out.println("[DEBUG] Is valid input material: " + isValidMaterial);
+                
+                boolean hasPermission = Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b.getLocation(), Interaction.BREAK_BLOCK);
+                System.out.println("[DEBUG] Has permission: " + hasPermission);
 
                 // Check the clicked block type and for protections
-                if (isValidInputMaterial(b.getType()) && Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b.getLocation(), Interaction.BREAK_BLOCK)) {
+                if (isValidMaterial && hasPermission) {
                     ItemStack output = getRandomOutput();
 
                     b.getWorld().playEffect(b.getLocation(), Effect.STEP_SOUND, b.getType());

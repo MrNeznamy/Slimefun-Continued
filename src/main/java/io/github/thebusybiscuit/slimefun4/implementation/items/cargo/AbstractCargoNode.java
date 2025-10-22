@@ -48,10 +48,10 @@ abstract class AbstractCargoNode extends SimpleSlimefunItem<BlockPlaceHandler> i
 
             @Override
             public void init() {
-                createBorder(this);
                 // Ensure all cargo nodes have 54 slots to prevent ArrayIndexOutOfBoundsException
-                // when accessing higher slot numbers (e.g., slot 41 in AbstractFilterNode)
+                // when accessing higher slot numbers (e.g., slot 53 in CargoInputNode/CargoOutputNode)
                 setSize(54);
+                createBorder(this);
             }
 
             @Override

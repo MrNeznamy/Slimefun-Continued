@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -232,7 +232,7 @@ public class GEOMiner extends SlimefunItem implements RecipeDisplayItem, EnergyN
 
         for (GEOResource resource : Slimefun.getRegistry().getGEOResources().values()) {
             if (resource.isObtainableFromGEOMiner()) {
-                displayRecipes.add(CustomItemStack.create(resource.getItem(), ChatColor.RESET + resource.getName()));
+                displayRecipes.add(CustomItemStack.create(resource.getItem(), "&r" + resource.getName()));
             }
         }
 

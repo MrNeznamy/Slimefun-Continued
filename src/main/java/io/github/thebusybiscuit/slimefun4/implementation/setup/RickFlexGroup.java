@@ -14,6 +14,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
+import eu.mrneznamy.utils.ColorSystem;
 
 /**
  * A super ordinary class.
@@ -25,7 +26,7 @@ class RickFlexGroup extends FlexItemGroup {
 
     // Never instantiate more than once.
     RickFlexGroup(@Nonnull NamespacedKey key) {
-        super(key, CustomItemStack.create(Material.NETHER_STAR, "&6&lSuper secret items"), 1);
+        super(key, CustomItemStack.create(Material.NETHER_STAR, ColorSystem.colorize("&6&lSuper secret items")), 1);
     }
 
     // Gonna override this method

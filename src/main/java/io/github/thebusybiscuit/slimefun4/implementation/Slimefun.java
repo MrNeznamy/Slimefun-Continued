@@ -46,6 +46,7 @@ import io.github.thebusybiscuit.slimefun4.api.gps.GPSNetwork;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.SlimefunRegistry;
+import eu.mrneznamy.utils.ColorSystem;
 
 import io.github.thebusybiscuit.slimefun4.core.commands.SlimefunCommand;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;
@@ -183,7 +184,8 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
     private final CustomItemDataService itemDataService = new CustomItemDataService(this, "slimefun_item");
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
-    private final GitHubService gitHubService = new GitHubService("Slimefun/Slimefun4");
+    private final GitHubService gitHubService = new GitHubService("MrNeznamy/Slimefun5");
+    private static final GitHubService sf4GitHubService = new GitHubService("Slimefun/Slimefun4");
 
     private final MetricsService metricsService = new MetricsService(this);
     private final AutoSavingService autoSavingService = new AutoSavingService();
@@ -405,6 +407,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
         logger.log(Level.INFO, "Loading Third-Party plugin integrations...");
         integrations.start();
         gitHubService.start(this);
+        sf4GitHubService.start(this);
 
         // Hooray!
         logger.log(Level.INFO, "Slimefun has finished loading in " + getStartupTime(timestamp));
@@ -969,6 +972,15 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
     }
 
     /**
+     * This returns the {@link GitHubService} for Slimefun 4 contributors.
+     * 
+     * @return The {@link GitHubService} for Slimefun 4
+     */
+    public static @Nonnull GitHubService getSF4GitHubService() {
+        return sf4GitHubService;
+    }
+
+    /**
      * This returns our {@link NetworkManager} which is responsible
      * for handling the Cargo and Energy networks.
      * 
@@ -1190,7 +1202,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
                                   "# This file was created as a fallback when the default config.yml could not be loaded\n" +
                                   "\n" +
                                   "options:\n" +
-                                  "  chat-prefix: '&a[Slimefun] &7'\n" +
+                                  "chat-prefix: '" + ColorSystem.colorize("&a[Slimefun] &7") + "'\n" +
                                   "  language: en\n" +
                                   "  legacy-dust-washer: false\n" +
                                   "\n" +

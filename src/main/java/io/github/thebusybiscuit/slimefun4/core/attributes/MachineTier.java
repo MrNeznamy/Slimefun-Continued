@@ -1,15 +1,17 @@
 package io.github.thebusybiscuit.slimefun4.core.attributes;
 
+import eu.mrneznamy.utils.ColorSystem;
+
 import javax.annotation.Nonnull;
 
 public enum MachineTier {
 
-    BASIC("&eBasic"),
-    AVERAGE("&6Average"),
-    MEDIUM("&aMedium"),
-    GOOD("&2Good"),
-    ADVANCED("&6Advanced"),
-    END_GAME("&4End-Game");
+    BASIC(ColorSystem.colorize("&eBasic")),
+    AVERAGE(ColorSystem.colorize("&6Average")),
+    MEDIUM(ColorSystem.colorize("&aMedium")),
+    GOOD(ColorSystem.colorize("&2Good")),
+    ADVANCED(ColorSystem.colorize("&6Advanced")),
+    END_GAME(ColorSystem.colorize("&4End-Game"));
 
     private final String prefix;
 

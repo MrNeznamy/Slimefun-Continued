@@ -54,8 +54,60 @@ guide:
     wiki: 'Zobrazit tento předmět na oficiální Slimefun Wiki'
 
   categories:
-    items-count: '#926CDE&l➥ &8| #E982D9Předmětů v této kategorii: {0}'
-    click-instruction: '#926CDELevé-Kliknutí &8| #E982D9Pro otevření této kategorie!'
+    informations: '{PRIMARY_COLOR}&lINFORMACE:'
+    items-count: '{PRIMARY_COLOR}&l➥ &8| {SECONDARY_COLOR}Předmětů v této kategorii: {0}'
+    description-header: '{PRIMARY_COLOR}&lPOPIS:'
+    description-text: '{PRIMARY_COLOR}&l➥ &8| {SECONDARY_COLOR}{0}'
+    click-instruction: '{PRIMARY_COLOR}Levé-Kliknutí &8| {SECONDARY_COLOR}Pro otevření této kategorie!'
+    
+    colors:
+      # Default colors
+      default:
+        primary: '#926CDE'
+        secondary: '#E982D9'
+      
+      # Seasonal colors
+      halloween:
+        primary: '#FF6B35'
+        secondary: '#2C2C2C'
+      christmas:
+        primary: '#DC143C'
+        secondary: '#228B22'
+      easter:
+        primary: '#FFB6C1'
+        secondary: '#98FB98'
+      valentines_day:
+        primary: '#FF69B4'
+        secondary: '#DC143C'
+      birthday:
+        primary: '#FFD700'
+        secondary: '#FF4500'
+
+    descriptions:
+      halloween: 'Strašidelné předměty pro Halloween oslavy!'
+      christmas: 'Sváteční předměty pro vánoční sezónu!'
+      easter: 'Barevné předměty pro velikonoční slavnosti!'
+      valentines_day: 'Romantické předměty pro Valentýna!'
+      birthday: 'Speciální předměty pro TheBusyBiscuitovy narozeniny!'
+      weapons: 'Bojové zbraně a nástroje'
+      tools: 'Užitečné nástroje pro různé úkoly'
+      items: 'Různé užitečné předměty'
+      food: 'Jedlé předměty a spotřební materiál'
+      basic_machines: 'Základní stroje pro automatizaci'
+      electricity: 'Výroba energie a elektrické komponenty'
+      androids: 'Programovatelní robotičtí asistenti'
+      gps: 'GPS stroje a navigace'
+      armor: 'Ochranné vybavení a výstroj'
+      magical_items: 'Předměty s magickými vlastnostmi'
+      magical_gadgets: 'Magické nástroje a zařízení'
+      misc: 'Různé smíšené předměty'
+      technical_gadgets: 'Pokročilá technická zařízení'
+      resources: 'Suroviny a materiály'
+      cargo: 'Správa nákladu a doprava'
+      tech_misc: 'Technické komponenty a díly'
+      magical_armor: 'Zbroj s magickými vylepšeními'
+      talismans: 'Ochranné talismany (Tier I)'
+      ender_talismans: 'Vylepšené enderitové talismany (Tier II)'
 
     recipes:
       machine: 'Recepty vytvářené tímto strojem'

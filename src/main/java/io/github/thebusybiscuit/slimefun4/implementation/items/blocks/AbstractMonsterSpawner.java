@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.ChatColor;
+import eu.mrneznamy.utils.ColorSystem;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
@@ -56,8 +56,8 @@ public abstract class AbstractMonsterSpawner extends SlimefunItem {
 
         // We may want to update this in the future to also make use of the BlockStateMeta
         for (String line : meta.getLore()) {
-            if (ChatColor.stripColor(line).startsWith("Type: ") && !line.contains("<Type>")) {
-                EntityType type = EntityType.valueOf(ChatColor.stripColor(line).replace("Type: ", "").replace(' ', '_').toUpperCase(Locale.ROOT));
+            if (ColorSystem.stripColor(line).startsWith("Type: ") && !line.contains("<Type>")) {
+                EntityType type = EntityType.valueOf(ColorSystem.stripColor(line).replace("Type: ", "").replace(' ', '_').toUpperCase(Locale.ROOT));
                 return Optional.of(type);
             }
         }
