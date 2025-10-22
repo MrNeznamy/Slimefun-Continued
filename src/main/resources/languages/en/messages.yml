@@ -62,6 +62,10 @@ guide:
     versions-notice: 'These are very important when reporting bugs!'
     wiki: 'View this Item on the official Slimefun Wiki'
 
+  categories:
+    items-count: '#926CDE&l➥ &8| #E982D9Items in this category: {0}'
+    click-instruction: '#926CDELeft-Click &8| #E982D9To open this category!'
+
     recipes:
       machine: 'Recipes made in this Machine'
       miner: 'Resources you can obtain with this Miner'
@@ -142,9 +146,9 @@ guide:
     main: 'Slimefun Guide'
     settings: 'Settings & Info'
     languages: 'Select your preferred language'
-    credits: 'Slimefun4 Contributors'
-    wiki: 'Slimefun4 Wiki'
-    addons: 'Addons for Slimefun4'
+    credits: 'Slimefun 5 Contributors'
+    wiki: 'Slimefun 5 Wiki'
+    addons: 'Addon List'
     bugs: 'Bug Reports'
     source: 'Source Code'
     versions: 'Installed versions'
@@ -165,6 +169,36 @@ guide:
       wiki: '&3Wiki Editor'
       resourcepack: '&cResourcepack Artist'
       translator: '&9Translator'
+
+  menu:
+    contributors:
+      slimefun4:
+        title: 'Slimefun 4'
+        description: 'View Slimefun 4 developers'
+      slimefun5:
+        title: 'Slimefun 5'
+        description: 'View Slimefun 5 developers'
+      description:
+        - '&7Slimefun 5 is a community project'
+        - '&7maintained by passionate developers.'
+        - '&7This is a community version by _MRNEZNAMY_'
+        - '&7based on the original Slimefun 4.'
+    source:
+      description:
+        - '&7Slimefun 5 is an open-source project'
+        - '&7and you can contribute to it on GitHub.'
+        - '&7This is a community version by _MRNEZNAMY_'
+        - '&7based on the original Slimefun 4.'
+    wiki:
+      description:
+        - '&7Visit the Slimefun 5 Wiki'
+        - '&7for detailed information about'
+        - '&7all items, machines and features.'
+    addons:
+      description:
+        - '&7Browse available addons'
+        - '&7for Slimefun 5 to extend'
+        - '&7your gameplay experience.'
 
 actionbar:
   radiation: '&6Radiation Exposure Level: &c%level%&7/&e100'

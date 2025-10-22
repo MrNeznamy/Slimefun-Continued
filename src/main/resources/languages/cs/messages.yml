@@ -1,4 +1,4 @@
----
+﻿---
 commands:
   help: Zobrazí tuto  nápovědu
   cheat: Umožní našvindlovat si věci
@@ -52,6 +52,11 @@ guide:
     open-itemgroup: 'Klikni pro otevření'
     versions-notice: 'To jsou velmi důležité při hlášení chyb!'
     wiki: 'Zobrazit tento předmět na oficiální Slimefun Wiki'
+
+  categories:
+    items-count: '#926CDE&l➥ &8| #E982D9Předmětů v této kategorii: {0}'
+    click-instruction: '#926CDELevé-Kliknutí &8| #E982D9Pro otevření této kategorie!'
+
     recipes:
       machine: 'Recepty vytvářené tímto strojem'
       miner: 'Materiály, které můžeš získat tímto těžebním robotem'
@@ -67,6 +72,16 @@ guide:
     title: 'Zpět'
     guide: 'Zpět do Slimefun příručky'
     settings: 'Zpět do panelu nastavení'
+  title:
+    main: 'Slimefun Příručka'
+    settings: 'Nastavení a Informace'
+    languages: 'Vyberte váš preferovaný jazyk'
+    credits: 'Slimefun 5 Přispěvatelé'
+    wiki: 'Slimefun 5 Wiki'
+    addons: 'Seznam addonů'
+    bugs: 'Hlášení chyb'
+    source: 'Zdrojový kód'
+    versions: 'Nainstalované verze'
   languages:
     updated: '#55ff55Tvůj jazyk byl úspěšně nastaven na: #55ffff%lang%'
     selected-language: 'Aktuálně vybráno:'
@@ -99,14 +114,36 @@ guide:
           - '#aaaaaauvidíte informace o průběhu vašeho hloubání'
           - '#aaaaaakdyž budete zkoumat předmět.'
         click: '#ffff55Kliknutím zapnete animace výzkumu'
-  title:
-    main: 'Slimefun příručka'
-    settings: 'Nastavení a informace'
-    languages: 'Zvol svůj preferovaný jazyk'
-    credits: 'Slimefun4 pomocníci'
-    wiki: 'Slimefun4 Wiki'
-    addons: 'Doplňky pro Slimefun4'
-    bugs: 'Nahlášení chyb'
+
+  menu:
+    contributors:
+      slimefun4:
+        title: 'Slimefun 4'
+        description: 'Zobrazit vývojáře Slimefun 4'
+      slimefun5:
+        title: 'Slimefun 5'
+        description: 'Zobrazit vývojáře Slimefun 5'
+      description:
+        - '#aaaaaSlimefun 5 je komunitní projekt'
+        - '#aaaaaaspravovaný nadšenými vývojáři.'
+        - '#aaaaaaToto je komunitní verze od _MRNEZNAMY_'
+        - '#aaaaaazaložená na původním Slimefun 4.'
+    source:
+      description:
+        - '#aaaaaSlimefun 5 je open-source projekt'
+        - '#aaaaaaa můžete k němu přispívat na GitHubu.'
+        - '#aaaaaaToto je komunitní verze od _MRNEZNAMY_'
+        - '#aaaaaazaložená na původním Slimefun 4.'
+    wiki:
+      description:
+        - '#aaaaaNavštivte Slimefun 5 Wiki'
+        - '#aaaaaapro podrobné informace o'
+        - '#aaaaaavšech předmětech, strojích a funkcích.'
+    addons:
+      description:
+        - '#aaaaaaProcházejte dostupné addony'
+        - '#aaaaaapro Slimefun 5 a rozšiřte si'
+        - '#aaaaaasvojí herní zkušenost.'
     source: 'Zdrojový kód'
     versions: 'Nainstalovaná verze'
   credits:
