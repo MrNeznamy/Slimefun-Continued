@@ -46,6 +46,8 @@ public class ItemGroup implements Keyed {
     protected final ItemStack item;
     protected int tier;
     protected boolean crossAddonItemGroup = false;
+    protected String customDescription = null;
+    protected boolean rawMode = false;
 
     /**
      * Constructs a new {@link ItemGroup} with the given {@link NamespacedKey} as an identifier
@@ -91,6 +93,86 @@ public class ItemGroup implements Keyed {
         }
         this.item.setItemMeta(meta);
         this.tier = tier;
+    }
+
+    /**
+     * Constructs a new {@link ItemGroup} with the given {@link NamespacedKey} as an identifier,
+     * the given {@link ItemStack} as its display item, and a custom description.
+     *
+     * @param key
+     *            The {@link NamespacedKey} that is used to identify this {@link ItemGroup}
+     * @param item
+     *            The {@link ItemStack} that is used to display this {@link ItemGroup}
+     * @param tier
+     *            The tier of this {@link ItemGroup}, higher tiers will make this {@link ItemGroup} appear further down
+     *            in the {@link SlimefunGuide}
+     * @param customDescription
+     *            A custom description for this {@link ItemGroup} that overrides localization
+     */
+    @ParametersAreNonnullByDefault
+    public ItemGroup(NamespacedKey key, ItemStack item, int tier, String customDescription) {
+        this(key, item, tier);
+        this.customDescription = customDescription;
+    }
+
+    /**
+     * Constructs a new "raw" {@link ItemGroup} with the given {@link NamespacedKey} as an identifier
+     * and the given {@link ItemStack} as its display item. In raw mode, no automatic color schemes,
+     * lore formatting, or localization is applied - the developer has full control over the appearance.
+     *
+     * @param key
+     *            The {@link NamespacedKey} that is used to identify this {@link ItemGroup}
+     * @param item
+     *            The {@link ItemStack} that is used to display this {@link ItemGroup} (used as-is without modifications)
+     * @param tier
+     *            The tier of this {@link ItemGroup}, higher tiers will make this {@link ItemGroup} appear further down
+     *            in the {@link SlimefunGuide}
+     * @param rawMode
+     *            Set to true to enable raw mode (no automatic formatting), false for standard behavior
+     */
+    @ParametersAreNonnullByDefault
+    public ItemGroup(NamespacedKey key, ItemStack item, int tier, boolean rawMode) {
+        Validate.notNull(key, "An item group's NamespacedKey must not be null!");
+        Validate.notNull(item, "An item group's ItemStack must not be null!");
+
+        this.item = item.clone(); // Clone to avoid modifying the original
+        this.key = key;
+        this.tier = tier;
+        this.rawMode = rawMode;
+
+        if (!rawMode) {
+            // Apply standard formatting only if not in raw mode
+            ItemMeta meta = this.item.getItemMeta();
+            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            if (VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP != null) {
+                meta.addItemFlags(VersionedItemFlag.HIDE_ADDITIONAL_TOOLTIP);
+            }
+            this.item.setItemMeta(meta);
+        }
+    }
+
+    /**
+     * Constructs a new "raw" {@link ItemGroup} with the given {@link NamespacedKey} as an identifier,
+     * the given {@link ItemStack} as its display item, and a custom description. In raw mode, no automatic 
+     * color schemes, lore formatting, or localization is applied - the developer has full control over the appearance.
+     *
+     * @param key
+     *            The {@link NamespacedKey} that is used to identify this {@link ItemGroup}
+     * @param item
+     *            The {@link ItemStack} that is used to display this {@link ItemGroup} (used as-is without modifications)
+     * @param tier
+     *            The tier of this {@link ItemGroup}, higher tiers will make this {@link ItemGroup} appear further down
+     *            in the {@link SlimefunGuide}
+     * @param customDescription
+     *            A custom description for this {@link ItemGroup} that overrides localization
+     * @param rawMode
+     *            Set to true to enable raw mode (no automatic formatting), false for standard behavior
+     */
+    @ParametersAreNonnullByDefault
+    public ItemGroup(NamespacedKey key, ItemStack item, int tier, String customDescription, boolean rawMode) {
+        this(key, item, tier, rawMode);
+        this.customDescription = customDescription;
     }
 
     @Override
@@ -157,6 +239,36 @@ public class ItemGroup implements Keyed {
     }
 
     /**
+     * Sets a custom description for this {@link ItemGroup}.
+     * This description will override the localized description from language files.
+     *
+     * @param description
+     *            The custom description for this {@link ItemGroup}
+     */
+    public void setDescription(@Nullable String description) {
+        this.customDescription = description;
+    }
+
+    /**
+     * Gets the description for this {@link ItemGroup}.
+     * Returns the custom description if set, otherwise falls back to localization.
+     *
+     * @param player
+     *            The {@link Player} for localization context
+     * @return The description for this {@link ItemGroup}
+     */
+    public @Nullable String getDescription(@Nonnull Player player) {
+        if (customDescription != null) {
+            return customDescription;
+        }
+        
+        // Fallback to localization
+        String categoryKey = getKey().getKey();
+        String descriptionKey = "guide.categories.descriptions." + categoryKey;
+        return Slimefun.getLocalization().getMessage(player, descriptionKey);
+    }
+
+    /**
      * This refreshes the {@link ItemGroup} order.
      */
     private void sortCategoriesByTier() {
@@ -216,6 +328,11 @@ public class ItemGroup implements Keyed {
      * @return A localized display item for this {@link ItemGroup}
      */
     public @Nonnull ItemStack getItem(@Nonnull Player p) {
+        // In raw mode, return the item as-is without any automatic formatting
+        if (rawMode) {
+            return item.clone();
+        }
+
         return CustomItemStack.create(item, meta -> {
             String name = Slimefun.getLocalization().getItemGroupName(p, getKey());
 
@@ -265,10 +382,8 @@ public class ItemGroup implements Keyed {
                 lore.add(ColorSystem.colorize(coloredDescHeader));
             }
             
-            // Category description
-            String categoryKey = getKey().getKey();
-            String descriptionKey = "guide.categories.descriptions." + categoryKey;
-            String description = Slimefun.getLocalization().getMessage(p, descriptionKey);
+            // Category description - use custom description if available, otherwise fallback to localization
+            String description = getDescription(p);
             if (description != null) {
                 String descriptionText = Slimefun.getLocalization().getMessage(p, "guide.categories.description-text");
                 if (descriptionText != null) {
@@ -479,6 +594,17 @@ public class ItemGroup implements Keyed {
     @Deprecated
     public boolean isHidden(@Nonnull Player p) {
         return !isVisible(p);
+    }
+
+    /**
+     * Returns whether this {@link ItemGroup} is in raw mode.
+     * Raw mode categories don't have automatic color schemes, lore formatting, 
+     * or localization applied - the developer has full control over the appearance.
+     *
+     * @return true if this category is in raw mode, false otherwise
+     */
+    public boolean isRawMode() {
+        return rawMode;
     }
 
 }
