@@ -8,7 +8,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.apache.commons.lang.Validate;
 
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**

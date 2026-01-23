@@ -11,8 +11,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.data.persistent.PersistentDataAPI;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.data.persistent.PersistentDataAPI;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.SlimefunRegistry;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;

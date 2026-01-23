@@ -18,8 +18,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.collections.RandomizedSet;
-import eu.mrneznamy.slimefun5.protection.Interaction;
+import eu.mrneznamy.slimefuncontinued.collections.RandomizedSet;
+import eu.mrneznamy.slimefuncontinued.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

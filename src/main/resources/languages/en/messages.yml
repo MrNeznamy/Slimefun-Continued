@@ -198,8 +198,8 @@ guide:
     main: 'Slimefun Guide'
     settings: 'Settings & Info'
     languages: 'Select your preferred language'
-    credits: 'Slimefun 5 Contributors'
-    wiki: 'Slimefun 5 Wiki'
+    credits: 'Slimefun-Continued Contributors'
+    wiki: 'Slimefun-Continued Wiki'
     addons: 'Addon List'
     bugs: 'Bug Reports'
     source: 'Source Code'
@@ -227,29 +227,29 @@ guide:
       slimefun4:
         title: 'Slimefun 4'
         description: 'View Slimefun 4 developers'
-      slimefun5:
-        title: 'Slimefun 5'
-        description: 'View Slimefun 5 developers'
+      slimefun-continued:
+        title: 'Slimefun-Continued'
+        description: 'View Slimefun-Continued developers'
       description:
-        - '&7Slimefun 5 is a community project'
+        - '&7Slimefun-Continued is a community project'
         - '&7maintained by passionate developers.'
         - '&7This is a community version by _MRNEZNAMY_'
         - '&7based on the original Slimefun 4.'
     source:
       description:
-        - '&7Slimefun 5 is an open-source project'
+        - '&7Slimefun-Continued is an open-source project'
         - '&7and you can contribute to it on GitHub.'
         - '&7This is a community version by _MRNEZNAMY_'
         - '&7based on the original Slimefun 4.'
     wiki:
       description:
-        - '&7Visit the Slimefun 5 Wiki'
+        - '&7Visit the Slimefun-Continued Wiki'
         - '&7for detailed information about'
         - '&7all items, machines and features.'
     addons:
       description:
         - '&7Browse available addons'
-        - '&7for Slimefun 5 to extend'
+        - '&7for Slimefun-Continued to extend'
         - '&7your gameplay experience.'
 
 actionbar:

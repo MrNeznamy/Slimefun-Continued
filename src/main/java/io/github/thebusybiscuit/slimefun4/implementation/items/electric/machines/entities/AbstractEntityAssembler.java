@@ -17,8 +17,8 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
-import eu.mrneznamy.slimefun5.protection.Interaction;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

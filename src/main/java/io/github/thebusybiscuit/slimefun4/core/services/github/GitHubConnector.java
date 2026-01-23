@@ -36,7 +36,7 @@ import io.github.thebusybiscuit.slimefun4.utils.JsonUtils;
 abstract class GitHubConnector {
 
     private static final String API_URL = "https://api.github.com/";
-    private static final String USER_AGENT = "Slimefun4 (https://github.com/Slimefun)";
+    private static final String USER_AGENT = "Slimefun-Continued (https://github.com/MrNeznamy)";
     private static final HttpClient client = HttpClient.newHttpClient();
 
     protected final GitHubService github;
@@ -102,7 +102,7 @@ abstract class GitHubConnector {
      * Make sure to call this method asynchronously!
      */
     void download() {
-        file = new File("plugins/Slimefun/cache/github/" + getFileName() + ".json");
+        file = new File("plugins/Slimefun-Continued/cache/github/" + getFileName() + ".json");
 
         if (github.isLoggingEnabled()) {
             Slimefun.logger().log(Level.INFO, "Retrieving {0}.json from GitHub...", getFileName());

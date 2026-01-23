@@ -13,7 +13,7 @@ import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

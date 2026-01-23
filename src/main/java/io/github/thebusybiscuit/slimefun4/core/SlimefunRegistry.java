@@ -23,8 +23,8 @@ import org.bukkit.entity.Piglin;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.collections.KeyMap;
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.collections.KeyMap;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;

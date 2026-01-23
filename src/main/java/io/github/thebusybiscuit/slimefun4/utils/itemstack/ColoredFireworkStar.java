@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.utils.itemstack;
 
-import eu.mrneznamy.slimefun5.items.ItemStackEditor;
+import eu.mrneznamy.slimefuncontinued.items.ItemStackEditor;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedItemFlag;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;

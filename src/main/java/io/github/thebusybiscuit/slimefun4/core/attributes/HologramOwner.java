@@ -7,7 +7,7 @@ import org.bukkit.block.Block;
 import org.bukkit.util.Vector;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
+import eu.mrneznamy.slimefuncontinued.entities.holograms.HologramManager;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;
 

@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 import com.google.common.base.Preconditions;

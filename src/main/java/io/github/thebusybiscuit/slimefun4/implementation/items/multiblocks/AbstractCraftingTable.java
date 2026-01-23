@@ -18,8 +18,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.common.CommonPatterns;
-import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefuncontinued.common.CommonPatterns;
+import eu.mrneznamy.slimefuncontinued.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

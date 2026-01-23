@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -14,7 +14,7 @@ import eu.mrneznamy.utils.ColorSystem;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 
 /**
- * This menu allows players to choose between Slimefun 4 and Slimefun 5 contributors.
+ * This menu allows players to choose between Slimefun 4 and Slimefun-Continued contributors.
  *
  * @author TheBusyBiscuit
  *
@@ -51,11 +51,11 @@ final class ContributorsSelectionMenu {
             return false;
         });
 
-        // Slimefun 5 Contributors  
+        // Slimefun-Continued Contributors  
         menu.addItem(22, CustomItemStack.create(SlimefunUtils.getCustomHead("d78f2b7e5e75639ea7fb796c35d364c4df28b4243e66b76277aadcd6261337"),
-            ColorSystem.colorize("{#926CDE}&l" + Slimefun.getLocalization().getMessage(p, "guide.menu.contributors.slimefun5.title")),
+            ColorSystem.colorize("{#926CDE}&l" + Slimefun.getLocalization().getMessage(p, "guide.menu.contributors.slimefun-continued.title")),
             "",
-            ColorSystem.colorize("&8" + Slimefun.getLocalization().getMessage(p, "guide.menu.contributors.slimefun5.description")),
+            ColorSystem.colorize("&8" + Slimefun.getLocalization().getMessage(p, "guide.menu.contributors.slimefun-continued.description")),
             "",
             ColorSystem.colorize("&7\u21E8 {#E982D9}" + Slimefun.getLocalization().getMessage(p, "guide.open-itemgroup"))));
 

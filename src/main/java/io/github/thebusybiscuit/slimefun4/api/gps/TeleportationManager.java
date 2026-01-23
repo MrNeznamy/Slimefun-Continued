@@ -18,7 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;

@@ -28,8 +28,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.common.CommonPatterns;
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.common.CommonPatterns;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.events.AsyncProfileLoadEvent;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
 import io.github.thebusybiscuit.slimefun4.api.items.HashedArmorpiece;

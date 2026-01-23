@@ -209,8 +209,8 @@ public class ErrorReport<T extends Throwable> {
             throwable.printStackTrace(stream);
 
             addon.getLogger().log(Level.WARNING, "");
-            addon.getLogger().log(Level.WARNING, "An Error occurred! It has been saved as: ");
-            addon.getLogger().log(Level.WARNING, "/plugins/Slimefun/error-reports/{0}", file.getName());
+            addon.getLogger().log(Level.WARNING, "Check your /plugins/Slimefun-Continued/error-reports/ folder for details.");
+            addon.getLogger().log(Level.WARNING, "/plugins/Slimefun-Continued/error-reports/{0}", file.getName());
             addon.getLogger().log(Level.WARNING, "Please put this file on https://pastebin.com/ and report this to the developer(s).");
 
             if (addon.getBugTrackerURL() != null) {
@@ -224,7 +224,7 @@ public class ErrorReport<T extends Throwable> {
     }
 
     private static void scanPlugins(@Nonnull List<String> plugins, @Nonnull List<String> addons) {
-        String dependency = "Slimefun";
+        String dependency = "Slimefun-Continued";
 
         for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
             if (Bukkit.getPluginManager().isPluginEnabled(plugin)) {
@@ -244,7 +244,7 @@ public class ErrorReport<T extends Throwable> {
     }
 
     private static @Nonnull File getNewFile() {
-        String path = "plugins/Slimefun/error-reports/" + dateFormat.format(LocalDateTime.now());
+        String path = "plugins/Slimefun-Continued/error-reports/" + dateFormat.format(LocalDateTime.now());
         File newFile = new File(path + ".err");
 
         if (newFile.exists()) {

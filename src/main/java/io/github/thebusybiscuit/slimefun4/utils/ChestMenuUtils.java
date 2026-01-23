@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
@@ -35,13 +35,13 @@ public final class ChestMenuUtils {
     private static final ItemStack NO_PERMISSION = new SlimefunItemStack("_UI_NO_PERMISSION", Material.BARRIER, "No Permission").item();
     private static final ItemStack NOT_RESEARCHED = new SlimefunItemStack("_UI_NOT_RESEARCHED", Material.BARRIER, "Not researched").item();
 
-    private static final ItemStack BACK_BUTTON = new SlimefunItemStack("_UI_BACK", Material.ENCHANTED_BOOK, ColorSystem.colorize("&7\u21E6 Back"), meta -> meta.addItemFlags(ItemFlag.HIDE_ENCHANTS)).item();
-    private static final ItemStack MENU_BUTTON = new SlimefunItemStack("_UI_MENU", Material.COMPARATOR, ColorSystem.colorize("&eSettings / Info"), "", ColorSystem.colorize("&7\u21E8 Click to see more")).item();
-    private static final ItemStack SEARCH_BUTTON = new SlimefunItemStack("_UI_SEARCH", Material.NAME_TAG, ColorSystem.colorize("&bSearch")).item();
-    private static final ItemStack WIKI_BUTTON = new SlimefunItemStack("_UI_WIKI", Material.KNOWLEDGE_BOOK, ColorSystem.colorize("&3Slimefun Wiki")).item();
+    private static final ItemStack BACK_BUTTON = new SlimefunItemStack("_UI_BACK", Material.ENCHANTED_BOOK, ColorSystem.colorize("&d\u21E6 Back"), meta -> meta.addItemFlags(ItemFlag.HIDE_ENCHANTS)).item();
+    private static final ItemStack MENU_BUTTON = new SlimefunItemStack("_UI_MENU", Material.COMPARATOR, ColorSystem.colorize("&dSettings / Info"), "", ColorSystem.colorize("&d\u21E8 Click to see more")).item();
+    private static final ItemStack SEARCH_BUTTON = new SlimefunItemStack("_UI_SEARCH", Material.NAME_TAG, ColorSystem.colorize("&dSearch")).item();
+    private static final ItemStack WIKI_BUTTON = new SlimefunItemStack("_UI_WIKI", Material.KNOWLEDGE_BOOK, ColorSystem.colorize("&5Slimefun Wiki")).item();
 
-    private static final ItemStack PREV_BUTTON_ACTIVE = new SlimefunItemStack("_UI_PREVIOUS_ACTIVE", Material.LIME_STAINED_GLASS_PANE, ColorSystem.colorize("&r\u21E6 Previous Page")).item();
-    private static final ItemStack NEXT_BUTTON_ACTIVE = new SlimefunItemStack("_UI_NEXT_ACTIVE", Material.LIME_STAINED_GLASS_PANE, ColorSystem.colorize("&rNext Page \u21E8")).item();
+    private static final ItemStack PREV_BUTTON_ACTIVE = new SlimefunItemStack("_UI_PREVIOUS_ACTIVE", Material.MAGENTA_STAINED_GLASS_PANE, ColorSystem.colorize("&d\u21E6 Previous Page")).item();
+    private static final ItemStack NEXT_BUTTON_ACTIVE = new SlimefunItemStack("_UI_NEXT_ACTIVE", Material.MAGENTA_STAINED_GLASS_PANE, ColorSystem.colorize("&dNext Page \u21E8")).item();
     private static final ItemStack PREV_BUTTON_INACTIVE = new SlimefunItemStack("_UI_PREVIOUS_INACTIVE", Material.BLACK_STAINED_GLASS_PANE, ColorSystem.colorize("&8\u21E6 Previous Page")).item();
     private static final ItemStack NEXT_BUTTON_INACTIVE = new SlimefunItemStack("_UI_NEXT_INACTIVE", Material.BLACK_STAINED_GLASS_PANE, ColorSystem.colorize("&8Next Page \u21E8")).item();
 

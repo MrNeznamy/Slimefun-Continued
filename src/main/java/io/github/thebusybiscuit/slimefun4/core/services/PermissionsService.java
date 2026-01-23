@@ -33,10 +33,10 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 public class PermissionsService {
 
     private final Map<String, String> permissions = new HashMap<>();
-    private final eu.mrneznamy.slimefun5.config.Config config;
+    private final eu.mrneznamy.slimefuncontinued.config.Config config;
 
     public PermissionsService(@Nonnull Slimefun plugin) {
-        config = new eu.mrneznamy.slimefun5.config.Config(plugin, "permissions.yml");
+        config = new eu.mrneznamy.slimefuncontinued.config.Config(plugin, "permissions.yml");
 
         // @formatter:off
         config.getConfiguration().options().header(

@@ -23,10 +23,10 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.RecipeChoice.MaterialChoice;
 
-import eu.mrneznamy.slimefun5.chat.ChatInput;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
-import eu.mrneznamy.slimefun5.items.ItemUtils;
-import eu.mrneznamy.slimefun5.recipes.MinecraftRecipe;
+import eu.mrneznamy.slimefuncontinued.chat.ChatInput;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.ItemUtils;
+import eu.mrneznamy.slimefuncontinued.recipes.MinecraftRecipe;
 import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -79,7 +79,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
     public SurvivalSlimefunGuide(boolean showVanillaRecipes, boolean showHiddenItemGroupsInSearch) {
         this.showVanillaRecipes = showVanillaRecipes;
         this.showHiddenItemGroupsInSearch = showHiddenItemGroupsInSearch;
-        item = new SlimefunGuideItem(this, "&aSlimefun Guide &7(Chest GUI)");
+        item = new SlimefunGuideItem(this, "&dSlimefun-Continued Guide &7(Chest GUI)");
     }
 
     @Override
@@ -292,7 +292,7 @@ public class SurvivalSlimefunGuide implements SlimefunGuideImplementation {
             menu.addItem(index, CustomItemStack.create(ChestMenuUtils.getNoPermissionItem(), sfitem.getItemName(), message.toArray(new String[0])));
             menu.addMenuClickHandler(index, ChestMenuUtils.getEmptyClickHandler());
         } else if (isSurvivalMode() && research != null && !profile.hasUnlocked(research)) {
-            menu.addItem(index, CustomItemStack.create(ChestMenuUtils.getNotResearchedItem(), ColorSystem.colorize("&f" + ItemUtils.getItemName(sfitem.getItem())), "&4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"), "", "&a> Click to unlock", "", "&7Cost: &b" + research.getCost() + " Level(s)"));
+            menu.addItem(index, CustomItemStack.create(ChestMenuUtils.getNotResearchedItem(), ColorSystem.colorize("&f" + ItemUtils.getItemName(sfitem.getItem())), "&4&l" + Slimefun.getLocalization().getMessage(p, "guide.locked"), "", "&d> Click to unlock", "", "&7Cost: &d" + research.getCost() + " Level(s)"));
             menu.addMenuClickHandler(index, (pl, slot, item, action) -> {
                 research.unlockFromGuide(this, p, profile, sfitem, itemGroup, page);
                 return false;

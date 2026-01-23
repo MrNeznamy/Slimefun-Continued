@@ -4,18 +4,18 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.slimefun</groupId>
-    <artifactId>Slimefun</artifactId>
+    <groupId>eu.mrneznamy.slimefuncontinued</groupId>
+    <artifactId>Slimefun-Continued</artifactId>
 
     <!-- Our default version will be UNOFFICIAL, this will prevent auto updates -->
     <!-- from overriding our local test file -->
-    <version>5.0.1</version>
+    <version>1.0.0</version>
     <inceptionYear>2013</inceptionYear>
     <packaging>jar</packaging>
 
     <!-- Project Info -->
-    <description>Slimefun is a Paper plugin that simulates a modpack-like atmosphere by adding over 500 new items and recipes to your Minecraft Server.</description>
-    <url>https://github.com/MrNeznamy/Slimefun5</url>
+    <description>Slimefun-Continued is a Paper plugin that simulates a modpack-like atmosphere by adding over 500 new items and recipes to your Minecraft Server.</description>
+    <url>https://github.com/MrNeznamy/Slimefun-Continued</url>
 
     <properties>
         <!-- UTF-8 is our standard encoding for source files -->
@@ -31,26 +31,19 @@
         <!-- Spigot properties -->
         <paper.version>1.21.10</paper.version>
         <paper.javadocs>https://hub.spigotmc.org/javadocs/spigot/</paper.javadocs>
-
-        <!-- Default settings for sonarcloud.io -->
-        <sonar.projectKey>Slimefun_Slimefun4</sonar.projectKey>
-        <sonar.organization>slimefun</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.log.level>DEBUG</sonar.log.level>
-        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <issueManagement>
         <!-- Bug Tracker -->
         <system>GitHub Issues</system>
-        <url>https://github.com/Slimefun/Slimefun5/issues</url>
+        <url>https://github.com/MrNeznamy/Slimefun-Continued/issues</url>
     </issueManagement>
 
     <licenses>
         <license>
             <!-- License -->
             <name>GNU General Public License v3.0</name>
-            <url>https://github.com/Slimefun/Slimefun5/blob/master/LICENSE</url>
+            <url>https://github.com/MrNeznamy/Slimefun-Continued/blob/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -175,13 +168,6 @@
             </plugin>
 
             <plugin>
-                <!-- Sonarcloud Scanner -->
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>5.0.0.4389</version>
-            </plugin>
-
-            <plugin>
                 <!-- Code Coverage Reports -->
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -257,8 +243,8 @@
                     <reportOutputDirectory>${project.basedir}</reportOutputDirectory>
                     <destDir>javadocs</destDir>
 
-                    <doctitle>Slimefun4 - Javadocs</doctitle>
-                    <windowtitle>Slimefun4 - Javadocs</windowtitle>
+                    <doctitle>Slimefun-Continued - Javadocs</doctitle>
+                    <windowtitle>Slimefun-Continued - Javadocs</windowtitle>
                     <detectOfflineLinks>false</detectOfflineLinks>
                     <additionalJOption>-html5</additionalJOption>
 
@@ -270,40 +256,40 @@
                     <!-- We can group packages together in our Javadocs -->
                     <groups>
                         <group>
-                            <title>Slimefun4 - API</title>
+                            <title>Slimefun-Continued - API</title>
                             <packages>io.github.thebusybiscuit.slimefun4.api*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Core packages</title>
+                            <title>Slimefun-Continued - Core packages</title>
                             <packages>io.github.thebusybiscuit.slimefun4.core*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Implementations</title>
+                            <title>Slimefun-Continued - Implementations</title>
                             <packages>io.github.thebusybiscuit.slimefun4.implementation*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Integrations with other
+                            <title>Slimefun-Continued - Integrations with other
                                 plugins</title>
                             <packages>io.github.thebusybiscuit.slimefun4.integrations*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Common utility packages</title>
+                            <title>Slimefun-Continued - Common utility packages</title>
                             <packages>io.github.thebusybiscuit.slimefun4.utils*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Items</title>
+                            <title>Slimefun-Continued - Items</title>
                             <packages>io.github.thebusybiscuit.slimefun4.implementation.items*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Multiblocks</title>
+                            <title>Slimefun-Continued - Multiblocks</title>
                             <packages>io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Electrical Machines</title>
+                            <title>Slimefun-Continued - Electrical Machines</title>
                             <packages>io.github.thebusybiscuit.slimefun4.implementation.items.electric*</packages>
                         </group>
                         <group>
-                            <title>Slimefun4 - Old packages</title>
+                            <title>Slimefun-Continued - Old packages</title>
                             <packages>me.mrCookieSlime.Slimefun*</packages>
                         </group>
                     </groups>

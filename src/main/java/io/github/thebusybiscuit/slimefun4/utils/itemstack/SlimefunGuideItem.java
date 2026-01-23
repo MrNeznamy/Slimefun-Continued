@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import eu.mrneznamy.slimefun5.data.persistent.PersistentDataAPI;
+import eu.mrneznamy.slimefuncontinued.data.persistent.PersistentDataAPI;
 import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;
@@ -36,8 +36,8 @@ public class SlimefunGuideItem extends ItemStack {
         List<String> lore = new ArrayList<>();
         SlimefunGuideMode type = implementation.getMode();
         lore.add(type == SlimefunGuideMode.CHEAT_MODE ? ColorSystem.colorize("&4&lOnly openable by Admins") : "");
-        lore.add(ColorSystem.colorize("&eRight Click &8\u21E8 &7Browse Items"));
-        lore.add(ColorSystem.colorize("&eShift + Right Click &8\u21E8 &7Open Settings / Credits"));
+        lore.add(ColorSystem.colorize("&dRight Click &8\u21E8 &7Browse Items"));
+        lore.add(ColorSystem.colorize("&dShift + Right Click &8\u21E8 &7Open Settings / Credits"));
 
         meta.setLore(lore);
 

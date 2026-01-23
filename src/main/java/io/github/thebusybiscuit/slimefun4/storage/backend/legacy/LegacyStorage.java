@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.storage.backend.legacy;
 
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.gps.Waypoint;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerBackpack;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;

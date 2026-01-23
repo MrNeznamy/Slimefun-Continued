@@ -27,10 +27,10 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import eu.mrneznamy.slimefun5.common.CommonPatterns;
-import eu.mrneznamy.slimefun5.items.ItemMetaSnapshot;
-import eu.mrneznamy.slimefun5.skins.PlayerHead;
-import eu.mrneznamy.slimefun5.skins.PlayerSkin;
+import eu.mrneznamy.slimefuncontinued.common.CommonPatterns;
+import eu.mrneznamy.slimefuncontinued.items.ItemMetaSnapshot;
+import eu.mrneznamy.slimefuncontinued.skins.PlayerHead;
+import eu.mrneznamy.slimefuncontinued.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunItemSpawnEvent;
 import io.github.thebusybiscuit.slimefun4.api.exceptions.PrematureCodeException;

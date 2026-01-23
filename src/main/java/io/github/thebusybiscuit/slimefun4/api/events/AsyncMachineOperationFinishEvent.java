@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 

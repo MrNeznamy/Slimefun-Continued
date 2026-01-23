@@ -14,8 +14,8 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Server;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.network.Network;
 import io.github.thebusybiscuit.slimefun4.core.networks.cargo.CargoNet;

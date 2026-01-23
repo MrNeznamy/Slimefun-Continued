@@ -1,6 +1,6 @@
 package io.github.thebusybiscuit.slimefun4.core.machines;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 
 /**

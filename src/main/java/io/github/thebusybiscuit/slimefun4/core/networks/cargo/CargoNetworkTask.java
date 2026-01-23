@@ -19,7 +19,7 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.networks.NetworkManager;

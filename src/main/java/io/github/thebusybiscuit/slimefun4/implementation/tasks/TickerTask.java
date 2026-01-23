@@ -21,8 +21,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
-import eu.mrneznamy.slimefun5.blocks.ChunkPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.ChunkPosition;
 import io.github.thebusybiscuit.slimefun4.api.ErrorReport;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -202,7 +202,7 @@ public class TickerTask implements Runnable {
         } else if (errors == 4) {
             Slimefun.logger().log(Level.SEVERE, "X: {0} Y: {1} Z: {2} ({3})", new Object[] { l.getBlockX(), l.getBlockY(), l.getBlockZ(), item.getId() });
             Slimefun.logger().log(Level.SEVERE, "has thrown 4 error messages in the last 4 Ticks, the Block has been terminated.");
-            Slimefun.logger().log(Level.SEVERE, "Check your /plugins/Slimefun/error-reports/ folder for details.");
+            Slimefun.logger().log(Level.SEVERE, "Check your /plugins/Slimefun-Continued/error-reports/ folder for details.");
             Slimefun.logger().log(Level.SEVERE, " ");
             bugs.remove(position);
 

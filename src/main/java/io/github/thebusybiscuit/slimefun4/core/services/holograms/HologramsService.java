@@ -11,9 +11,9 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
-import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
-import eu.mrneznamy.slimefun5.entities.holograms.EntityHologram;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.entities.holograms.HologramManager;
+import eu.mrneznamy.slimefuncontinued.entities.holograms.EntityHologram;
 import io.github.thebusybiscuit.slimefun4.core.attributes.HologramOwner;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.HologramProjector;

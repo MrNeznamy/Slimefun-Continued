@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -204,18 +204,18 @@ public class MaterialsRequiredMenu {
             lore.add(ColorSystem.colorize("&7Available: &f" + requirement.getAvailable()));
             
             if (requirement.isSufficient()) {
-                lore.add(ColorSystem.colorize("&a✓ You have enough!"));
+                lore.add(ColorSystem.colorize("&aâœ“ You have enough!"));
             } else if (requirement.isPartial()) {
-                lore.add(ColorSystem.colorize("&6⚠ Missing: &c" + requirement.getMissing()));
+                lore.add(ColorSystem.colorize("&6âš  Missing: &c" + requirement.getMissing()));
             } else {
-                lore.add(ColorSystem.colorize("&c✗ You don't have any!"));
+                lore.add(ColorSystem.colorize("&câœ— You don't have any!"));
             }
             
             // Add click hint for Slimefun items
             SlimefunItem sfItem = SlimefunItem.getByItem(material);
             if (sfItem != null) {
                 lore.add("");
-                lore.add(ColorSystem.colorize("&e▶ Click to view recipe"));
+                lore.add(ColorSystem.colorize("&eâ–¶ Click to view recipe"));
             }
             
             meta.setLore(lore);
@@ -292,9 +292,9 @@ public class MaterialsRequiredMenu {
         ItemStack summaryItem = CustomItemStack.create(summaryMaterial, "&eMaterial Summary", 
             "",
             "&7Total materials: &f" + materialRequirements.size(),
-            "&a✓ Sufficient: &f" + sufficient,
-            "&6⚠ Partial: &f" + partial,
-            "&c✗ Missing: &f" + missing,
+            "&aâœ“ Sufficient: &f" + sufficient,
+            "&6âš  Partial: &f" + partial,
+            "&câœ— Missing: &f" + missing,
             "",
             sufficient == materialRequirements.size() ? "&a&lYou can craft this item!" : "&c&lYou need more materials!"
         );

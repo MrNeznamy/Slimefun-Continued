@@ -27,9 +27,9 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
-import eu.mrneznamy.slimefun5.items.ItemUtils;
-import eu.mrneznamy.slimefun5.protection.Interaction;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.ItemUtils;
+import eu.mrneznamy.slimefuncontinued.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;

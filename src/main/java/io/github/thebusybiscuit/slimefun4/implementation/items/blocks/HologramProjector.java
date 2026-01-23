@@ -12,9 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
-import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
-import eu.mrneznamy.slimefun5.entities.holograms.EntityHologram;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.entities.holograms.HologramManager;
+import eu.mrneznamy.slimefuncontinued.entities.holograms.EntityHologram;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

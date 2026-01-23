@@ -4,7 +4,7 @@ import java.util.OptionalInt;
 
 import javax.annotation.Nonnull;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineOperation;

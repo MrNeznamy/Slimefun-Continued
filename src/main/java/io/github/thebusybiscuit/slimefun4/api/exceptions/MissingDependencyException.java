@@ -19,12 +19,12 @@ public class MissingDependencyException extends RuntimeException {
 
     /**
      * This constructs a new {@link MissingDependencyException} for the given
-     * {@link SlimefunAddon} and the given dependency ("Slimefun")
+     * {@link SlimefunAddon} and the given dependency ("Slimefun-Continued")
      * 
      * @param addon
      *            The {@link SlimefunAddon} that caused this exception
      * @param dependency
-     *            The dependency that is required ("Slimefun")
+     *            The dependency that is required ("Slimefun-Continued")
      */
     @ParametersAreNonnullByDefault
     public MissingDependencyException(SlimefunAddon addon, String dependency) {

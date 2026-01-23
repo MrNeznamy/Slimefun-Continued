@@ -13,7 +13,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
 import io.github.thebusybiscuit.slimefun4.api.events.AsyncMachineOperationFinishEvent;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;

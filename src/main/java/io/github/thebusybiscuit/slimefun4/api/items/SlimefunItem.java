@@ -22,8 +22,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.Permission;
 
-import eu.mrneznamy.slimefun5.collections.OptionalMap;
-import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefuncontinued.collections.OptionalMap;
+import eu.mrneznamy.slimefuncontinued.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
@@ -581,8 +581,12 @@ public class SlimefunItem implements Placeable {
      *            The {@link SlimefunAddon} trying to register this {@link SlimefunItem}
      */
     private void checkDependencies(@Nonnull SlimefunAddon addon) {
-        if (!addon.hasDependency("Slimefun")) {
-            throw new MissingDependencyException(addon, "Slimefun");
+        if (addon.getName().equals("Slimefun-Continued")) {
+            return;
+        }
+
+        if (!addon.hasDependency("Slimefun") && !addon.hasDependency("Slimefun-Continued")) {
+            throw new MissingDependencyException(addon, "Slimefun-Continued");
         }
     }
 
@@ -865,7 +869,7 @@ public class SlimefunItem implements Placeable {
      */
     public final void addOfficialWikipage(@Nonnull String page) {
         Validate.notNull(page, "Wiki page cannot be null.");
-        wikiURL = Optional.of("https://github.com/Slimefun/Slimefun4/wiki/" + page);
+        wikiURL = Optional.of("https://github.com/MrNeznamy/Slimefun-Continued/wiki/" + page);
     }
 
     /**

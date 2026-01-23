@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 
 // This class will be deprecated, relocated and rewritten in a future version.
 public class UniversalBlockMenu extends DirtyChestMenu {

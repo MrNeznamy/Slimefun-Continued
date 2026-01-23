@@ -16,8 +16,8 @@ import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
 
-import eu.mrneznamy.slimefun5.skins.PlayerSkin;
-import eu.mrneznamy.slimefun5.skins.UUIDLookup;
+import eu.mrneznamy.slimefuncontinued.skins.PlayerSkin;
+import eu.mrneznamy.slimefuncontinued.skins.UUIDLookup;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**

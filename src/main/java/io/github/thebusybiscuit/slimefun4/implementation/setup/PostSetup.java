@@ -90,7 +90,7 @@ public final class PostSetup {
         int slimefunOnly = countNonAddonItems();
 
         sender.sendMessage("");
-        String header = eu.mrneznamy.utils.ColorSystem.colorize("#926CDE######################### - #E982D9SLIMEFUN 5 #926CDEv" + Slimefun.getVersion() + " - #########################");
+        String header = eu.mrneznamy.utils.ColorSystem.colorize("#926CDE######################### - #E982D9SLIMEFUN-CONTINUED #926CDEv" + Slimefun.getVersion() + " - #########################");
         sender.sendMessage(header);
         sender.sendMessage("");
         String itemsLoaded = eu.mrneznamy.utils.ColorSystem.colorize("#E982D9Successfully loaded #926CDE" + total + " #E982D9Items and #926CDE" + Slimefun.getRegistry().getResearches().size() + " #E982D9Researches");
@@ -105,10 +105,10 @@ public final class PostSetup {
 
         if (Slimefun.getBranch().isOfficial()) {
             sender.sendMessage("");
-            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Source Code:  #E982D9https://github.com/MrNeznamy/Slimefun5"));
-            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Wiki:         #E982D9https://slimefun5.mrneznamy.eu/wiki"));
-            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Addons:       #E982D9https://slimefun5.mrneznamy.eu/addons"));    
-            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Bug Reports:  #E982D9https://github.com/MrNeznamy/Slimefun5/issues"));
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Source Code:  #E982D9https://github.com/MrNeznamy/Slimefun-Continued"));
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Wiki:         #E982D9https://github.com/MrNeznamy/Slimefun-Continued/wiki"));
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Addons:       #E982D9https://github.com/MrNeznamy/Slimefun-Continued/wiki/Addons"));    
+            sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Bug Reports:  #E982D9https://github.com/MrNeznamy/Slimefun-Continued/issues"));
             sender.sendMessage(eu.mrneznamy.utils.ColorSystem.colorize("#926CDE - Discord:      #E982D9https://discord.gg/sgHFbKgSBk"));
         } else {
             String modifiedBuild = eu.mrneznamy.utils.ColorSystem.colorize("#E982D9 - #926CDETHIS BUILD IS NOT OFFICAL SLIMEFUN 4 #E982D9- #926CDENO OFFICIAL SUPPORT GIVEN");

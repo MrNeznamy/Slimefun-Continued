@@ -17,8 +17,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.protection.Interaction;
-import eu.mrneznamy.slimefun5.scheduling.TaskQueue;
+import eu.mrneznamy.slimefuncontinued.protection.Interaction;
+import eu.mrneznamy.slimefuncontinued.scheduling.TaskQueue;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;

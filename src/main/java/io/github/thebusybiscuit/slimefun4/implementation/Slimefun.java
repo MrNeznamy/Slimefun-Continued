@@ -34,9 +34,9 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import eu.mrneznamy.slimefun5.chat.ChatInput;
-import eu.mrneznamy.slimefun5.config.Config;
-import eu.mrneznamy.slimefun5.protection.ProtectionManager;
+import eu.mrneznamy.slimefuncontinued.chat.ChatInput;
+import eu.mrneznamy.slimefuncontinued.config.Config;
+import eu.mrneznamy.slimefuncontinued.protection.ProtectionManager;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunBranch;
@@ -66,7 +66,7 @@ import io.github.thebusybiscuit.slimefun4.core.services.ThreadService;
 import io.github.thebusybiscuit.slimefun4.core.services.github.GitHubService;
 import io.github.thebusybiscuit.slimefun4.core.services.holograms.HologramsService;
 import io.github.thebusybiscuit.slimefun4.core.services.profiler.SlimefunProfiler;
-import eu.mrneznamy.slimefun5.entities.holograms.HologramManager;
+import eu.mrneznamy.slimefuncontinued.entities.holograms.HologramManager;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundService;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientAltar;
 import io.github.thebusybiscuit.slimefun4.implementation.items.altar.AncientPedestal;
@@ -184,7 +184,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
     private final CustomItemDataService itemDataService = new CustomItemDataService(this, "slimefun_item");
     private final BlockDataService blockDataService = new BlockDataService(this, "slimefun_block");
     private final CustomTextureService textureService = new CustomTextureService(new Config(this, "item-models.yml"));
-    private final GitHubService gitHubService = new GitHubService("MrNeznamy/Slimefun5");
+    private final GitHubService gitHubService = new GitHubService("MrNeznamy/Slimefun-Continued");
     private static final GitHubService sf4GitHubService = new GitHubService("Slimefun/Slimefun4");
 
     private final MetricsService metricsService = new MetricsService(this);
@@ -241,7 +241,20 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
      */
     @Override
     public void onEnable() {
+        // We do not support reload usage.
+        if (Bukkit.getPluginManager().getPlugin("Slimefun-Continued") != null && Bukkit.getPluginManager().getPlugin("Slimefun-Continued") != this) {
+            getLogger().severe("Slimefun-Continued does not support reloads!");
+            getLogger().severe("Please restart your server instead.");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
         setInstance(this);
+        
+        // This is a fix for the "plugins/Slimefun-Continued" directory not existing
+        if (!getDataFolder().exists()) {
+            getDataFolder().mkdirs();
+        }
 
         if (isUnitTest()) {
             // We handle Unit Tests seperately.
@@ -420,7 +433,7 @@ public class Slimefun extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/Slimefun/Slimefun4/issues";
+        return "https://github.com/MrNeznamy/Slimefun-Continued/issues";
     }
 
     /**

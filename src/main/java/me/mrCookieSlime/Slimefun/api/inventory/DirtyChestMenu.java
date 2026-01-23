@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.inventory.InvUtils;
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
-import eu.mrneznamy.slimefun5.items.ItemUtils;
+import eu.mrneznamy.slimefuncontinued.inventory.InvUtils;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.utils.itemstack.ItemStackWrapper;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 

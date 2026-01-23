@@ -17,7 +17,7 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.blocks.Vein;
+import eu.mrneznamy.slimefuncontinued.blocks.Vein;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

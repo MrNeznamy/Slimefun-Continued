@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang.Validate;
 
-import eu.mrneznamy.slimefun5.config.Config;
+import eu.mrneznamy.slimefuncontinued.config.Config;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 
@@ -35,8 +35,8 @@ public class GitHubService {
     private final Set<GitHubConnector> connectors;
     private final ConcurrentMap<String, Contributor> contributors;
 
-    private final Config uuidCache = new Config("plugins/Slimefun/cache/github/uuids.yml");
-    private final Config texturesCache = new Config("plugins/Slimefun/cache/github/skins.yml");
+    private final Config uuidCache = new Config("plugins/Slimefun-Continued/cache/github/uuids.yml");
+    private final Config texturesCache = new Config("plugins/Slimefun-Continued/cache/github/skins.yml");
 
     private boolean logging = false;
 

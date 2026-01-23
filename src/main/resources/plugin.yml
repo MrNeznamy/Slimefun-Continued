@@ -1,11 +1,11 @@
 # Name and version
-name: Slimefun
+name: Slimefun-Continued
 version: ${project.version}
 
 # Project metadata
-author: The Slimefun 5 Community
-website: https://github.com/MrNeznamy/Slimefun5
-description: Slimefun basically turns your entire Server into a FTB modpack without installing a single mod
+author: The Slimefun-Continued Community
+website: https://github.com/MrNeznamy/Slimefun-Continued
+description: Slimefun-Continued basically turns your entire Server into a FTB modpack without installing a single mod
 
 # Technical settings
 main: io.github.thebusybiscuit.slimefun4.implementation.Slimefun

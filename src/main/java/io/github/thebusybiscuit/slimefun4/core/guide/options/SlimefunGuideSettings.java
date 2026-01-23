@@ -13,7 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.items.CustomItemStack;
+import eu.mrneznamy.slimefuncontinued.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
@@ -137,7 +137,7 @@ public final class SlimefunGuideSettings {
 
         menu.addMenuClickHandler(6, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://github.com/MrNeznamy/Slimefun5");
+            ChatUtils.sendURL(pl, "https://github.com/MrNeznamy/Slimefun-Continued");
             return false;
         });
 
@@ -145,7 +145,7 @@ public final class SlimefunGuideSettings {
         wikiLore.add("");
         wikiLore.addAll(locale.getMessages(p, "guide.menu.wiki.description"));
         wikiLore.add("");
-        wikiLore.add("&7\u21E8 &eClick to go to the official Slimefun 5 Wiki");
+        wikiLore.add("&7\u21E8 &eClick to go to the official Slimefun-Continued Wiki");
 
         // @formatter:off
         menu.addItem(8, CustomItemStack.create(Material.KNOWLEDGE_BOOK,
@@ -155,7 +155,7 @@ public final class SlimefunGuideSettings {
 
         menu.addMenuClickHandler(8, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://slimefun5.mrneznamy.eu/wiki");
+            ChatUtils.sendURL(pl, "https://github.com/MrNeznamy/Slimefun-Continued/wiki");
             return false;
         });
 
@@ -165,7 +165,7 @@ public final class SlimefunGuideSettings {
         addonsLore.add("");
         addonsLore.add("&7Installed on this Server: &b" + Slimefun.getInstalledAddons().size());
         addonsLore.add("");
-        addonsLore.add("&7\u21E8 &eClick to see all available addons for Slimefun5");
+        addonsLore.add("&7\u21E8 &eClick to see all available addons for Slimefun-Continued");
 
         // @formatter:off
         menu.addItem(47, CustomItemStack.create(Material.BOOKSHELF,
@@ -175,7 +175,7 @@ public final class SlimefunGuideSettings {
 
         menu.addMenuClickHandler(47, (pl, slot, item, action) -> {
             pl.closeInventory();
-            ChatUtils.sendURL(pl, "https://slimefun5.mrneznamy.eu/addons");
+            ChatUtils.sendURL(pl, "https://github.com/MrNeznamy/Slimefun-Continued/wiki/Addons");
             return false;
         });
 

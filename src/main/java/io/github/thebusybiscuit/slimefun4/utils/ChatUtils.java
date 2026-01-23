@@ -9,8 +9,8 @@ import javax.annotation.Nonnull;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import eu.mrneznamy.slimefun5.chat.ChatInput;
-import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefuncontinued.chat.ChatInput;
+import eu.mrneznamy.slimefuncontinued.common.CommonPatterns;
 import eu.mrneznamy.utils.ColorSystem;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 

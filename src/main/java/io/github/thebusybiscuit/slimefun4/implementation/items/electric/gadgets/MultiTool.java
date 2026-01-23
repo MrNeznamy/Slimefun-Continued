@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import eu.mrneznamy.utils.ColorSystem;
-import eu.mrneznamy.slimefun5.data.persistent.PersistentDataAPI;
+import eu.mrneznamy.slimefuncontinued.data.persistent.PersistentDataAPI;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;

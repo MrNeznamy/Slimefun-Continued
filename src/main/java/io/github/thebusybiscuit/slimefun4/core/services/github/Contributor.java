@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 
 
-import eu.mrneznamy.slimefun5.data.TriStateOptional;
+import eu.mrneznamy.slimefuncontinued.data.TriStateOptional;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.HeadTexture;
 

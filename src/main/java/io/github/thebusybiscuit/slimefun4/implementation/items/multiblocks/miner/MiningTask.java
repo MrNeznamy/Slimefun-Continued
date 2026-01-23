@@ -22,11 +22,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import eu.mrneznamy.slimefun5.blocks.BlockPosition;
-import eu.mrneznamy.slimefun5.inventory.InvUtils;
-import eu.mrneznamy.slimefun5.items.ItemUtils;
-import eu.mrneznamy.slimefun5.protection.Interaction;
-import eu.mrneznamy.slimefun5.scheduling.TaskQueue;
+import eu.mrneznamy.slimefuncontinued.blocks.BlockPosition;
+import eu.mrneznamy.slimefuncontinued.inventory.InvUtils;
+import eu.mrneznamy.slimefuncontinued.items.ItemUtils;
+import eu.mrneznamy.slimefuncontinued.protection.Interaction;
+import eu.mrneznamy.slimefuncontinued.scheduling.TaskQueue;
 import io.github.thebusybiscuit.slimefun4.core.services.sounds.SoundEffect;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.utils.compatibility.VersionedParticle;

@@ -15,8 +15,8 @@ import org.bukkit.entity.Entity;
  * This represents an {@link ArmorStand} that can expire and be renamed.
  * 
  * @deprecated This class is deprecated in favor of the new entity-based hologram system
- *             from {@code eu.mrneznamy.slimefun5.entities.holograms}. Use {@link HologramManager}
- *             and {@link eu.mrneznamy.slimefun5.entities.holograms.EntityHologram} instead.
+ *             from {@code eu.mrneznamy.slimefuncontinued.entities.holograms}. Use {@link HologramManager}
+ *             and {@link eu.mrneznamy.slimefuncontinued.entities.holograms.EntityHologram} instead.
  *             This class will be removed in a future version.
  * 
  * @author TheBusyBiscuit

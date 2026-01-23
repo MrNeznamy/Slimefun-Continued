@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang.Validate;
 import eu.mrneznamy.utils.ColorSystem;
 
-import eu.mrneznamy.slimefun5.common.CommonPatterns;
+import eu.mrneznamy.slimefuncontinued.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**
